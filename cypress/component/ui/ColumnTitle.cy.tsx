@@ -1,6 +1,5 @@
 
 import ColumnTitle from '../../../components/ui/ColumnTitle'
-import '../../styles/globals.css';
 describe('<ColumnTitle>', () => {
   
   it('should mount column mobile title', () => {
