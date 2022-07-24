@@ -4,9 +4,12 @@
 /node_modules
 /.pnp
 .pnp.js
+.history
 
 # testing
 /coverage
+/cypress
+cypress.config.ts
 
 # next.js
 /.next/
@@ -33,3 +36,6 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+
+# starter files
+/starter-files
