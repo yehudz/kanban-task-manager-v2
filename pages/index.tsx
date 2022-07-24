@@ -1,10 +1,9 @@
 import type { NextPage } from 'next'
-import styles from '../styles/Home.module.css'
 
 const Home: NextPage = (props) => {
   return (
-    <div className={styles.container}>
-      <h1 className="text-3xl font-bold underline">
+    <div className="w-screen h-screen flex flex-col justify-center items-center">
+      <h1 className="text-4xl font-bold">
         Hello world!
       </h1>
     </div>
