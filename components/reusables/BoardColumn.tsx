@@ -8,7 +8,8 @@ const BoardColumn = ({name, tasks}: BoardColumnProps)=> {
       <div className="flex flex-col">
         {tasks.map((task)=> {
           return(
-            <BoardColumnTaskItem 
+            <BoardColumnTaskItem
+              key={task.title} 
               title={task.title} 
               description={task.description} 
               status={task.status}
