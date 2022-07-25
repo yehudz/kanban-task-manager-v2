@@ -6,13 +6,25 @@ import Head from 'next/head'
 import appContext from '../context/appContext'
 import RightSidebar from '../components/layout/RightSidebar'
 import MobileMenu from '../components/ui/MobileMenu'
+import { Board, BoardColumn } from '../typings/common.types'
+
+// Dummy data singleton
+import dummyData from '../data.json'
 
 const Home: NextPage = (props) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
+  const [exampleBoard, setExampleBoard] = useState<Board>({name: '', columns: []})
+
   useEffect(()=> {
     if (window.innerWidth < 900) setIsMobile(true)
   }, [])
+
+  // let exampleBoard = {columns: []}
+  setTimeout(()=> {
+    setExampleBoard(dummyData.boards[0])
+  }, 1000)
+
   return (
     <>
       <Head>
@@ -27,9 +39,9 @@ const Home: NextPage = (props) => {
             {!isMobile && <RightSidebar />}
           </div>
           {isMobile && <MobileMenu show={openMobileMenu}/>}
-          <div data-testid="flex flex-column right-container" className='w-full'>
-            <TopBar />
-            <BoardColumnsContainer />
+          <div data-testid="right-container" className='w-full'>
+            <TopBar boardName={exampleBoard.name}/>
+            <BoardColumnsContainer board={exampleBoard}/>
           </div>
         </div>
       </appContext.Provider>

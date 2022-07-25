@@ -6,12 +6,15 @@ import OptionsMenuButton from '../ui/OptionsMenuButton'
 import appContext from '../../context/appContext'
 import { useContext } from 'react'
 
-const TopBar = ()=> {
+// TS interface
+import {TopBarProps} from '../../typings/interfaces'
+
+const TopBar = ({boardName}: TopBarProps)=> {
   const {isMobile, setOpenMobileMenu} = useContext(appContext)
   return(
     <div data-testid="top-bar" className={`${styles.container} flex flex-row items-center align-center w-full bg-white dark:bg-midnight`}>
       {isMobile && <MobileLogo />}
-      <ColumnTitle title={'Example Title'} isMobile={isMobile}/>
+      <ColumnTitle title={boardName} isMobile={isMobile}/>
       <AddNewTaskButton />
       <OptionsMenuButton />
     </div>

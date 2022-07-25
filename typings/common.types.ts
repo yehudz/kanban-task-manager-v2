@@ -1,30 +1,31 @@
-type Board = {
+export type Board = {
+  name: string
   columns: BoardColumn[]
 }
 
-type BoardColumn = {
-  id: string
+export type BoardColumn = {
+  id?: string
   name: string
   tasks: TaskItem[]
-  createdAt: Date
-  updatedAt: Date
+  createdAt?: Date
+  updatedAt?: Date
 }
 
-type TaskItem = {
-  id: string
-  createdAt: Date
-  updatedAt: Date
+export type TaskItem = {
+  id?: string
+  createdAt?: Date
+  updatedAt?: Date
   title: string
   description: string | null
   status: string | null
-  columnId: string
-  subtaskId: string
-  subtasks: Subtask[]
+  columnId?: string
+  subtaskId?: string
+  subtasks?: Subtask[]
 }
 
-type Subtask = {
-  id: string
+export type Subtask = {
+  id?: string
   title: string
   isCompleted: boolean
-  taskId: string
+  taskId?: string
 }

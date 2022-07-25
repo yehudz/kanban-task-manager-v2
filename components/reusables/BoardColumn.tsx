@@ -1,6 +1,6 @@
 const BoardColumn = ()=> {
   return(
-    <h1>Column title</h1>
+    <div data-testid="board-column-container"></div>
   )
 }
 
