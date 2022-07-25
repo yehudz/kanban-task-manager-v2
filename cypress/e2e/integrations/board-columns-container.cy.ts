@@ -32,12 +32,11 @@ describe('Board Columns Container', ()=> {
    cy.get('[data-testid="add-new-column-ui"]').should('exist') 
   })
 
-  it('shows the details of the task when clicked', ()=> {
+  it('shows and hides the details of the task when clicked', ()=> {
     cy.get('[data-testid=task-item]').first().click()
     cy.get('[data-testid=modal-container]').should('exist')
-    // cy.get('[data-testid="overlay-task-title"]').should('exist')
-    // cy.get('[data-testid="overlay-task-description"]').should('exist')
-    // cy.get('[data-testid="overlay-task-status"]').should('exist')
-    // cy.get('[data-testid="overlay-subtasks-container"]').should('exist')
+    cy.get('.MuiBackdrop-root').should('exist')
+    cy.get('.MuiBackdrop-root').click({force : true})
+    cy.get('.MuiBackdrop-root').should('not.exist')
   })
 })
