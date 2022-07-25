@@ -12,3 +12,9 @@ export interface BoardColumnProps {
   name: string
   tasks: TaskItem[]
 }
+
+export interface BoardTitleProps {
+  title: string
+  isMobile: boolean
+  handleClick(): void
+}
