@@ -22,12 +22,12 @@ const Home: NextPage = (props) => {
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet" />
       </Head>
       <appContext.Provider value={{isMobile, setOpenMobileMenu}}>
-        <div className="flex flex-row w-screen h-screen">
+        <div className="flex flex-row w-full h-screen bg-grey-400 dark:bg-grey">
           <div data-testid="left-container">
             {!isMobile && <RightSidebar />}
           </div>
           {isMobile && <MobileMenu show={openMobileMenu}/>}
-          <div data-testid="flex flex-column right-container">
+          <div data-testid="flex flex-column right-container" className='w-full'>
             <TopBar />
             <ColumnsContainer />
           </div>

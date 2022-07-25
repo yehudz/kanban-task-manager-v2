@@ -12,7 +12,7 @@ const RightSidebar = ()=> {
   return(
     <div 
       data-testid="right-sidebar" 
-      className={`${styles.container} ${sidebarOpen ? 'sidebarOpen' : ''} h-screen dark:bg-midnight relative`}>
+      className={`${styles.container} ${sidebarOpen ? 'sidebarOpen' : ''} h-full bg-white dark:bg-midnight relative`}>
       <div data-testid="right-sidebar-logo"></div>
       <ColumnsListMenu />
       <ThemeToggle />
