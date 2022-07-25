@@ -25,13 +25,19 @@ describe('Board Columns Container', ()=> {
 
   it('should show task item details on card', ()=> {
     cy.get('[data-testid="task-title"]').should('exist')
-    cy.get('[data-testid="task-description"]').should('exist')
-    cy.get('[data-testid="task-status"]').should('exist')
     cy.get('[data-testid="task-subtasks"]').should('exist')
+  })
+
+  it('should show add new column ui button', ()=> {
+   cy.get('[data-testid="add-new-column-ui"]').should('exist') 
   })
 
   it('shows the details of the task when clicked', ()=> {
     cy.get('[data-testid=task-item]').click()
     cy.get('[data-testid=task-details-container]').should('exist')
+    // cy.get('[data-testid="overlay-task-title"]').should('exist')
+    // cy.get('[data-testid="overlay-task-description"]').should('exist')
+    // cy.get('[data-testid="overlay-task-status"]').should('exist')
+    // cy.get('[data-testid="overlay-subtasks-container"]').should('exist')
   })
 })
