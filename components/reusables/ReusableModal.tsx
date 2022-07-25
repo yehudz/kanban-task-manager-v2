@@ -1,31 +1,20 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
+import {useContext} from 'react';
+import appContext from '../../context/appContext';
 import Modal from '@mui/material/Modal';
 
-const style = {
-  position: 'absolute' as 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  boxShadow: 24,
-  p: 4,
-};
+const ResuableModal = ()=> {
+  const {modalVisibility, setModalVisibility} = useContext(appContext)
+  function closeModal() {
+    setModalVisibility(false)
+  }
 
-interface ResuableModalProps {
-  visibility: boolean
-}
-
-export default function ResuableModal({visibility}: ResuableModalProps) {
   return (
     <div data-testid="modal-container">
       <Modal
-        open={visibility}
+        open={modalVisibility}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
+        onBackdropClick={closeModal}
         sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
       >
         <h1>Modal open</h1>
@@ -41,3 +30,5 @@ export default function ResuableModal({visibility}: ResuableModalProps) {
     </div>
   );
 }
+
+export default ResuableModal
