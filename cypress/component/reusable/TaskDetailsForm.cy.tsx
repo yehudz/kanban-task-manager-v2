@@ -1,7 +1,7 @@
 import TaskDetailsForm from '../../../components/reusables/TaskDetailsForm'
 describe('Task Details Form', ()=> {
   beforeEach(()=> {
-    cy.mount(<TaskDetailsForm title={''} description={''} status={''}/>)
+    cy.mount(<TaskDetailsForm title={''} description={''} status={''} subtasks={[{title: 'Example Subtask', isCompleted: false}, {title: 'Example Subtask 2', isCompleted: true}]}/>)
   })
   it('should render', ()=> {
     cy.get('[data-testid="task-details-container"]').should('exist')
@@ -26,6 +26,7 @@ describe('Task Details Form', ()=> {
   it('should have task subtasks', ()=> {
     cy.get('[data-testid="task-details-subtasks-container"]').should('exist')
     cy.get('[data-testid="task-details-subtasks-container"]').should('have.length.at.least', 1)
+    cy.get('[data-testid=subtask-item]').should('exist')
   })
 
   it('should have status selector', ()=> {

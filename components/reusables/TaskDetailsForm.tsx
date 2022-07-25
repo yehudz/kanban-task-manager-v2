@@ -10,6 +10,11 @@ const TaskDetailsForm = ({title, description, status, subtasks}: TaskItem)=> {
         Sub tasks (2 of {subtasks?.length})
       </div>
       <div data-testid="task-details-subtasks-container">
+        {subtasks?.map(subtask=> {
+          return(
+            <div data-testid="subtask-item">{subtask.title}</div>
+          )
+        })}
         <div>Sub Task</div>
       </div>
       <select data-testid="task-status-selector" name="status-selector" id="status-selector">
