@@ -27,4 +27,8 @@ describe('empty spec', () => {
   it('checks if there is an options button for column', ()=> {
     cy.get('[data-testid=column-options-drop-down]').should('exist')
   })
+
+  it('should have a right sidebar', ()=> {
+    cy.get('[data-testid=right-sidebar]').should('exist')
+  })
 })

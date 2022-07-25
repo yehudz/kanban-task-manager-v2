@@ -4,6 +4,7 @@ import TopBar from '../components/layout/TopBar'
 import ColumnsContainer from '../components/layout/ColumnsContainer'
 import Head from 'next/head'
 import appContext from '../context/appContext'
+import RightSidebar from '../components/layout/RightSidebar'
 
 const Home: NextPage = (props) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
@@ -21,6 +22,7 @@ const Home: NextPage = (props) => {
       </Head>
       <appContext.Provider value={{isMobile}}>
         <div className="w-screen h-screen">
+          {!isMobile && <RightSidebar />}
           <TopBar />
           <ColumnsContainer />
         </div>
