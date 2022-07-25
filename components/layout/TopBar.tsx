@@ -7,7 +7,7 @@ import appContext from '../../context/appContext'
 import { useContext } from 'react'
 
 const TopBar = ()=> {
-  const {isMobile} = useContext(appContext)
+  const {isMobile, setOpenMobileMenu} = useContext(appContext)
   return(
     <div data-testid="top-bar" className={`${styles.container} w-screen`}>
       {isMobile && <MobileLogo />}

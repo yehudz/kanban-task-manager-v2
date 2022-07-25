@@ -27,4 +27,11 @@ describe('empty spec', () => {
   it('checks if there is an options button for column', ()=> {
     cy.get('[data-testid=column-options-drop-down]').should('exist')
   })
+
+  it('opens the mobile menu', ()=> {
+    cy.get('[data-testid=mobile-menu]').should('exist')
+    cy.get('[data-testid=column-title]').click()
+    cy.get('[data-testid=mobile-menu]').should('not.have.class', 'hidden')
+
+  })
 })
