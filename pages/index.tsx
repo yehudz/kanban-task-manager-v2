@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import TopBar from '../components/layout/TopBar'
-import ColumnsContainer from '../components/layout/ColumnsContainer'
+import ColumnsContainer from '../components/layout/BoardColumnsContainer'
 import Head from 'next/head'
 import appContext from '../context/appContext'
 import RightSidebar from '../components/layout/RightSidebar'
