@@ -15,7 +15,7 @@ const ColumnsListMenu = ()=> {
       <div data-testid="board-list-items">
         {boardsDummyData.map((item: BoardListItem)=> {
           return(
-            <SidebarMenuListItem title={item.title}/>
+            <SidebarMenuListItem key={item.title} title={item.title}/>
           )
         })}
       </div>

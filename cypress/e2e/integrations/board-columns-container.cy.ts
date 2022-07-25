@@ -14,9 +14,20 @@ describe('Board Columns Container', ()=> {
     cy.get('[data-testid=board-column-container]').should('exist')
   })
 
+  it('show the title of the board column', ()=> {
+    cy.get('[data-testid="board-column-title"]')
+  })
+
   it('shows a list of tasks inside column and at least there should be one task', ()=> {
     cy.get('[data-testid=board-column-container]').should('have.length.at.least', 1)
     cy.get('[data-testid=task-item]')
+  })
+
+  it('should show task item details on card', ()=> {
+    cy.get('[data-testid="task-title"]').should('exist')
+    cy.get('[data-testid="task-description"]').should('exist')
+    cy.get('[data-testid="task-status"]').should('exist')
+    cy.get('[data-testid="task-subtasks"]').should('exist')
   })
 
   it('shows the details of the task when clicked', ()=> {

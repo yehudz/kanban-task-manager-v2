@@ -9,7 +9,7 @@ const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
       {!board.columns.length && <EmptyBoardScreen />}
       {board.columns.map(column=> {
         return(
-          <BoardColumn key={column.name}/>
+          <BoardColumn key={column.name} name={column.name} tasks={column.tasks}/>
         )
       })}
     </div>
