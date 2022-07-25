@@ -1,8 +1,4 @@
-interface MobileLogoProps {
-  show: boolean
-}
-
-const MobileLogo = ({show}: MobileLogoProps)=> {
+const MobileLogo = ()=> {
   return(
     <div data-testid="logo-container">
       <h3>Logo</h3>
