@@ -33,8 +33,8 @@ describe('Board Columns Container', ()=> {
   })
 
   it('shows the details of the task when clicked', ()=> {
-    cy.get('[data-testid=task-item]').click()
-    cy.get('[data-testid=task-details-container]').should('exist')
+    cy.get('[data-testid=task-item]').first().click()
+    cy.get('[data-testid=modal-container]').should('exist')
     // cy.get('[data-testid="overlay-task-title"]').should('exist')
     // cy.get('[data-testid="overlay-task-description"]').should('exist')
     // cy.get('[data-testid="overlay-task-status"]').should('exist')
