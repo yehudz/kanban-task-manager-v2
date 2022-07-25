@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import TopBar from '../components/layout/TopBar'
-import ColumnsContainer from '../components/layout/BoardColumnsContainer'
+import BoardColumnsContainer from '../components/layout/BoardColumnsContainer'
 import Head from 'next/head'
 import appContext from '../context/appContext'
 import RightSidebar from '../components/layout/RightSidebar'
@@ -29,7 +29,7 @@ const Home: NextPage = (props) => {
           {isMobile && <MobileMenu show={openMobileMenu}/>}
           <div data-testid="flex flex-column right-container" className='w-full'>
             <TopBar />
-            <ColumnsContainer />
+            <BoardColumnsContainer />
           </div>
         </div>
       </appContext.Provider>
