@@ -7,4 +7,25 @@ describe('Task Details Form', ()=> {
   it('should render', ()=> {
     cy.get('[data-testid="task-details-container"]').should('exist')
   })
+
+  it('should have task title', ()=> {
+    cy.get('[data-testid="task-details-title"]').should('exist')
+  })
+
+  it('should have task description', ()=> {
+    cy.get('[data-testid="task-details-description"]').should('exist')
+  })
+
+  it('should have task subtasks completed count', ()=> {
+    cy.get('[data-testid="task-details-subtasks-completed"]').should('exist')
+  })
+
+  it('should have task subtasks', ()=> {
+    cy.get('[data-testid="task-details-subtasks-container"]').should('exist')
+    cy.get('[data-testid="task-details-subtasks-container"]').should('have.length.at.least', 1)
+  })
+
+  it('should have status selector', ()=> {
+    cy.get('[data-testid="task-status-selector"]').should('exist')
+  })
 })
