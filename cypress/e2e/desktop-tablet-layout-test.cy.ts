@@ -41,4 +41,10 @@ describe('Layout Testing', () => {
     cy.get('[data-testid=board-list-item]').should('exist')
     cy.get('[data-testid=board-list-item]').should('exist')
   })
+
+  it('should toggle dark and light theme', ()=> {
+    cy.get('[type="checkbox"]').check()
+    cy.wait(2000)
+    cy.get('[type="checkbox"]').uncheck()
+  })
 })
