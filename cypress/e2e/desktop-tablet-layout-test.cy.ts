@@ -4,6 +4,11 @@ describe('Layout Testing', () => {
     cy.viewport(1280,	800)
   })
 
+  it('needs to have left and right main containers', ()=> {
+    cy.get('[data-testid=left-container]').should('exist')
+    cy.get('[data-testid=right-container]').should('exist')
+  })
+
   it('checks if topbar exists', () => {
     cy.get('[data-testid=top-bar]').should('exist')
   })
