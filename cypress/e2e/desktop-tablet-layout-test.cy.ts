@@ -57,3 +57,5 @@ describe('Layout Testing', () => {
     cy.get('[data-testid=toggle-sidebar-button]').click()
   })
 })
+
+export default {}
