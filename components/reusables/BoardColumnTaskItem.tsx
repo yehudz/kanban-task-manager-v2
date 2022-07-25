@@ -1,12 +1,19 @@
 import { useContext, useState } from "react"
 import { TaskItem } from "../../typings/common.types"
-import ResuableModal from './ReusableModal'
 import appContext from "../../context/appContext"
 const BoardColumnTaskItem = ({title, description, status, subtasks}: TaskItem)=> {
-  const {setModalVisibility} = useContext(appContext)
+  const {setModalVisibility, setTaskDetails} = useContext(appContext)
+
+  let params = {
+    title,
+    description,
+    status,
+    subtasks
+  }
 
   function showModal() {
     setModalVisibility(true)
+    setTaskDetails(params)
   }
 
   return(
