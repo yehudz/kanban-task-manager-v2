@@ -47,4 +47,13 @@ describe('Layout Testing', () => {
     cy.wait(2000)
     cy.get('[type="checkbox"]').uncheck()
   })
+
+  it('should toggle sidebar close and open', ()=> {
+    cy.get('[data-testid=right-sidebar]').should('have.class', 'sidebarOpen')
+    cy.wait(1000)
+    cy.get('[data-testid=toggle-sidebar-button]').click()
+    cy.get('[data-testid=right-sidebar]').should('have.not.class', 'sidebarOpen')
+    cy.wait(1000)
+    cy.get('[data-testid=toggle-sidebar-button]').click()
+  })
 })
