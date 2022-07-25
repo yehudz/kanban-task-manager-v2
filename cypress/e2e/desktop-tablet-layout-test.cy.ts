@@ -1,4 +1,4 @@
-describe('empty spec', () => {
+describe('Layout Testing', () => {
   beforeEach(()=> {
     cy.visit('/')
     cy.viewport(1280,	800)
@@ -34,5 +34,11 @@ describe('empty spec', () => {
     cy.get('[data-testid=columns-list-menu]').should('exist')
     cy.get('[data-testid="theme-toggle-container"]').should('exist')
     cy.get('[data-testid=toggle-sidebar-button]').should('exist')
+  })
+
+  it('needs sidebar to contain list with boards', ()=> {
+    cy.get('[data-testid=board-list-items]').should('have.length.at.least', 1)
+    cy.get('[data-testid=board-list-item]').should('exist')
+    cy.get('[data-testid=board-list-item]').should('exist')
   })
 })

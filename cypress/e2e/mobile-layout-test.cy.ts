@@ -1,4 +1,4 @@
-describe('empty spec', () => {
+describe('Mobile Layout Testing', () => {
   beforeEach(()=> {
     cy.visit('/')
     cy.viewport(320,	568)
