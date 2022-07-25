@@ -28,7 +28,11 @@ describe('empty spec', () => {
     cy.get('[data-testid=column-options-drop-down]').should('exist')
   })
 
-  it('should have a right sidebar', ()=> {
+  it('should have a right sidebar with logo, columns list, theme toggle, toggle sidebar', ()=> {
     cy.get('[data-testid=right-sidebar]').should('exist')
+    cy.get('[data-testid=right-sidebar-logo]').should('exist')
+    cy.get('[data-testid=columns-list-menu]').should('exist')
+    cy.get('[data-testid="theme-toggle-container"]').should('exist')
+    cy.get('[data-testid=toggle-sidebar-button]').should('exist')
   })
 })
