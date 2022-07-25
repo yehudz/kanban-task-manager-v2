@@ -1,8 +1,7 @@
 import TaskDetailsForm from '../../../components/reusables/TaskDetailsForm'
-
 describe('Task Details Form', ()=> {
   beforeEach(()=> {
-    cy.mount(<TaskDetailsForm />)
+    cy.mount(<TaskDetailsForm title={''} description={''} status={''}/>)
   })
   it('should render', ()=> {
     cy.get('[data-testid="task-details-container"]').should('exist')
@@ -10,6 +9,10 @@ describe('Task Details Form', ()=> {
 
   it('should have task title', ()=> {
     cy.get('[data-testid="task-details-title"]').should('exist')
+  })
+
+  it('should have options menu', ()=> {
+    cy.get('[data-testid=column-options-drop-down]')
   })
 
   it('should have task description', ()=> {
