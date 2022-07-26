@@ -1,37 +1,49 @@
-import React, { useContext, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import PrimaryButton from "../ui/PrimaryButton";
 import appContext from '../../context/appContext'
-type Column = {
-  placeholder: string
-}
+import {BoardFormProps} from '../../typings/interfaces'
+import {BoardColumn} from '../../typings/common.types'
 
-const BoardForm = ()=> {
+const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
-  const [boardColumns, setBoardColumns] = useState<Column[]>([{placeholder: 'e.g. To do'}])
-  function addNewColumnField(event: React.MouseEvent<HTMLButtonElement>):void {
+  const [emptyBoardColumns, emptySetBoardColumns] = useState<BoardColumn[]>([{name: '', placeholder: 'e.g. To do'}])
+  useEffect(()=> {
+    if (boardColumns.length) emptySetBoardColumns(boardColumns)
+  }, [])
+  function addNewColumnField(event: React.MouseEvent<HTMLButtonElement>){
     event.preventDefault()
-    setBoardColumns(prevColumns=> [...prevColumns, {placeholder: 'e.g. Enter column title'}])
+    emptySetBoardColumns(prevColumns=> [...prevColumns, {name: '', placeholder: 'e.g. Enter column title'}])
   }
 
-  function submitForm(event: React.MouseEvent<HTMLButtonElement>):void {
+  function submitForm(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
     // todo save changes to database
     setModalVisibility(false)
   }
   return(
     <form data-testid="add-new-board-form" className="flex flex-col bg-white dark:bg-midnight p-5 rounded-md">
-      <div data-testid="add-new-board-form-title">Add Board</div>
+      <div data-testid="add-new-board-form-title">{formTitle}</div>
       <span data-testid="add-new-board-form-title-input" className="flex flex-col">
         <label htmlFor="boardTitle">Board Name</label>
-        <input data-testid="board-title-input" name="boardTitle" type="text" placeholder="e.g. Web Design"/>
+        <input 
+          data-testid="board-title-input" 
+          name="boardTitle" 
+          type="text" 
+          placeholder="e.g. Web Design" 
+          defaultValue={boardName}/>
       </span>
       <div data-testid="add-new-board-form-columns-creator" className="flex flex-col">
         <h1>Board Columns</h1>
-        {boardColumns.map((column: Column)=> {
+        {emptyBoardColumns.map((column: BoardColumn)=> {
           return(
-            <div data-tesid="add-new-board-form-column" className="flex flex-row items-center">
-              <input data-testid="column-name-input" name="boardTitle" type="text" placeholder={column.placeholder}/>
+            <div key={column.name} data-tesid="add-new-board-form-column" className="flex flex-row items-center">
+              <input 
+                data-testid="column-name-input" 
+                name="boardTitle" 
+                type="text" 
+                defaultValue={column.name} 
+                placeholder={column.placeholder}/>
               <ClearOutlinedIcon />
             </div>
           )

@@ -1,4 +1,4 @@
-import { Board, TaskItem } from "./common.types"
+import { Board, TaskItem, BoardColumn } from "./common.types"
 
 export interface TopBarProps {
   boardName: string
@@ -16,13 +16,17 @@ export interface BoardColumnProps {
 export interface BoardTitleProps {
   title: string
   isMobile: boolean
-  handleClick(): void
+  handleClick:
+  | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+  | undefined;
 }
 
 export interface PrimaryButtonProps {
   buttonText: string
   color: string
-  handleClick?: ()=> void
+  handleClick:
+  | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+  | undefined;
 }
 
 export interface OptionsMenuButtonProps {
@@ -37,4 +41,10 @@ export interface OptionMenuProps {
 export interface TaskFormProps extends TaskItem {
   formTitle: string
   buttonText: string
+}
+
+export interface BoardFormProps {
+  formTitle: string
+  boardName: string
+  boardColumns: BoardColumn[]
 }

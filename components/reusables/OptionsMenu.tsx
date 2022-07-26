@@ -8,7 +8,7 @@ import appContext from '../../context/appContext';
 import { OptionMenuProps } from "../../typings/interfaces";
 
 const  OptionsMenu = ({menuItems}: OptionMenuProps)=> {
-  const {setModalContentType} = useContext(appContext)
+  const {setModalContentType, setModalVisibility} = useContext(appContext)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -22,9 +22,11 @@ const  OptionsMenu = ({menuItems}: OptionMenuProps)=> {
     switch(event.currentTarget.innerText) {
       case 'Edit Task':
         setModalContentType("EDIT_TASK")
+        setModalVisibility(true)
         break
       case 'Edit Board':
         setModalContentType("EDIT_BOARD")
+        setModalVisibility(true)
         break
       case 'Delete Task':
         setModalContentType("DELETE_TASK")
