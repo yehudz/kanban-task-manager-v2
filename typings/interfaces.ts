@@ -54,3 +54,8 @@ export interface WarningMessageProps {
   itemName: string
   type: string
 }
+
+export interface SidebarMenuListItemProps {
+  title: string
+  active: boolean
+}

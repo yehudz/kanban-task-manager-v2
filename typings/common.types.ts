@@ -30,3 +30,8 @@ export type Subtask = {
   isCompleted: boolean
   taskId?: string
 }
+
+export type BoardListItem = {
+  title: string
+  active: boolean
+}
