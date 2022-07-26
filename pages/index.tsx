@@ -9,7 +9,7 @@ import MobileMenu from '../components/ui/MobileMenu'
 import { Board, TaskItem } from '../typings/common.types'
 import ResuableModal from '../components/reusables/ReusableModal'
 import TaskDetailsForm from '../components/reusables/TaskDetailsForm'
-import AddNewTaskForm from '../components/reusables/AddNewTaskForm'
+import TaskForm from '../components/reusables/TaskForm'
 import AddNewBoardForm from '../components/reusables/AddNewBoardForm'
 
 // Dummy data singleton
@@ -27,7 +27,7 @@ const Home: NextPage = (props) => {
   const ModalContent = ()=> {
     switch(modalContentType) {
       case "ADD_NEW_TASK": 
-        return <AddNewTaskForm />
+        return <TaskForm />
       case "TASK_DETAILS":
         return <TaskDetailsForm 
                   title={taskDetails?.title} 

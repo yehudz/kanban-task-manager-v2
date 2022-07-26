@@ -2,7 +2,7 @@ import PrimaryButton from "../ui/PrimaryButton"
 import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton } from "@mui/material";
 import { useState } from "react";
-const AddNewTaskForm = ()=> {
+const TaskForm = ()=> {
 
   const [subtaskInputs, setSubtaskInputs] = useState([
         {placeholder: "e.g. Make Coffee"},
@@ -59,4 +59,4 @@ recharge the batteries a little."></textarea>
   )
 }
 
-export default AddNewTaskForm
+export default TaskForm

@@ -16,7 +16,7 @@ const OptionsMenu = ({menuItems}: OptionMenuProps)=> {
     setAnchorEl(event.currentTarget);
   }
 
-  const handleClose = () => {
+  const handleSelection = () => {
     setAnchorEl(null);
   };
   return(
@@ -27,14 +27,14 @@ const OptionsMenu = ({menuItems}: OptionMenuProps)=> {
         data-testid="options-menu"
         anchorEl={anchorEl}
         open={open}
-        onClose={handleClose}
+        onClose={handleSelection}
         MenuListProps={{
           'aria-labelledby': 'basic-button',
         }}
       >
         {menuItems.map(item=> {
           return(
-            <MenuItem onClick={handleClose} data-testid="options-menu-option">{}</MenuItem>
+            <MenuItem onClick={handleSelection} data-testid="options-menu-option">{item}</MenuItem>
           )
         })}
       </Menu>

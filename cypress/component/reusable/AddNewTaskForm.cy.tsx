@@ -1,8 +1,8 @@
-import AddNewTaskForm from '../../../components/reusables/AddNewTaskForm'
+import TaskForm from '../../../components/reusables/TaskForm'
 
 describe('Add new task form', ()=> {
   beforeEach(()=> {
-    cy.mount(<AddNewTaskForm />)
+    cy.mount(<TaskForm />)
   })
 
   it('should render', ()=> {
