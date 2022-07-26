@@ -34,6 +34,7 @@ describe('Board Columns Container', ()=> {
 
   it('shows and hides the details of the task when clicked', ()=> {
     cy.get('[data-testid=task-item]').first().click()
+    cy.get('[data-testid=task-details-container]').should('exist')
     cy.get('[data-testid=modal-container]').should('exist')
     cy.get('.MuiBackdrop-root').should('exist')
     cy.get('.MuiBackdrop-root').click({force : true})
