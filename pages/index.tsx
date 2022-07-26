@@ -10,6 +10,8 @@ import { Board, TaskItem } from '../typings/common.types'
 import ResuableModal from '../components/reusables/ReusableModal'
 import TaskDetailsForm from '../components/reusables/TaskDetailsForm'
 import AddNewTaskForm from '../components/reusables/AddNewTaskForm'
+import AddNewBoardForm from '../components/reusables/AddNewBoardForm'
+
 // Dummy data singleton
 import dummyData from '../data.json'
 
@@ -22,6 +24,7 @@ const Home: NextPage = (props) => {
   const [modalContentType, setModalContentType] = useState<string>('')
 
   // Should check for what is requested to show in the modal
+  console.log(modalContentType)
   const ModalContent = ()=> {
     switch(modalContentType) {
       case "ADD_NEW_TASK": 
@@ -33,6 +36,8 @@ const Home: NextPage = (props) => {
                   status={taskDetails?.status}
                   subtasks={taskDetails?.subtasks}
                 />
+      case "CREATE_NEW_BOARD":
+        return <AddNewBoardForm />
       default:
         return null
     }

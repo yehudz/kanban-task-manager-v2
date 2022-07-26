@@ -22,5 +22,5 @@ export interface BoardTitleProps {
 export interface PrimaryButtonProps {
   buttonText: string
   color: string
-  handleClick: ()=> void
+  handleClick?: ()=> void
 }
