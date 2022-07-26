@@ -27,7 +27,13 @@ const Home: NextPage = (props) => {
   const ModalContent = ()=> {
     switch(modalContentType) {
       case "ADD_NEW_TASK": 
-        return <TaskForm />
+        return <TaskForm 
+                formTitle="Create New Task"
+                title=""
+                description=""
+                status=""
+                buttonText='Create Task'
+                />
       case "TASK_DETAILS":
         return <TaskDetailsForm 
                   title={taskDetails?.title} 
@@ -38,7 +44,14 @@ const Home: NextPage = (props) => {
       case "CREATE_NEW_BOARD":
         return <AddNewBoardForm />
       case "EDIT_TASK": 
-        return <TaskForm />
+        return <TaskForm 
+                  formTitle="Edit Task"
+                  title={taskDetails?.title} 
+                  description={taskDetails?.description}
+                  status={taskDetails?.status}
+                  subtasks={taskDetails?.subtasks}
+                  buttonText='Save Changes'
+                />
       default:
         return null
     }

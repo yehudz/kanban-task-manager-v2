@@ -2,7 +2,9 @@ import PrimaryButton from "../ui/PrimaryButton"
 import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton } from "@mui/material";
 import { useState } from "react";
-const TaskForm = ()=> {
+import { TaskFormProps } from "../../typings/interfaces";
+
+const TaskForm = ({formTitle, title, description, status, subtasks, buttonText}: TaskFormProps)=> {
 
   const [subtaskInputs, setSubtaskInputs] = useState([
         {placeholder: "e.g. Make Coffee"},
@@ -20,25 +22,30 @@ const TaskForm = ()=> {
 
   return(
     <div data-testid="task-form" className="flex flex-col bg-white dark:bg-midnight p-5 rounded-md">
-      <h1 data-testid="task-form-title">Add New Task</h1>
+      <h1 data-testid="task-form-title">{formTitle}</h1>
       <form>
         <span data-testid="task-form-title-input" className="flex flex-col ">
           <label htmlFor="titleInput">Title</label>
-          <input data-testid="new-task-title" type="text" name="titleInput" placeholder="e.g. Take a coffe break"/>
+          <input 
+            data-testid="new-task-title" 
+            type="text" 
+            name="titleInput" 
+            placeholder="e.g. Take a coffe break" 
+            defaultValue={title}/>
         </span>
         <span data-testid="task-form-description-textarea" className="flex flex-col">
           <label htmlFor="descriptionInput">Description</label>
           <textarea name="descriptionInput" placeholder="e.g. It’s always good to take a break. This 15 minute break will 
-recharge the batteries a little."></textarea>
+recharge the batteries a little.">{description}</textarea>
         </span>
       </form>
      
       <div data-testid="task-form-subtasks-container">
         <h1>Subtasks</h1>
-        {subtaskInputs.map(subtaskInput=> {
+        {subtasks?.map(subtask=> {
           return(
             <div data-testid="task-form-subtask-input">
-              <input data-testid="subtask-input" type="text" placeholder={subtaskInput.placeholder}/>
+              <input data-testid="subtask-input" type="text" placeholder="Subtask Title" defaultValue={subtask.title}/>
               <IconButton>
                 <ClearIcon />
               </IconButton>
@@ -54,7 +61,7 @@ recharge the batteries a little."></textarea>
           <option value="Done">Done</option>
         </select>
       </span>
-      <PrimaryButton buttonText="Create Task" color="primary" handleClick={createNewTask}/>
+      <PrimaryButton buttonText={buttonText} color="primary" handleClick={createNewTask}/>
     </div>
   )
 }

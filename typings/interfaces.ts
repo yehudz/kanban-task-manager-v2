@@ -33,3 +33,8 @@ export interface OptionsMenuButtonProps {
 export interface OptionMenuProps {
   menuItems: string[]
 }
+
+export interface TaskFormProps extends TaskItem {
+  formTitle: string
+  buttonText: string
+}

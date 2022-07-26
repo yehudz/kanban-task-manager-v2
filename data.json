@@ -8,7 +8,7 @@
           "tasks": [
             {
               "title": "Build UI for onboarding flow",
-              "description": "",
+              "description": "This should be done as soon as possible since this is absolutely necesary for future projects",
               "status": "Todo",
               "subtasks": [
                 {
