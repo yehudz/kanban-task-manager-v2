@@ -14,6 +14,7 @@ import BoardForm from '../components/reusables/BoardForm'
 
 // Dummy data singleton
 import dummyData from '../data.json'
+import WarningMessage from '../components/reusables/WarningMessage'
 
 const Home: NextPage = (props) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
@@ -61,6 +62,12 @@ const Home: NextPage = (props) => {
                   formTitle='Edit Board'
                   boardName={exampleBoard.name}
                   boardColumns={exampleBoard.columns}
+                />
+      case "DELETE_TASK": 
+        return <WarningMessage 
+                  title="Delete this task?"
+                  itemName='taskDetails?.title'
+                  type="task"
                 />
       default:
         return null

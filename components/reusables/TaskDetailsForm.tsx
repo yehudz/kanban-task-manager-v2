@@ -13,13 +13,13 @@ const TaskDetailsForm = ({title, description, status, subtasks}: TaskItem)=> {
       <div data-testid="task-details-subtasks-container">
         {subtasks?.map(subtask=> {
           return(
-            <div data-testid="subtask-item">{subtask.title}</div>
+            <div key={subtask.title} data-testid="subtask-item">{subtask.title}</div>
           )
         })}
         <div>Sub Task</div>
       </div>
-      <select data-testid="task-status-selector" name="status-selector" id="status-selector">
-        <option value="todo" selected>To do</option>
+      <select data-testid="task-status-selector" name="status-selector" id="status-selector" defaultValue={''}>
+        <option value="todo">Todo</option>
       </select>
     </div>
   )

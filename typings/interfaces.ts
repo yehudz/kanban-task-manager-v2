@@ -48,3 +48,9 @@ export interface BoardFormProps {
   boardName: string
   boardColumns: BoardColumn[]
 }
+
+export interface WarningMessageProps {
+  title: string
+  itemName: string
+  type: string
+}
