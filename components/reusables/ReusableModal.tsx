@@ -1,8 +1,12 @@
-import {useContext} from 'react';
+import React, {useContext} from 'react';
 import appContext from '../../context/appContext';
 import Modal from '@mui/material/Modal';
 
-const ResuableModal = ({children}: any)=> {
+type Props = {
+  children: JSX.Element,
+}
+
+const ResuableModal = ({children}: Props)=> {
   const {modalVisibility, setModalVisibility} = useContext(appContext)
   function closeModal() {
     setModalVisibility(false)
@@ -17,7 +21,9 @@ const ResuableModal = ({children}: any)=> {
         onBackdropClick={closeModal}
         sx={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}
       >
-        {children}
+        <>
+          {children}
+        </>
       </Modal>
     </div>
   );

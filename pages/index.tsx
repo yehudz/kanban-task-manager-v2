@@ -52,6 +52,8 @@ const Home: NextPage = (props) => {
                   subtasks={taskDetails?.subtasks}
                   buttonText='Save Changes'
                 />
+      default:
+        return null
     }
   }
 
