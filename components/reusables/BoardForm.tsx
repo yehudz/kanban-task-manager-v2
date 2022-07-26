@@ -6,7 +6,7 @@ type Column = {
   placeholder: string
 }
 
-const AddNewBoardForm = ()=> {
+const BoardForm = ()=> {
   const {setModalVisibility} = useContext(appContext)
   const [boardColumns, setBoardColumns] = useState<Column[]>([{placeholder: 'e.g. To do'}])
   function addNewColumnField(event: React.MouseEvent<HTMLButtonElement>):void {
@@ -43,4 +43,4 @@ const AddNewBoardForm = ()=> {
   )
 }
 
-export default AddNewBoardForm
+export default BoardForm

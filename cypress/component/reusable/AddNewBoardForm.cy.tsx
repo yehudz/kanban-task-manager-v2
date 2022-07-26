@@ -1,8 +1,8 @@
-import AddNewBoardForm from "../../../components/reusables/AddNewBoardForm"
+import BoardForm from "../../../components/reusables/BoardForm"
 
 describe('Add new board form', ()=> {
   beforeEach(()=> {
-    cy.mount(<AddNewBoardForm />)
+    cy.mount(<BoardForm />)
   })
 
   it('should render', ()=> {

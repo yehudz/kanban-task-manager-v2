@@ -10,7 +10,7 @@ import { Board, TaskItem } from '../typings/common.types'
 import ResuableModal from '../components/reusables/ReusableModal'
 import TaskDetailsForm from '../components/reusables/TaskDetailsForm'
 import TaskForm from '../components/reusables/TaskForm'
-import AddNewBoardForm from '../components/reusables/AddNewBoardForm'
+import BoardForm from '../components/reusables/BoardForm'
 
 // Dummy data singleton
 import dummyData from '../data.json'
@@ -42,7 +42,7 @@ const Home: NextPage = (props) => {
                   subtasks={taskDetails?.subtasks}
                 />
       case "CREATE_NEW_BOARD":
-        return <AddNewBoardForm />
+        return <BoardForm />
       case "EDIT_TASK": 
         return <TaskForm 
                   formTitle="Edit Task"
