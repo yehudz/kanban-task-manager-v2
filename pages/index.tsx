@@ -24,7 +24,6 @@ const Home: NextPage = (props) => {
   const [modalContentType, setModalContentType] = useState<string>('')
 
   // Should check for what is requested to show in the modal
-  console.log(modalContentType)
   const ModalContent = ()=> {
     switch(modalContentType) {
       case "ADD_NEW_TASK": 
