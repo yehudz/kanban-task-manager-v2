@@ -24,3 +24,12 @@ export interface PrimaryButtonProps {
   color: string
   handleClick?: ()=> void
 }
+
+export interface OptionsMenuButtonProps {
+  handleClick:
+  | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
+  | undefined;
+}
+export interface OptionMenuProps {
+  menuItems: string[]
+}

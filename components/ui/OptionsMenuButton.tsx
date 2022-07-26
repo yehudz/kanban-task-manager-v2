@@ -1,9 +1,13 @@
 import MoreVertIcon from '@mui/icons-material/MoreVert';
+import { IconButton } from '@mui/material';
+import { OptionsMenuButtonProps } from '../../typings/interfaces';
 
-const OptionsMenuButton = ()=> {
+const OptionsMenuButton = ({handleClick}: OptionsMenuButtonProps)=> {
   return(
     <div data-testid="column-options-drop-down">
-      <MoreVertIcon />
+      <IconButton disableRipple data-testid="options-menu-button" onClick={handleClick}>
+        <MoreVertIcon />
+      </IconButton>
     </div>
   )
 }
