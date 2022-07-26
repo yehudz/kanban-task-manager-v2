@@ -5,14 +5,14 @@ describe('Create new task', ()=> {
   it('should create new task', ()=> {
     cy.get('[data-testid=add-new-task-button]').click()
     cy.get('[data-testid=modal-container]').should('exist')
-    cy.get('[data-testid=add-task-form]').should('exist')
+    cy.get('[data-testid=task-form]').should('exist')
 
     cy.get('[data-testid="new-task-title"]').type('Test task')
     let testDescription = 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
-    cy.get('[data-testid=add-new-task-form-description-textarea]').type(testDescription)
+    cy.get('[data-testid=task-form-description-textarea]').type(testDescription)
   
-    cy.get('[data-testid=add-new-task-form-subtasks-container]').should('exist')
-    cy.get('[data-testid=add-new-task-form-subtasks-container]').children().should('have.length.at.least', 1)
+    cy.get('[data-testid=task-form-subtasks-container]').should('exist')
+    cy.get('[data-testid=task-form-subtasks-container]').children().should('have.length.at.least', 1)
     cy.get('[data-testid="subtask-input"]').eq(0).type('Subtask one')
     cy.get('[data-testid="subtask-input"]').eq(1).type('Subtask Two')
   
