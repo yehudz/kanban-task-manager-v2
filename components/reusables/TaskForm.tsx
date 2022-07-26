@@ -1,11 +1,11 @@
 import PrimaryButton from "../ui/PrimaryButton"
 import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton } from "@mui/material";
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { TaskFormProps } from "../../typings/interfaces";
-
+import appContext from "../../context/appContext";
 const TaskForm = ({formTitle, title, description, status, subtasks, buttonText}: TaskFormProps)=> {
-
+  const {setModalVisibility} = useContext(appContext)
   const [subtaskInputs, setSubtaskInputs] = useState([
         {placeholder: "e.g. Make Coffee"},
         {placeholder: "e.g. Drike coffee & smile"}
@@ -16,9 +16,14 @@ const TaskForm = ({formTitle, title, description, status, subtasks, buttonText}:
   }
 
   function createNewTask() {
+    setModalVisibility(false)
     // Todo add database functionality
-    alert('Task created')
+    // alert('Task created')
   }
+
+  useEffect(()=> {
+    if (subtasks) setSubtaskInputs([])
+  }, [])
 
   return(
     <div data-testid="task-form" className="flex flex-col bg-white dark:bg-midnight p-5 rounded-md">
@@ -27,7 +32,7 @@ const TaskForm = ({formTitle, title, description, status, subtasks, buttonText}:
         <span data-testid="task-form-title-input" className="flex flex-col ">
           <label htmlFor="titleInput">Title</label>
           <input 
-            data-testid="new-task-title" 
+            data-testid="task-title-input" 
             type="text" 
             name="titleInput" 
             placeholder="e.g. Take a coffe break" 
@@ -46,6 +51,16 @@ recharge the batteries a little.">{description}</textarea>
           return(
             <div data-testid="task-form-subtask-input">
               <input data-testid="subtask-input" type="text" placeholder="Subtask Title" defaultValue={subtask.title}/>
+              <IconButton>
+                <ClearIcon />
+              </IconButton>
+            </div>
+          )
+        })}
+        {subtaskInputs.map(subtask=> {
+          return(
+            <div data-testid="task-form-subtask-input">
+              <input data-testid="subtask-input" type="text" placeholder={subtask.placeholder}/>
               <IconButton>
                 <ClearIcon />
               </IconButton>

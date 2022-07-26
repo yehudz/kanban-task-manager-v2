@@ -1,12 +1,13 @@
-import React, { useState } from "react"
+import React, { useContext, useState } from "react"
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import PrimaryButton from "../ui/PrimaryButton";
-
+import appContext from '../../context/appContext'
 type Column = {
   placeholder: string
 }
 
 const AddNewBoardForm = ()=> {
+  const {setModalVisibility} = useContext(appContext)
   const [boardColumns, setBoardColumns] = useState<Column[]>([{placeholder: 'e.g. To do'}])
   function addNewColumnField(event: React.MouseEvent<HTMLButtonElement>):void {
     event.preventDefault()
@@ -15,7 +16,8 @@ const AddNewBoardForm = ()=> {
 
   function submitForm(event: React.MouseEvent<HTMLButtonElement>):void {
     event.preventDefault()
-    alert('Form submitted')
+    // todo save changes to database
+    setModalVisibility(false)
   }
   return(
     <form data-testid="add-new-board-form" className="flex flex-col bg-white dark:bg-midnight p-5 rounded-md">
