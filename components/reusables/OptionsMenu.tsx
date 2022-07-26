@@ -7,7 +7,7 @@ import appContext from '../../context/appContext';
 // Typings imports
 import { OptionMenuProps } from "../../typings/interfaces";
 
-const OptionsMenu = ({menuItems}: OptionMenuProps)=> {
+const  OptionsMenu = ({menuItems}: OptionMenuProps)=> {
   const {setModalContentType} = useContext(appContext)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -18,8 +18,21 @@ const OptionsMenu = ({menuItems}: OptionMenuProps)=> {
     setAnchorEl(event.currentTarget);
   }
 
-  const handleSelection = () => {
-    setModalContentType("EDIT_TASK")
+  const handleSelection = (event: React.MouseEvent<HTMLElement>) => {
+    switch(event.currentTarget.innerText) {
+      case 'Edit Task':
+        setModalContentType("EDIT_TASK")
+        break
+      case 'Edit Board':
+        setModalContentType("EDIT_BOARD")
+        break
+      case 'Delete Task':
+        setModalContentType("DELETE_TASK")
+        break
+      case 'Delete Board':
+        setModalContentType("DELETE_BOARD")
+        break
+    }
     setAnchorEl(null);
   };
   return(
@@ -37,7 +50,7 @@ const OptionsMenu = ({menuItems}: OptionMenuProps)=> {
       >
         {menuItems.map(item=> {
           return(
-            <MenuItem onClick={handleSelection} data-testid="options-menu-option">{item}</MenuItem>
+            <MenuItem key={item} onClick={handleSelection} data-testid="options-menu-option">{item}</MenuItem>
           )
         })}
       </Menu>
