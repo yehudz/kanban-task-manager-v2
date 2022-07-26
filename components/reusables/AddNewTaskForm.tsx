@@ -18,14 +18,14 @@ const AddNewTaskForm = ()=> {
   }
 
   return(
-    <div data-testid="add-task-form">
+    <div data-testid="add-task-form" className="flex flex-col bg-white dark:bg-midnight p-5 rounded-md">
       <h1 data-testid="add-new-task-form-title">Add New Task</h1>
       <form>
-        <span data-testid="add-new-task-form-title-input">
+        <span data-testid="add-new-task-form-title-input" className="flex flex-col ">
           <label htmlFor="titleInput">Title</label>
           <input type="text" name="titleInput" placeholder="e.g. Take a coffe break"/>
         </span>
-        <span data-testid="add-new-task-form-description-textarea">
+        <span data-testid="add-new-task-form-description-textarea" className="flex flex-col">
           <label htmlFor="descriptionInput">Description</label>
           <textarea name="descriptionInput" placeholder="e.g. It’s always good to take a break. This 15 minute break will 
 recharge the batteries a little."></textarea>
@@ -33,6 +33,7 @@ recharge the batteries a little."></textarea>
       </form>
      
       <div data-testid="add-new-task-form-subtasks-container">
+        <h1>Subtasks</h1>
         {subtaskInputs.map(subtaskInput=> {
           return(
             <div data-testid="add-new-task-form-subtask-input">
@@ -45,8 +46,8 @@ recharge the batteries a little."></textarea>
         })}
       </div>
       <PrimaryButton buttonText="+ Add new subtask" color="white" handleClick={createNewSubtaskInput}/>
-      <span data-testid="add-new-task-form-status-select">
-        <label htmlFor="statusSelect">Status</label>
+      <span data-testid="add-new-task-form-status-select" className="flex flex-col">
+        <h1>Status</h1>
         <select name="statusSelect" id="statusSelect">
           <option value="Todo">Todo</option>
         </select>
