@@ -18,3 +18,9 @@ export interface BoardTitleProps {
   isMobile: boolean
   handleClick(): void
 }
+
+export interface PrimaryButtonProps {
+  buttonText: string
+  color: string
+  handleClick: ()=> void
+}
