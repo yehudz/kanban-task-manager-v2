@@ -2,7 +2,7 @@ import { TaskItem } from "../../typings/common.types"
 import OptionsMenuButton from "../ui/OptionsMenuButton"
 const TaskDetailsForm = ({title, description, status, subtasks}: TaskItem)=> {
   return(
-    <div data-testid="task-details-container">
+    <div data-testid="task-details-container" className="flex flex-col bg-white dark:bg-midnight p-5 rounded-md">
       <div data-testid="task-details-title">{title}</div>
       <OptionsMenuButton />
       <div data-testid="task-details-description">{description}</div>

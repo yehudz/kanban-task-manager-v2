@@ -15,6 +15,7 @@ const AddNewTaskForm = ()=> {
 
   function createNewTask() {
     // Todo add database functionality
+    alert('Task created')
   }
 
   return(
@@ -23,7 +24,7 @@ const AddNewTaskForm = ()=> {
       <form>
         <span data-testid="add-new-task-form-title-input" className="flex flex-col ">
           <label htmlFor="titleInput">Title</label>
-          <input type="text" name="titleInput" placeholder="e.g. Take a coffe break"/>
+          <input data-testid="new-task-title" type="text" name="titleInput" placeholder="e.g. Take a coffe break"/>
         </span>
         <span data-testid="add-new-task-form-description-textarea" className="flex flex-col">
           <label htmlFor="descriptionInput">Description</label>
@@ -37,7 +38,7 @@ recharge the batteries a little."></textarea>
         {subtaskInputs.map(subtaskInput=> {
           return(
             <div data-testid="add-new-task-form-subtask-input">
-              <input type="text" placeholder={subtaskInput.placeholder}/>
+              <input data-testid="subtask-input" type="text" placeholder={subtaskInput.placeholder}/>
               <IconButton>
                 <ClearIcon />
               </IconButton>
@@ -48,8 +49,9 @@ recharge the batteries a little."></textarea>
       <PrimaryButton buttonText="+ Add new subtask" color="white" handleClick={createNewSubtaskInput}/>
       <span data-testid="add-new-task-form-status-select" className="flex flex-col">
         <h1>Status</h1>
-        <select name="statusSelect" id="statusSelect">
+        <select data-testid="status-select" name="statusSelect" id="statusSelect">
           <option value="Todo">Todo</option>
+          <option value="Done">Done</option>
         </select>
       </span>
       <PrimaryButton buttonText="Create Task" color="primary" handleClick={createNewTask}/>
