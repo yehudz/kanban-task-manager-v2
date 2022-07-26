@@ -20,7 +20,7 @@ const Home: NextPage = (props) => {
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
   const [exampleBoard, setExampleBoard] = useState<Board>({name: '', columns: []})
   const [modalVisibility, setModalVisibility] = useState<boolean>(false)
-  const [taskDetails, setTaskDetails] = useState<TaskItem>({})
+  const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
   const [modalContentType, setModalContentType] = useState<string>('')
 
   // Should check for what is requested to show in the modal
