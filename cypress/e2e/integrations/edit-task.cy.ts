@@ -10,6 +10,6 @@ describe('Edit Task', ()=> {
     cy.get('[data-testid="options-menu"]').should('exist')
     cy.wait(2000)
     cy.get('[data-testid="options-menu-option"]').first().click()
-    cy.get('[data-testid="edit-task-form-container"]')
+    cy.get('[data-testid="task-form"]').should('exist')
   })
 })

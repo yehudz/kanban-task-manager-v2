@@ -1,13 +1,15 @@
 // React component imports
-import * as React from 'react';
+import React, {useState, useContext} from 'react';
 import OptionsMenuButton from "../ui/OptionsMenuButton"
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-
+import appContext from '../../context/appContext';
 // Typings imports
 import { OptionMenuProps } from "../../typings/interfaces";
 
 const OptionsMenu = ({menuItems}: OptionMenuProps)=> {
+  const {setModalContentType} = useContext(appContext)
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
@@ -17,6 +19,7 @@ const OptionsMenu = ({menuItems}: OptionMenuProps)=> {
   }
 
   const handleSelection = () => {
+    setModalContentType("EDIT_TASK")
     setAnchorEl(null);
   };
   return(

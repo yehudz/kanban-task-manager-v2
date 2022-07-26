@@ -37,6 +37,8 @@ const Home: NextPage = (props) => {
                 />
       case "CREATE_NEW_BOARD":
         return <AddNewBoardForm />
+      case "EDIT_TASK": 
+        return <TaskForm />
       default:
         return null
     }
