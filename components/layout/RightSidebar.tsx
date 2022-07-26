@@ -16,7 +16,7 @@ const RightSidebar = ()=> {
     <div 
       data-testid="right-sidebar" 
       className={`${styles.container} ${sidebarOpen ? 'sidebarOpen' : ''} h-full bg-white dark:bg-midnight relative`}>
-      <div data-testid="right-sidebar-logo" className={`${styles.logoContainer} flex items-center w-full justify-center`}>
+      <div data-testid="right-sidebar-logo" className={`${styles.logoContainer} flex items-center w-full`}>
         <img src="images/logo-light.svg" alt="" className={`${styles.image}`}/>
       </div>
       <ColumnsListMenu />
