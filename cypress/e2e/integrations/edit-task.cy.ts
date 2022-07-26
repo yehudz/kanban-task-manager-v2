@@ -1,5 +1,3 @@
-import { eq } from "cypress/types/lodash"
-
 describe('Edit Task', ()=> {
   beforeEach(()=> {
     cy.visit('/')
