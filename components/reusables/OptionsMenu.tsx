@@ -33,6 +33,7 @@ const  OptionsMenu = ({menuItems}: OptionMenuProps)=> {
         break
       case 'Delete Board':
         setModalContentType("DELETE_BOARD")
+        setModalVisibility(true)
         break
     }
     setAnchorEl(null);

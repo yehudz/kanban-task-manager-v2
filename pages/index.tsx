@@ -66,9 +66,15 @@ const Home: NextPage = (props) => {
       case "DELETE_TASK": 
         return <WarningMessage 
                   title="Delete this task?"
-                  itemName='taskDetails?.title'
+                  itemName={taskDetails?.title}
                   type="task"
                 />
+      case "DELETE_BOARD": 
+      return <WarningMessage 
+                title="Delete this board?"
+                itemName={exampleBoard.name}
+                type="board"
+              />
       default:
         return null
     }
