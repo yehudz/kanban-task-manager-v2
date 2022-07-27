@@ -3,4 +3,19 @@
   width: 164px;
   height: 48px;
   border-radius: 24px;
+
+  @media screen and (max-width: 768px) {
+    width: 48px;
+    height: 32px;
+
+    img {
+      margin: 0;
+    }
+  }
+
+  .buttonText {
+    @media screen and (max-width: 768px) {
+      display: none;
+    }
+  }
 }

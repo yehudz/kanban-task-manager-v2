@@ -17,7 +17,7 @@ const AddNewTaskButton = ()=> {
       className={`${styles.container} flex flex-row items-center justify-center bg-purple font-bold`}
       onClick={handleClick}>
         <img src="images/icon-add-task-mobile.svg" alt="" className="mr-3"/>
-        <span>Add New Task</span>
+        <span className={styles.buttonText}>Add New Task</span>
       </button>
   )
 }

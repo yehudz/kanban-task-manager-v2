@@ -16,6 +16,12 @@ h1 {
   font-weight: bold;
 }
 
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 18px;
+  }
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -39,4 +45,15 @@ a {
 .leftContainer.sidebarOpen {
   transform: translateX(0);
   width: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .leftContainer {
+    width: 0px;
+  }
+
+  .leftContainer.sidebarOpen {
+    width: 0;
+  }
+
 }

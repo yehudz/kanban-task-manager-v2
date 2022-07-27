@@ -1,7 +1,7 @@
 const MobileLogo = ()=> {
   return(
     <div data-testid="logo-container">
-      <h3>Logo</h3>
+      <img src="images/logo-mobile.svg" alt="" className="ml-6" />
     </div>
   )
 }
