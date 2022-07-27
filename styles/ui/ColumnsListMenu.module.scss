@@ -1,12 +1,13 @@
 .container {
   .title {
     padding: 0 32px;
-    font-size: 12px;
+    font-size: 15px;
     text-transform: uppercase;
     letter-spacing: .24em;
   }
 
   .boardButton {
+    font-size: 15px;
     width: 100%;
     margin-right: 32px;
     border-radius: 0 32px 32px 0;
@@ -30,6 +31,7 @@
   } 
 
   .createButton {
+    font-size: 15px;
     padding: 0 32px;
     height: 48px;
     line-height: 48px;
