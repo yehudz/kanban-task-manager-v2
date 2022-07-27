@@ -30,7 +30,7 @@ describe('Mobile Layout Testing', () => {
 
   it('opens the mobile menu and have list items', ()=> {
     cy.get('[data-testid=mobile-menu]').should('exist')
-    cy.get('[data-testid=board-title]').click()
+    cy.get('[data-testid=board-title]').click({force: true})
     cy.get('[data-testid=mobile-menu]').should('not.have.class', 'hidden')
 
     cy.get('[data-testid=board-list-items]').should('have.length.at.least', 1)
