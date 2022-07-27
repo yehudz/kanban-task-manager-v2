@@ -48,9 +48,9 @@ describe('Layout Testing', () => {
   })
 
   it('should toggle dark and light theme', ()=> {
-    cy.get('[type="checkbox"]').check()
+    cy.get('[data-testid="toggle-theme-button"]').click()
     cy.wait(2000)
-    cy.get('[type="checkbox"]').uncheck()
+    cy.get('[data-testid="toggle-theme-button"]').click()
   })
 
   it('should toggle sidebar close and open', ()=> {
