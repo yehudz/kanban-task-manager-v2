@@ -1,12 +1,9 @@
 import { useState } from "react"
 import ColumnsListMenu from "../ui/ColumnsListMenu"
 import ThemeToggle from "../ui/ThemeToggle"
-import styles from '../../styles/layout/RightSidebar.module.scss'
-import logoDark from '../../public/assets/logo-dark.svg'
-import logoLight from '../../public/assets/logo-light.svg'
+import styles from '../../styles/layout/LeftSidebar.module.scss'
 
-
-const RightSidebar = ()=> {
+const LeftSidebar = ()=> {
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   function toggleSidebarVisibility() {
     setSidebarOpen(prevState=> prevState = !prevState)
@@ -28,4 +25,4 @@ const RightSidebar = ()=> {
   )
 }
 
-export default RightSidebar
+export default LeftSidebar

@@ -4,7 +4,7 @@ import TopBar from '../components/layout/TopBar'
 import BoardColumnsContainer from '../components/layout/BoardColumnsContainer'
 import Head from 'next/head'
 import appContext from '../context/appContext'
-import RightSidebar from '../components/layout/RightSidebar'
+import LeftSidebar from '../components/layout/LeftSidebar'
 import MobileMenu from '../components/ui/MobileMenu'
 import { Board, TaskItem } from '../typings/common.types'
 import ResuableModal from '../components/reusables/ReusableModal'
@@ -99,7 +99,7 @@ const Home: NextPage = (props) => {
       <appContext.Provider value={{isMobile, setOpenMobileMenu, modalVisibility, setModalVisibility, setTaskDetails, setModalContentType}}>
         <div className="flex flex-row w-full h-screen bg-grey-400 dark:bg-midnight">
           <div data-testid="left-container">
-            {!isMobile && <RightSidebar />}
+            {!isMobile && <LeftSidebar />}
           </div>
           {isMobile && <MobileMenu show={openMobileMenu}/>}
           <div data-testid="right-container" className='w-full'>
