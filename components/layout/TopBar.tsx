@@ -13,6 +13,7 @@ const TopBar = ({boardName}: TopBarProps)=> {
   const {isMobile, setOpenMobileMenu} = useContext(appContext)
 
   function mobileMenuVisibility() {
+    if (!isMobile) return // Cancels opening the mobile menu on desktop
     setOpenMobileMenu(((prevState: boolean)=>prevState = !prevState))
   }
 
