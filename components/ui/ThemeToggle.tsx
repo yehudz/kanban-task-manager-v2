@@ -46,7 +46,7 @@ const IOSSwitch = styled((props: SwitchProps) => (
 const ThemeToggle = ()=> {
   const isDarkTheme = true
   return(
-    <div data-testid="theme-toggle-container" className={`${styles.container} flex flex-row items-center justify-center bg-grey rounded-lg`}>
+    <div data-testid="theme-toggle-container" className={`${styles.container} flex flex-row items-center justify-center bg-midnight rounded-lg`}>
       <img src="images/icon-light-theme.svg" className='mr-6'/>
       <IOSSwitch disableRipple defaultChecked={isDarkTheme ? true : false} data-testid="toggle-theme-button"/>
       <img src="images/icon-dark-theme.svg" className='ml-8'/>

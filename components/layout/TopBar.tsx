@@ -17,7 +17,7 @@ const TopBar = ({boardName}: TopBarProps)=> {
   }
 
   return(
-    <div data-testid="top-bar" className={`${styles.container} flex flex-row items-center align-center w-full bg-white dark:bg-midnight`}>
+    <div data-testid="top-bar" className={`${styles.container} flex flex-row items-center align-center w-full bg-white dark:bg-grey`}>
       {isMobile && <MobileLogo />}
       <BoardTitle title={boardName} isMobile={isMobile} handleClick={mobileMenuVisibility}/>
       <AddNewTaskButton />

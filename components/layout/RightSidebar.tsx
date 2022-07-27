@@ -15,7 +15,7 @@ const RightSidebar = ()=> {
   return(
     <div 
       data-testid="right-sidebar" 
-      className={`${styles.container} ${sidebarOpen ? 'sidebarOpen' : ''} flex flex-col items-center h-full bg-white dark:bg-midnight relative`}>
+      className={`${styles.container} ${sidebarOpen ? 'sidebarOpen' : ''} flex flex-col items-center h-full bg-white dark:bg-grey relative`}>
       <div data-testid="right-sidebar-logo" className={`${styles.logoContainer} flex items-center w-full`}>
         <img src="images/logo-light.svg" alt="" className={`${styles.image}`}/>
       </div>

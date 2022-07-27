@@ -97,7 +97,7 @@ const Home: NextPage = (props) => {
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet" />
       </Head>
       <appContext.Provider value={{isMobile, setOpenMobileMenu, modalVisibility, setModalVisibility, setTaskDetails, setModalContentType}}>
-        <div className="flex flex-row w-full h-screen bg-grey-400 dark:bg-grey">
+        <div className="flex flex-row w-full h-screen bg-grey-400 dark:bg-midnight">
           <div data-testid="left-container">
             {!isMobile && <RightSidebar />}
           </div>
