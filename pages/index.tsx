@@ -86,7 +86,7 @@ const Home: NextPage = (props) => {
     if (window.innerWidth < 768) setIsMobile(true)
     else setIsMobile(false)
     window.addEventListener('resize', ()=> {
-      if (window.innerWidth < 900) setIsMobile(true)
+      if (window.innerWidth < 768) setIsMobile(true)
       else setIsMobile(false)
     })
     return ()=> {}
