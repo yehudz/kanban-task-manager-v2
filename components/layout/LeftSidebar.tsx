@@ -12,9 +12,9 @@ const LeftSidebar = ()=> {
 
   return(
     <div 
-      data-testid="right-sidebar" 
+      data-testid="left-sidebar" 
       className={`${styles.container} flex flex-col items-center h-full bg-white dark:bg-grey relative`}>
-      <div data-testid="right-sidebar-logo" className={`${styles.logoContainer} flex items-center w-full`}>
+      <div data-testid="left-sidebar-logo" className={`${styles.logoContainer} flex items-center w-full`}>
         <img src="images/logo-light.svg" alt="" className={`${styles.image}`}/>
       </div>
       <ColumnsListMenu />

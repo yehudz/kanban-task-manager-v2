@@ -34,8 +34,8 @@ describe('Layout Testing', () => {
   })
 
   it('should have a right sidebar with logo, columns list, theme toggle, toggle sidebar', ()=> {
-    cy.get('[data-testid=right-sidebar]').should('exist')
-    cy.get('[data-testid=right-sidebar-logo]').should('exist')
+    cy.get('[data-testid=left-sidebar]').should('exist')
+    cy.get('[data-testid=left-sidebar-logo]').should('exist')
     cy.get('[data-testid=columns-list-menu]').should('exist')
     cy.get('[data-testid="theme-toggle-container"]').should('exist')
     cy.get('[data-testid=toggle-sidebar-button]').should('exist')
@@ -54,12 +54,12 @@ describe('Layout Testing', () => {
   })
 
   it('should toggle sidebar close and open', ()=> {
-    cy.get('[data-testid=right-sidebar]').should('have.class', 'sidebarOpen')
+    cy.get('[data-testid="left-container"]').should('have.class', 'sidebarOpen')
     cy.wait(1000)
     cy.get('[data-testid=toggle-sidebar-button]').click()
-    cy.get('[data-testid=right-sidebar]').should('have.not.class', 'sidebarOpen')
-    cy.wait(1000)
-    cy.get('[data-testid=toggle-sidebar-button]').click()
+    cy.get('[data-testid="left-container"]').should('have.not.class', 'sidebarOpen')
+    cy.wait(500)
+    cy.get('[data-testid="show-sidebar"]').click()
   })
 })
 
