@@ -17,11 +17,13 @@ const TopBar = ({boardName}: TopBarProps)=> {
   }
 
   return(
-    <div data-testid="top-bar" className={`${styles.container} flex flex-row items-center align-center w-full bg-white dark:bg-grey`}>
+    <div data-testid="top-bar" className={`${styles.container} relative flex flex-row items-center w-full bg-white dark:bg-grey`}>
       {isMobile && <MobileLogo />}
       <BoardTitle title={boardName} isMobile={isMobile} handleClick={mobileMenuVisibility}/>
-      <AddNewTaskButton />
-      <OptionsMenu menuItems={['Edit Board', 'Delete Board']}/>
+      <div className='absolute right-0 flex flex-row items-center'>
+        <AddNewTaskButton />
+        <OptionsMenu menuItems={['Edit Board', 'Delete Board']}/>
+      </div>
     </div>
   )
 }

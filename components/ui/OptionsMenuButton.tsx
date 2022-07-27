@@ -6,7 +6,7 @@ const OptionsMenuButton = ({handleClick}: OptionsMenuButtonProps)=> {
   return(
     <div data-testid="column-options-drop-down">
       <IconButton disableRipple data-testid="options-menu-button" onClick={handleClick}>
-        <MoreVertIcon />
+        <MoreVertIcon fontSize="large" sx={{color: '#828FA3'}}/>
       </IconButton>
     </div>
   )
