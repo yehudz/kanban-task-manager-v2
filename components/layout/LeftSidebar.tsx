@@ -21,7 +21,7 @@ const LeftSidebar = ()=> {
         <ThemeToggle />
         <div data-testid="toggle-sidebar-button" onClick={toggleSidebarVisibility} className="flex flex-row my-8">
           <img src="images/icon-hide-sidebar.svg" alt="" />
-          <span className="ml-6">Hide Sidebar</span>
+          <span className="ml-6 text-grey-400">Hide Sidebar</span>
         </div>
       </div>
     </div>
