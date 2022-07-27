@@ -1,6 +1,7 @@
 .container {
   width: 300px;
   border-right: 1px solid rgba(255, 255, 255, .05);
+
   .logoContainer {
     padding: 0 34px;
     height: 112px;
@@ -9,4 +10,12 @@
     }
   }
 
+  .showSidebarContainer {
+    bottom: 34px;
+    right: -56px;
+    width: 56px;
+    height: 48px;
+    background-color: #A8A4FF;
+    border-radius: 0 34px 34px 0;
+  }
 }

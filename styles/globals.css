@@ -23,3 +23,15 @@ a {
 .hidden {
   display: none;
 }
+
+.leftContainer {
+  transform: translateX(-300px);
+  width: 0;
+  transition: all 200ms ease;
+  z-index: 1000;
+}
+
+.leftContainer.sidebarOpen {
+  transform: translateX(0);
+  width: 300px;
+}

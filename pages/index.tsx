@@ -23,6 +23,7 @@ const Home: NextPage = (props) => {
   const [modalVisibility, setModalVisibility] = useState<boolean>(false)
   const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
   const [modalContentType, setModalContentType] = useState<string>('')
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
 
   // Should check for what is requested to show in the modal
   const ModalContent = ()=> {
@@ -96,13 +97,25 @@ const Home: NextPage = (props) => {
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet" />
       </Head>
-      <appContext.Provider value={{isMobile, setOpenMobileMenu, modalVisibility, setModalVisibility, setTaskDetails, setModalContentType}}>
+      <appContext.Provider 
+        value={
+          {
+            isMobile, 
+            setOpenMobileMenu, 
+            modalVisibility, 
+            setModalVisibility, 
+            setTaskDetails, 
+            setModalContentType, 
+            sidebarOpen, 
+            setSidebarOpen
+          }
+        }>
         <div className="flex flex-row w-full h-screen bg-grey-400 dark:bg-midnight">
-          <div data-testid="left-container">
+          <div data-testid="left-container" className={`leftContainer ${sidebarOpen ? 'sidebarOpen' : ''}`}>
             {!isMobile && <LeftSidebar />}
           </div>
           {isMobile && <MobileMenu show={openMobileMenu}/>}
-          <div data-testid="right-container" className='w-full'>
+          <div data-testid="right-container" className='rightContainer w-full'>
             <TopBar boardName={exampleBoard.name}/>
             <BoardColumnsContainer board={exampleBoard}/>
           </div>
