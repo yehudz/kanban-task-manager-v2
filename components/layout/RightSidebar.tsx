@@ -15,13 +15,15 @@ const RightSidebar = ()=> {
   return(
     <div 
       data-testid="right-sidebar" 
-      className={`${styles.container} ${sidebarOpen ? 'sidebarOpen' : ''} h-full bg-white dark:bg-midnight relative`}>
+      className={`${styles.container} ${sidebarOpen ? 'sidebarOpen' : ''} flex flex-col items-center h-full bg-white dark:bg-midnight relative`}>
       <div data-testid="right-sidebar-logo" className={`${styles.logoContainer} flex items-center w-full`}>
         <img src="images/logo-light.svg" alt="" className={`${styles.image}`}/>
       </div>
       <ColumnsListMenu />
-      <ThemeToggle />
-      <div data-testid="toggle-sidebar-button" onClick={toggleSidebarVisibility}>Hide Sidebar</div>
+      <div className={`absolute bottom-4 ${styles.bottomContainer}`}>
+        <ThemeToggle />
+        <div data-testid="toggle-sidebar-button" onClick={toggleSidebarVisibility}>Hide Sidebar</div>
+      </div>
     </div>
   )
 }
