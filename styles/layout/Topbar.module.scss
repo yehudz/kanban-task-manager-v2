@@ -1,3 +1,7 @@
 .container {
   height: 97px;
+
+  @media screen and (max-width: 768px) {
+    height: 64px;
+  }
 }

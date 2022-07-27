@@ -44,6 +44,7 @@ const Home: NextPage = (props) => {
                   subtasks={taskDetails?.subtasks}
                 />
       case "CREATE_NEW_BOARD":
+        setOpenMobileMenu(false)
         return <BoardForm 
                   formTitle='Create New Board'
                   boardName=''
@@ -130,6 +131,7 @@ const Home: NextPage = (props) => {
           <ModalContent />
         </ResuableModal>
       </appContext.Provider>
+      {openMobileMenu && <div className='overlay' onClick={()=> setOpenMobileMenu(false)}></div>}
     </>
   )
 }

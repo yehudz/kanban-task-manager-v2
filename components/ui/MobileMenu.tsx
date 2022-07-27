@@ -7,7 +7,7 @@ interface MobileMenuProps {
 
 const MobileMenu = ({show}: MobileMenuProps)=> {
   return(
-    <div data-testid="mobile-menu" className={`${styles.container} ${show ? '' : 'hidden'} absolute`}>
+    <div data-testid="mobile-menu" className={`${styles.container} ${show ? '' : 'hidden'} absolute bg-white dark:bg-grey`}>
       <ColumnsListMenu />
       <ThemeToggle />
     </div>

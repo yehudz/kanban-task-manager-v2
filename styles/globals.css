@@ -47,6 +47,14 @@ a {
   width: 300px;
 }
 
+.overlay {
+  position: fixed;
+  top: 64px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0, .4);
+}
+
 @media screen and (max-width: 768px) {
   .leftContainer {
     width: 0px;
