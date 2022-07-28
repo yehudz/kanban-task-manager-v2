@@ -74,6 +74,15 @@ a {
   background-color: rgba(0,0,0, .4);
 }
 
+@media screen and (max-width: 1024px) {
+  .leftContainer {
+    transform: translateX(-261px);
+  }
+  .leftContainer.sidebarOpen {
+    width: 261px;
+  }
+}
+
 @media screen and (max-width: 768px) {
   .leftContainer {
     width: 0px;
