@@ -16,6 +16,20 @@ h1 {
   font-weight: bold;
 }
 
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.body-m {
+  font-size: 12px;
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
 @media screen and (max-width: 768px) {
   h1 {
     font-size: 18px;
@@ -45,6 +59,11 @@ a {
 .leftContainer.sidebarOpen {
   transform: translateX(0);
   width: 300px;
+}
+
+.rightContainer {
+  display: grid;
+  grid-template-rows: 96px 100%;
 }
 
 .overlay {

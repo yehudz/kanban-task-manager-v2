@@ -122,7 +122,7 @@ const Home: NextPage = (props) => {
             {!isMobile && <LeftSidebar />}
           </div>
           {isMobile && <MobileMenu show={openMobileMenu}/>}
-          <div data-testid="right-container" className='rightContainer w-full'>
+            <div data-testid="right-container" className='rightContainer w-full'>
             <TopBar boardName={exampleBoard.name}/>
             <BoardColumnsContainer board={exampleBoard}/>
           </div>

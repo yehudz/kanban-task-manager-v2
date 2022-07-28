@@ -1,0 +1,10 @@
+.container {
+  width: 100%;
+  min-height: 88px;
+  margin-top: 24px;
+  padding: 24px;
+  cursor: pointer;
+  &:last-child {
+    margin-bottom: 24px;
+  }
+}
