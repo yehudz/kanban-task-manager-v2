@@ -23,6 +23,7 @@ model Column {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name String
+  color String
   tasks Task[]
 }
 
