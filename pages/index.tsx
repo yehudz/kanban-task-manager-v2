@@ -15,6 +15,7 @@ import BoardForm from '../components/reusables/BoardForm'
 // Dummy data singleton
 import dummyData from '../data.json'
 import WarningMessage from '../components/reusables/WarningMessage'
+import ColumnForm from '../components/reusables/ColumnForm'
 
 const Home: NextPage = (props) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
@@ -72,11 +73,13 @@ const Home: NextPage = (props) => {
                   type="task"
                 />
       case "DELETE_BOARD": 
-      return <WarningMessage 
+        return <WarningMessage 
                 title="Delete this board?"
                 itemName={exampleBoard.name}
                 type="board"
               />
+      case "ADD_COLUMN":
+        return <ColumnForm />
       default:
         return null
     }
