@@ -7,13 +7,13 @@ import {BoardColumn} from '../../typings/common.types'
 
 const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
-  const [emptyBoardColumns, emptySetBoardColumns] = useState<BoardColumn[]>([{name: '', placeholder: 'e.g. To do'}])
+  const [emptyBoardColumns, emptySetBoardColumns] = useState<BoardColumn[]>([{name: '', color: '', placeholder: 'e.g. To do', tasks: []}])
   useEffect(()=> {
     if (boardColumns.length) emptySetBoardColumns(boardColumns)
   }, [])
   function addNewColumnField(event: React.MouseEvent<HTMLButtonElement>){
     event.preventDefault()
-    emptySetBoardColumns(prevColumns=> [...prevColumns, {name: '', placeholder: 'e.g. Enter column title'}])
+    emptySetBoardColumns(prevColumns=> [...prevColumns, {name: '', color: '', placeholder: 'e.g. Enter column title', tasks: []}])
   }
 
   function submitForm(event: React.MouseEvent<HTMLButtonElement>) {
