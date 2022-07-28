@@ -10,6 +10,7 @@ export interface BoardColumnsProps {
 
 export interface BoardColumnProps {
   name: string
+  color: string
   tasks: TaskItem[]
 }
 
