@@ -20,8 +20,8 @@ const ColumnsListMenu = ()=> {
       <div data-testid="board-list-items" className="mt-7">
         {boardsDummyData.map((item: BoardListItem)=> {
           return(
-            <div className="flex items-center">
-              <SidebarMenuListItem key={item.title} title={item.title} active={item.active}/>
+            <div className="flex items-center" key={item.title}>
+              <SidebarMenuListItem title={item.title} active={item.active}/>
             </div>
           )
         })}
