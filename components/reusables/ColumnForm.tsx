@@ -10,7 +10,7 @@ const ColumnForm = ()=> {
   return(
     <div 
       data-testid="add-column-form" 
-      className={`${styles.container} flex flex-col bg-white dark:bg-midnight rounded-md`}
+      className={`${styles.container} flex flex-col bg-white dark:bg-grey rounded-md`}
     >
       <h3>Add Column</h3>
       <input data-testid="add-column-input" type="text" placeholder='e.g. To do' className='mt-6 mb-6 p-3 rounded-lg'/>

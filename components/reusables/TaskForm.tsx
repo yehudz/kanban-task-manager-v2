@@ -26,7 +26,7 @@ const TaskForm = ({formTitle, title, description, status, subtasks, buttonText}:
   }, [])
 
   return(
-    <div data-testid="task-form" className="flex flex-col bg-white dark:bg-midnight p-5 rounded-md">
+    <div data-testid="task-form" className="flex flex-col bg-white dark:bg-grey p-5 rounded-md">
       <h1 data-testid="task-form-title">{formTitle}</h1>
       <form>
         <span data-testid="task-form-title-input" className="flex flex-col ">

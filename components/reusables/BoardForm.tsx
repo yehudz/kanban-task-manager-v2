@@ -22,7 +22,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
     setModalVisibility(false)
   }
   return(
-    <form data-testid="add-new-board-form" className="flex flex-col bg-white dark:bg-midnight p-5 rounded-md">
+    <form data-testid="add-new-board-form" className="flex flex-col bg-white dark:bg-grey p-5 rounded-md">
       <div data-testid="add-new-board-form-title">{formTitle}</div>
       <span data-testid="add-new-board-form-title-input" className="flex flex-col">
         <label htmlFor="boardTitle">Board Name</label>

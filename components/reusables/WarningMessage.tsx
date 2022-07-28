@@ -27,7 +27,7 @@ const WarningMessage = ({title, itemName, type}: WarningMessageProps)=> {
   }
 
   return(
-    <div data-testid="warning-message-container" className={`${styles.container} dark:bg-grey p-6 rounded-lg`}>
+    <div data-testid="warning-message-container" className={`${styles.container} bg-white dark:bg-grey p-6 rounded-lg`}>
       <h1 data-testid="warning-message-title">{title}</h1>
       <Message />
       <div>

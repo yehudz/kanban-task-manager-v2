@@ -5,7 +5,7 @@ import { OptionsMenuButtonProps } from '../../typings/interfaces';
 const OptionsMenuButton = ({handleClick}: OptionsMenuButtonProps)=> {
   return(
     <div data-testid="column-options-drop-down">
-      <IconButton disableRipple data-testid="options-menu-button" onClick={handleClick}>
+      <IconButton disableRipple data-testid="options-menu-button" onClick={handleClick} edge="end">
         <MoreVertIcon fontSize="large" sx={{color: '#828FA3'}}/>
       </IconButton>
     </div>

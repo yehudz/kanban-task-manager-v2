@@ -25,6 +25,11 @@ h2 {
   font-size: 12px;
 }
 
+.body-lg {
+  font-size: 13px;
+  line-height: 23px;
+}
+
 h3 {
   font-size: 15px;
   font-weight: bold;
