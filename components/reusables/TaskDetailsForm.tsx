@@ -13,13 +13,12 @@ const TaskDetailsForm = ({title, description, status, subtasks}: TaskItem)=> {
       <div data-testid="task-details-subtasks-completed" className="my-3">
         Sub tasks ({subtasks?.filter(subtask=>subtask.isCompleted).length} of {subtasks?.length})
       </div>
-      <div data-testid="task-details-subtasks-container">
+      <div data-testid="task-details-subtasks-container" className="mb-8">
         {subtasks?.map(subtask=> {
           return(
             <SubtaskItem title={subtask.title} isCompleted={subtask.isCompleted}/>
           )
         })}
-        <div>Sub Task</div>
       </div>
       <select data-testid="task-status-selector" name="status-selector" id="status-selector" defaultValue={''}>
         <option value="todo">Todo</option>
