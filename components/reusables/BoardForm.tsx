@@ -35,13 +35,6 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
           inputName="boardTitle"
           inputDefaultValue={boardName}
         />
-        {/* <label htmlFor="boardTitle" className="font-bold">Board Name</label>
-        <input 
-          data-testid="board-title-input" 
-          name="boardTitle" 
-          type="text" 
-          placeholder="e.g. Web Design" 
-          defaultValue={boardName}/> */}
       </span>
       <div data-testid="add-new-board-form-columns-creator" className="flex flex-col">
         <h3>Board Columns</h3>
