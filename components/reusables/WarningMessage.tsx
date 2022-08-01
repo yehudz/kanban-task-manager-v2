@@ -30,20 +30,20 @@ const WarningMessage = ({title, itemName, type}: WarningMessageProps)=> {
     <div data-testid="warning-message-container" className={`${styles.container} bg-white dark:bg-grey py-12 px-12 rounded-lg`}>
       <h2 data-testid="warning-message-title" className="text-red mb-6">{title}</h2>
       <Message />
-      <div className="flex flex-row items-center justify-between ">
+      <div className="flex flex-col sm:flex-row items-center justify-between ">
         <button 
           onClick={handleClick} 
           data-testid="warning-message-confirm-button" 
           type="button" 
-          className="py-3 w-52 rounded-full bg-red hover:bg-red-light"
+          className="py-3 w-full mb-4 sm:mb-0 rounded-full bg-red hover:bg-red-light"
           >
             Delete
           </button>
         <button 
           data-testid="warning-message-cancel-button" 
           type="button" 
-          className="py-3 w-52 rounded-full bg-white hover:bg-white dark:bg-grey-100 dark:hover:bg-grey-200 text-purple"
-          >
+          className="py-3 w-full rounded-full bg-white hover:bg-white dark:bg-grey-100 dark:hover:bg-grey-200 text-purple"
+        >
             Cancel
           </button>
       </div>
