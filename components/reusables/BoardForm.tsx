@@ -26,8 +26,8 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
     setModalVisibility(false)
   }
   return(
-    <form data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey p-5 rounded-md`}>
-      <h3 data-testid="add-new-board-form-title">{formTitle}</h3>
+    <form data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
+      <h2 data-testid="add-new-board-form-title">{formTitle}</h2>
       <span data-testid="add-new-board-form-title-input" className="flex flex-col">
         <Input 
           testId="board-title-input"
@@ -48,12 +48,6 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
                 inputDefaultValue={column.name}
                 inputName="boardTitle"
               />
-              {/* <input 
-                data-testid="column-name-input" 
-                name="boardTitle" 
-                type="text" 
-                defaultValue={column.name} 
-                placeholder={column.placeholder}/> */}
               <ClearOutlinedIcon />
             </div>
           )

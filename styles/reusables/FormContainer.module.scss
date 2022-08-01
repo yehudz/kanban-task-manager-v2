@@ -1,5 +1,8 @@
 .container {
   max-width: 480px;
   min-width: 480px;
-  padding: 24px;
+
+  button::last-child {
+    margin-bottom: 0 !important;
+  }
 }
