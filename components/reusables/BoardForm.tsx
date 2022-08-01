@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react"
-import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined';
 import PrimaryButton from "../ui/PrimaryButton";
 import appContext from '../../context/appContext'
 import {BoardFormProps} from '../../typings/interfaces'

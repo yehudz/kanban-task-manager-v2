@@ -4,7 +4,7 @@ import styles from '../../styles/reusables/FormContainer.module.scss'
 import SubtaskItem from "./SubtaskItem"
 const TaskDetailsForm = ({title, description, status, subtasks}: TaskItem)=> {
   return(
-    <div data-testid="task-details-container" className={`${styles.container} flex flex-col bg-white dark:bg-grey p-5 rounded-md`}>
+    <div data-testid="task-details-container" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
       <div className="flex flex-row items-center">
         <h3 data-testid="task-details-title" className="flex-1 p-0">{title}</h3>
         <OptionsMenu menuItems={['Edit Task', 'Delete Task']}/>
