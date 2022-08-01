@@ -8,6 +8,7 @@ import styles from '../../styles/reusables/FormContainer.module.scss'
 
 // Reusable Component imports
 import Input from "../ui/Input";
+import { IconButton } from "@mui/material";
 
 const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
@@ -28,7 +29,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   return(
     <form data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
       <h2 data-testid="add-new-board-form-title">{formTitle}</h2>
-      <span data-testid="add-new-board-form-title-input" className="flex flex-col">
+      <span data-testid="add-new-board-form-title-input" className="flex flex-col mb-8 mt-8">
         <Input 
           testId="board-title-input"
           placeholder="e.g. Web Design"
@@ -38,7 +39,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
         />
       </span>
       <div data-testid="add-new-board-form-columns-creator" className="flex flex-col">
-        <h3>Board Columns</h3>
+        <h4 className="font-bold">Board Columns</h4>
         {emptyBoardColumns.map((column: BoardColumn)=> {
           return(
             <div key={column.name} data-tesid="add-new-board-form-column" className="flex flex-row items-center">
@@ -48,7 +49,9 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
                 inputDefaultValue={column.name}
                 inputName="boardTitle"
               />
-              <ClearOutlinedIcon />
+              <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
+                <img src="/images/icon-cross.svg" alt="" />
+              </IconButton>
             </div>
           )
         })}
