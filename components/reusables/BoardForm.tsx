@@ -33,8 +33,8 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
           testId="board-title-input"
           placeholder="e.g. Web Design"
           labelText="Board Name"
-          inputName="boardTitle"
-          inputDefaultValue={boardName}
+          name="boardTitle"
+          defaultValue={boardName}
         />
       </span>
       <div data-testid="add-new-board-form-columns-creator" className="flex flex-col">
@@ -45,8 +45,8 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
               <Input 
                 testId="column-name-input"
                 placeholder={column.placeholder}
-                inputDefaultValue={column.name}
-                inputName="boardTitle"
+                defaultValue={column.name}
+                name="boardTitle"
               />
               <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
                 <img src="/images/icon-cross.svg" alt="" />
