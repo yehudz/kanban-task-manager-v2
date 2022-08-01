@@ -68,3 +68,5 @@ export interface InputProps {
   defaultValue?: string
   testId?: string
 }
+
+export interface TextareaProps extends InputProps {}
