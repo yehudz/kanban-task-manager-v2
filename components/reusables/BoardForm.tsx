@@ -30,6 +30,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
       <h3 data-testid="add-new-board-form-title">{formTitle}</h3>
       <span data-testid="add-new-board-form-title-input" className="flex flex-col">
         <Input 
+          testId="board-title-input"
           placeholder="e.g. Web Design"
           labelText="Board Name"
           inputName="boardTitle"
@@ -41,12 +42,18 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
         {emptyBoardColumns.map((column: BoardColumn)=> {
           return(
             <div key={column.name} data-tesid="add-new-board-form-column" className="flex flex-row items-center">
-              <input 
+              <Input 
+                testId="column-name-input"
+                placeholder={column.placeholder}
+                inputDefaultValue={column.name}
+                inputName="boardTitle"
+              />
+              {/* <input 
                 data-testid="column-name-input" 
                 name="boardTitle" 
                 type="text" 
                 defaultValue={column.name} 
-                placeholder={column.placeholder}/>
+                placeholder={column.placeholder}/> */}
               <ClearOutlinedIcon />
             </div>
           )
