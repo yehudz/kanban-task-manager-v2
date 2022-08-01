@@ -2,7 +2,7 @@ import BoardForm from "../../../components/reusables/BoardForm"
 
 describe('Add new board form', ()=> {
   beforeEach(()=> {
-    cy.mount(<BoardForm />)
+    cy.mount(<BoardForm formTitle="Add New Board" boardName="" boardColumns={[{name: '', color: '', tasks: []}]}/>)
   })
 
   it('should render', ()=> {
