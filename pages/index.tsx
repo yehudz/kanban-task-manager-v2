@@ -47,7 +47,7 @@ const Home: NextPage = (props) => {
       case "CREATE_NEW_BOARD":
         setOpenMobileMenu(false)
         return <BoardForm 
-                  formTitle='Create New Board'
+                  formTitle='Add New Board'
                   boardName=''
                   boardColumns={[]}
                 />

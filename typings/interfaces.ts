@@ -60,3 +60,10 @@ export interface SidebarMenuListItemProps {
   title: string
   active: boolean
 }
+
+export interface InputProps {
+  placeholder: string
+  labelText: string
+  inputName: string
+  inputDefaultValue: string
+}

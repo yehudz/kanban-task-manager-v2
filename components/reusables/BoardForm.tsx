@@ -4,6 +4,10 @@ import PrimaryButton from "../ui/PrimaryButton";
 import appContext from '../../context/appContext'
 import {BoardFormProps} from '../../typings/interfaces'
 import {BoardColumn} from '../../typings/common.types'
+import styles from '../../styles/reusables/FormContainer.module.scss'
+
+// Reusable Component imports
+import Input from "../ui/Input";
 
 const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
@@ -22,19 +26,25 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
     setModalVisibility(false)
   }
   return(
-    <form data-testid="add-new-board-form" className="flex flex-col bg-white dark:bg-grey p-5 rounded-md">
-      <div data-testid="add-new-board-form-title">{formTitle}</div>
+    <form data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey p-5 rounded-md`}>
+      <h3 data-testid="add-new-board-form-title">{formTitle}</h3>
       <span data-testid="add-new-board-form-title-input" className="flex flex-col">
-        <label htmlFor="boardTitle">Board Name</label>
+        <Input 
+          placeholder="e.g. Web Design"
+          labelText="Board Name"
+          inputName="boardTitle"
+          inputDefaultValue={boardName}
+        />
+        {/* <label htmlFor="boardTitle" className="font-bold">Board Name</label>
         <input 
           data-testid="board-title-input" 
           name="boardTitle" 
           type="text" 
           placeholder="e.g. Web Design" 
-          defaultValue={boardName}/>
+          defaultValue={boardName}/> */}
       </span>
       <div data-testid="add-new-board-form-columns-creator" className="flex flex-col">
-        <h1>Board Columns</h1>
+        <h3>Board Columns</h3>
         {emptyBoardColumns.map((column: BoardColumn)=> {
           return(
             <div key={column.name} data-tesid="add-new-board-form-column" className="flex flex-row items-center">
