@@ -64,7 +64,7 @@ export interface SidebarMenuListItemProps {
 export interface InputProps {
   placeholder: string | undefined
   labelText?: string
-  inputName: string
-  inputDefaultValue: string
+  name: string
+  defaultValue?: string
   testId?: string
 }

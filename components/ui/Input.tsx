@@ -1,13 +1,13 @@
 import { InputProps } from '../../typings/interfaces'
 
-const Input = ({placeholder, labelText, inputName, inputDefaultValue, testId}: InputProps)=> {
+const Input = ({placeholder, labelText, name, defaultValue, testId}: InputProps)=> {
   return(
     <div className="form-control w-full">
       <div className="font-bold mb-3">{labelText}</div>
       <input 
         data-testid={testId}
         type="text" 
-        name={inputName} 
+        name={name} 
         placeholder={placeholder} 
         className="
           bg-transparent 
@@ -22,7 +22,7 @@ const Input = ({placeholder, labelText, inputName, inputDefaultValue, testId}: I
           placeholder-grey-700
           rounded-md
           "
-        defaultValue={inputDefaultValue}
+        defaultValue={defaultValue}
       />
     </div>
   )
