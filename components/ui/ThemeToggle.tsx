@@ -51,7 +51,7 @@ const ThemeToggle = ()=> {
     setTheme(colorScheme)
   }
   return(
-    <div data-testid="theme-toggle-container" className={`${styles.container} flex flex-row items-center justify-center bg-midnight rounded-lg`}>
+    <div data-testid="theme-toggle-container" className={`${styles.container} flex flex-row items-center justify-center bg-grey-100 dark:bg-midnight rounded-lg`}>
       <img src="images/icon-light-theme.svg" className='mr-6'/>
       <IOSSwitch onChange={handleToggleTheme} defaultChecked={true} disableRipple data-testid="toggle-theme-button"/>
       <img src="images/icon-dark-theme.svg" className='ml-8'/>
