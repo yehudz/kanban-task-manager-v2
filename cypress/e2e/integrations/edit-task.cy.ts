@@ -15,7 +15,7 @@ describe('Edit Task', ()=> {
     cy.get('[data-testid="task-title-input"]').clear()
     cy.get('[data-testid="task-title-input"]').type('Build UX and UI for onboarding flow')
     cy.wait(500)
-    cy.get('[data-testid="status-select"]').select('Done')
+    // cy.get('[data-testid="status-select"]').select('Done')
     cy.wait(500)
     cy.get('[data-testid="primaryButton"]').eq(1).click()
   })

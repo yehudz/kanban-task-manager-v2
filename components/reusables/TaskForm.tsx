@@ -8,7 +8,7 @@ import styles from '../../styles/reusables/FormContainer.module.scss';
 import Textarea from "../ui/Textarea";
 import Dropdown from '../ui/Dropdown';
 
-const TaskForm = ({formTitle, title, description, status, subtasks, buttonText}: TaskFormProps)=> {
+const TaskForm = ({formTitle, title, description, selectedStatus, status, subtasks, buttonText}: TaskFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
   const [subtaskInputs, setSubtaskInputs] = useState([
         {placeholder: "e.g. Make Coffee"},
@@ -89,7 +89,7 @@ recharge the batteries a little."
       <PrimaryButton buttonText="+ Add new subtask" color="white" handleClick={createNewSubtaskInput}/>
       <span data-testid="task-form-status-select" className="flex flex-col">
         <div className="font-bold mb-4">Status</div>
-        <Dropdown status={status}/>
+        <Dropdown status={status} selectedStatus={selectedStatus}/>
       </span>
       <PrimaryButton buttonText={buttonText} color="primary" handleClick={createNewTask}/>
     </div>

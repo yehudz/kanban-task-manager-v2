@@ -6,7 +6,7 @@ import SelectUnstyled, {
 import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
 import PopperUnstyled from '@mui/base/PopperUnstyled';
 import { styled } from '@mui/system';
-import { BoardItem } from '../../typings/interfaces';
+import { DropdownProps, BoardItem } from '../../typings/interfaces';
 
 const StyledButton = styled('button')(
   ({ theme }) => `
@@ -84,10 +84,11 @@ const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
   props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLButtonElement>,
 ) => JSX.Element;
 
-export default function UnstyledSelectSimple({status}: BoardItem) {
+export default function UnstyledSelectSimple({status, selectedStatus}: DropdownProps) {
   return (
     <CustomSelect 
-      defaultValue={status[0].name} // To do: Default should be the one selected
+      data-testid="status-select"
+      defaultValue={selectedStatus ? selectedStatus : status[0]?.name} // To do: Default should be the one selected
       className="
         dark:bg-transparent 
         border 
@@ -99,7 +100,7 @@ export default function UnstyledSelectSimple({status}: BoardItem) {
         <div className='bg-white dark:bg-midnight w-full py-6 mt-3 rounded-lg'>
           {status.map((item: BoardItem)=> {
             return(
-              <StyledOption className='w-full text-grey-400 pt-1 px-6 hover:text-purple' value={item.name}>{item.name}</StyledOption>
+              <StyledOption key={item.name} data-testid="status-select-option" className='w-full text-grey-400 pt-1 px-6 hover:text-purple' value={item.name}>{item.name}</StyledOption>
             )
           })}
           {/* <StyledOption className='w-full text-grey-400 pt-1 px-6 hover:text-purple' value={20}>Twenty</StyledOption>

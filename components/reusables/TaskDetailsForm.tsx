@@ -2,7 +2,8 @@ import { TaskItem } from "../../typings/common.types"
 import OptionsMenu from "./OptionsMenu"
 import styles from '../../styles/reusables/FormContainer.module.scss'
 import SubtaskItem from "./SubtaskItem"
-const TaskDetailsForm = ({title, description, status, subtasks}: TaskItem)=> {
+import Dropdown from '../ui/Dropdown';
+const TaskDetailsForm = ({title, description, status, selectedStatus, subtasks}: TaskItem)=> {
   return(
     <div data-testid="task-details-container" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
       <div className="flex flex-row items-center">
@@ -16,13 +17,11 @@ const TaskDetailsForm = ({title, description, status, subtasks}: TaskItem)=> {
       <div data-testid="task-details-subtasks-container" className="mb-8">
         {subtasks?.map(subtask=> {
           return(
-            <SubtaskItem title={subtask.title} isCompleted={subtask.isCompleted}/>
+            <SubtaskItem key={subtask.title} title={subtask.title} isCompleted={subtask.isCompleted}/>
           )
         })}
       </div>
-      <select data-testid="task-status-selector" name="status-selector" id="status-selector" defaultValue={''}>
-        <option value="todo">Todo</option>
-      </select>
+      <Dropdown status={status} selectedStatus={selectedStatus}/>
     </div>
   )
 }

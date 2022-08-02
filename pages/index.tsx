@@ -34,6 +34,7 @@ const Home: NextPage = (props) => {
                   formTitle="Create New Task"
                   title=""
                   description=""
+                  selectedStatus={''}
                   status={exampleBoard.columns}
                   buttonText='Create Task'
                 />
@@ -41,7 +42,8 @@ const Home: NextPage = (props) => {
         return <TaskDetailsForm 
                   title={taskDetails?.title} 
                   description={taskDetails?.description}
-                  status={taskDetails?.status}
+                  selectedStatus={taskDetails?.status}
+                  status={exampleBoard.columns}
                   subtasks={taskDetails?.subtasks}
                 />
       case "CREATE_NEW_BOARD":
@@ -56,7 +58,8 @@ const Home: NextPage = (props) => {
                   formTitle="Edit Task"
                   title={taskDetails?.title} 
                   description={taskDetails?.description}
-                  status={taskDetails?.status}
+                  selectedStatus={taskDetails?.status}
+                  status={exampleBoard.columns}
                   subtasks={taskDetails?.subtasks}
                   buttonText='Save Changes'
                 />

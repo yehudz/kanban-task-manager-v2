@@ -42,6 +42,7 @@ export interface OptionMenuProps {
 export interface TaskFormProps extends TaskItem {
   formTitle: string
   buttonText: string
+  selectedStatus: string
 }
 
 export interface BoardFormProps {
@@ -74,4 +75,9 @@ export interface TextareaProps extends InputProps {}
 export interface BoardItem {
   name: string
   color: string
+}
+
+export interface DropdownProps {
+  status: BoardColumn[]
+  selectedStatus: string
 }
