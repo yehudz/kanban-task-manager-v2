@@ -42,7 +42,7 @@ export interface OptionMenuProps {
 export interface TaskFormProps extends TaskItem {
   formTitle: string
   buttonText: string
-  selectedStatus: string
+  selectedStatus?: BoardColumn[] | string
 }
 
 export interface BoardFormProps {
@@ -79,5 +79,5 @@ export interface BoardItem {
 
 export interface DropdownProps {
   status: BoardColumn[]
-  selectedStatus: string
+  selectedStatus?: BoardColumn[] | string
 }
