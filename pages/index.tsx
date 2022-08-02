@@ -34,7 +34,7 @@ const Home: NextPage = (props) => {
                   formTitle="Create New Task"
                   title=""
                   description=""
-                  status=""
+                  status={exampleBoard.columns}
                   buttonText='Create Task'
                 />
       case "TASK_DETAILS":

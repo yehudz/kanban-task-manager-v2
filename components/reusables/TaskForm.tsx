@@ -1,5 +1,4 @@
 import PrimaryButton from "../ui/PrimaryButton"
-import ClearIcon from '@mui/icons-material/Clear';
 import { IconButton } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { TaskFormProps } from "../../typings/interfaces";
@@ -7,6 +6,7 @@ import appContext from "../../context/appContext";
 import Input from "../ui/Input";
 import styles from '../../styles/reusables/FormContainer.module.scss';
 import Textarea from "../ui/Textarea";
+import Dropdown from '../ui/Dropdown';
 
 const TaskForm = ({formTitle, title, description, status, subtasks, buttonText}: TaskFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
@@ -72,7 +72,7 @@ recharge the batteries a little."
         })}
         {subtaskInputs.map(subtask=> {
           return(
-            <div data-testid="task-form-subtask-input" className="flex flex-row items-center">
+            <div key={subtask.placeholder} data-testid="task-form-subtask-input" className="flex flex-row items-center">
                <Input 
                 defaultValue=""
                 testId="subtask-input"
@@ -89,10 +89,7 @@ recharge the batteries a little."
       <PrimaryButton buttonText="+ Add new subtask" color="white" handleClick={createNewSubtaskInput}/>
       <span data-testid="task-form-status-select" className="flex flex-col">
         <div className="font-bold mb-4">Status</div>
-        <select data-testid="status-select" name="statusSelect" id="statusSelect">
-          <option value="Todo">Todo</option>
-          <option value="Done">Done</option>
-        </select>
+        <Dropdown status={status}/>
       </span>
       <PrimaryButton buttonText={buttonText} color="primary" handleClick={createNewTask}/>
     </div>

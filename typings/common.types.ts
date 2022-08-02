@@ -19,7 +19,7 @@ export type TaskItem = {
   updatedAt?: Date
   title: string
   description: string | null
-  status: string | null
+  status: BoardColumn[]
   columnId?: string
   subtaskId?: string
   subtasks?: Subtask[]

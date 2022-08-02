@@ -70,3 +70,8 @@ export interface InputProps {
 }
 
 export interface TextareaProps extends InputProps {}
+
+export interface BoardItem {
+  name: string
+  color: string
+}
