@@ -15,7 +15,7 @@ const LeftSidebar = ()=> {
       data-testid="left-sidebar" 
       className={`${styles.container} flex flex-col items-center h-full bg-white dark:bg-grey relative`}>
       <div data-testid="left-sidebar-logo" className={`${styles.logoContainer} flex items-center w-full`}>
-        <img src="images/logo-light.svg" alt="" className={`${styles.image}`}/>
+        <img src={"images/logo-light.svg"} alt="" className={`${styles.image}`}/>
       </div>
       <ColumnsListMenu />
       <div className={`absolute bottom-4 ${styles.bottomContainer}`}>
