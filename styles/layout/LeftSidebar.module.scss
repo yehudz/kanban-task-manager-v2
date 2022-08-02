@@ -1,6 +1,8 @@
 .container {
   width: 300px;
-  border-right: 1px solid rgba(255, 255, 255, .05);
+  border-right: 1px solid rgba(255, 255, 255, .1);
+  box-shadow: 1px 0px 0px 0 rgba(0,0,0,.05);
+
 
   @media screen and (max-width: 1024px) {
     width: 261px;

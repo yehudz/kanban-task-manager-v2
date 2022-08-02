@@ -1,7 +1,7 @@
 import styles from '../../styles/layout/BoardColumnsContainer.module.scss'
 import BoardColumn from '../reusables/BoardColumn'
 //TS Props interface
-import { BoardColumnProps, BoardColumnsProps } from '../../typings/interfaces'
+import { BoardColumnsProps } from '../../typings/interfaces'
 import EmptyBoardScreen from '../ui/EmptyBoardScreen'
 import AddNewColumnUi from '../ui/AddNewColumnUi'
 const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
