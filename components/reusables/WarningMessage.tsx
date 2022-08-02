@@ -42,7 +42,7 @@ const WarningMessage = ({title, itemName, type}: WarningMessageProps)=> {
         <button 
           data-testid="warning-message-cancel-button" 
           type="button" 
-          className="py-3 w-full rounded-full bg-white hover:bg-white dark:bg-grey-100 dark:hover:bg-grey-200 text-purple"
+          className="py-3 w-full rounded-full bg-grey-200 hover:bg-grey-100 dark:bg-grey-100 dark:hover:bg-grey-200 text-purple"
         >
             Cancel
           </button>

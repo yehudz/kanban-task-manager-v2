@@ -27,7 +27,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   }
   return(
     <form data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
-      <h2 data-testid="add-new-board-form-title">{formTitle}</h2>
+      <h2 data-testid="add-new-board-form-title" className="text-grey dark:text-white">{formTitle}</h2>
       <span data-testid="add-new-board-form-title-input" className="flex flex-col mb-8 mt-8">
         <Input 
           testId="board-title-input"
@@ -38,7 +38,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
         />
       </span>
       <div data-testid="add-new-board-form-columns-creator" className="flex flex-col">
-        <h4 className="font-bold">Board Columns</h4>
+        <h4 className="text-grey-400 dark:text-white">Board Columns</h4>
         {emptyBoardColumns.map((column: BoardColumn)=> {
           return(
             <div key={column.name} data-tesid="add-new-board-form-column" className="flex flex-row items-center">

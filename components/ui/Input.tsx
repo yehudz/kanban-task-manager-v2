@@ -19,6 +19,8 @@ const Input = ({placeholder, labelText, name, defaultValue, testId}: InputProps)
           py-3
           focus:border-purple
           outline-none
+          text-grey
+          dark:text-white
           placeholder-grey-300
           dark:placeholder-grey-700
           rounded-md
