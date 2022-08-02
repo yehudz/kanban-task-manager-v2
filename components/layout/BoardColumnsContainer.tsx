@@ -6,7 +6,7 @@ import EmptyBoardScreen from '../ui/EmptyBoardScreen'
 import AddNewColumnUi from '../ui/AddNewColumnUi'
 const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
   return(
-    <div data-testid="columns-container" className={`${styles.container} W h-full relative`}>
+    <div data-testid="columns-container" className={`${styles.container} h-full relative`}>
       {!board.columns.length && <EmptyBoardScreen />}
       {board.columns.map((column)=> {
         return(

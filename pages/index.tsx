@@ -125,7 +125,7 @@ const Home: NextPage = (props) => {
             setTheme
           }
         }>
-        <div className="flex flex-row w-full h-screen bg-grey-200 dark:bg-midnight">
+        <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">
           <div data-testid="left-container" className={`leftContainer ${sidebarOpen ? 'sidebarOpen' : ''}`}>
             {!isMobile && <LeftSidebar />}
           </div>
