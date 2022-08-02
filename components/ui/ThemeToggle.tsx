@@ -2,6 +2,7 @@ import styles from '../../styles/ui/ThemeToggle.module.scss'
 import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Switch, { SwitchProps } from '@mui/material/Switch';
+import useTheme from '../../components/hooks/useTheme'
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -44,11 +45,15 @@ const IOSSwitch = styled((props: SwitchProps) => (
 }));
 
 const ThemeToggle = ()=> {
-  const isDarkTheme = true
+  const [colorScheme, setTheme] = useTheme()
+  // let checked = colorScheme !== 'dark' ? false : true 
+  function handleToggleTheme() {
+    setTheme(colorScheme)
+  }
   return(
     <div data-testid="theme-toggle-container" className={`${styles.container} flex flex-row items-center justify-center bg-midnight rounded-lg`}>
       <img src="images/icon-light-theme.svg" className='mr-6'/>
-      <IOSSwitch disableRipple defaultChecked={isDarkTheme ? true : false} data-testid="toggle-theme-button"/>
+      <IOSSwitch onChange={handleToggleTheme} defaultChecked={true} disableRipple data-testid="toggle-theme-button"/>
       <img src="images/icon-dark-theme.svg" className='ml-8'/>
     </div>
   )
