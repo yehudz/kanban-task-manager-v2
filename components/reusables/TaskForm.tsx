@@ -31,7 +31,7 @@ const TaskForm = ({formTitle, title, description, selectedStatus, status, subtas
 
   return(
     <div data-testid="task-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-md`}>
-      <h3 data-testid="task-form-title">{formTitle}</h3>
+      <h3 data-testid="task-form-title" className="text-grey dark:text-white">{formTitle}</h3>
       <form>
         <span data-testid="task-form-title-input" className="flex flex-col mt-6">
           <Input 
@@ -43,7 +43,7 @@ const TaskForm = ({formTitle, title, description, selectedStatus, status, subtas
           />
         </span>
         <span data-testid="task-form-description-textarea" className="flex flex-col mt-8">
-          <label htmlFor="descriptionInput">Description</label>
+          <label htmlFor="descriptionInput" className="text-grey-400 dark:text-white">Description</label>
           <Textarea 
             placeholder="e.g. It’s always good to take a break. This 15 minute break will 
 recharge the batteries a little."
@@ -54,7 +54,7 @@ recharge the batteries a little."
       </form>
      
       <div data-testid="task-form-subtasks-container" className="mt-8">
-        <div className="font-bold">Subtasks</div>
+        <div className="text-grey-400 dark:text-grey">Subtasks</div>
         {subtasks?.map(subtask=> {
           return(
             <div data-testid="task-form-subtask-input" className="flex flex-row items-center">

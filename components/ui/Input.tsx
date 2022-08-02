@@ -3,7 +3,7 @@ import { InputProps } from '../../typings/interfaces'
 const Input = ({placeholder, labelText, name, defaultValue, testId}: InputProps)=> {
   return(
     <div className="form-control w-full">
-      <div className="font-bold mb-3">{labelText}</div>
+      <div className="mb-3 text-grey-400 dark:text-white">{labelText}</div>
       <input 
         data-testid={testId}
         type="text" 
@@ -19,7 +19,8 @@ const Input = ({placeholder, labelText, name, defaultValue, testId}: InputProps)
           py-3
           focus:border-purple
           outline-none
-          placeholder-grey-700
+          placeholder-grey-300
+          dark:placeholder-grey-700
           rounded-md
           "
         defaultValue={defaultValue}
