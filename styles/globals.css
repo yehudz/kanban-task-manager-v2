@@ -79,6 +79,10 @@ a {
   background-color: rgba(0,0,0, .4);
 }
 
+.form-check-input:checked[type=checkbox] {
+  background-image: url('/images/icon-check.svg');
+}
+
 @media screen and (max-width: 1024px) {
   .leftContainer {
     transform: translateX(-261px);

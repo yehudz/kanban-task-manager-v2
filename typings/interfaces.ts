@@ -74,7 +74,7 @@ export interface TextareaProps extends InputProps {}
 
 export interface BoardItem {
   name: string
-  color: string
+  color?: string
 }
 
 export interface DropdownProps {

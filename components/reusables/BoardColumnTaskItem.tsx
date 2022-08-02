@@ -20,7 +20,7 @@ const BoardColumnTaskItem = ({title, description, status, subtasks}: TaskItem)=>
 
   return(
     <div data-testid="task-item" onClick={showModal} className={`${styles.container} bg-white dark:bg-grey rounded-lg`}>
-      <h3 data-testid="task-title">{title}</h3>
+      <h3 data-testid="task-title" className="text-grey dark:text-white">{title}</h3>
       <div data-testid="task-subtasks" className="body-m text-grey-400 mt-1">{subtasks?.filter(subtask=>subtask.isCompleted).length} of {subtasks?.length} substasks</div>
     </div>
   )

@@ -93,8 +93,11 @@ export default function UnstyledSelectSimple({status, selectedStatus}: DropdownP
         dark:bg-transparent 
         border 
         border-solid 
-        border-grey-700
+        border-grey-200
+        dark:border-grey-700
         hover:border-purple
+        text-grey
+        dark:text-white
         "
       >
         <div className='bg-white dark:bg-midnight w-full py-6 mt-3 rounded-lg'>
@@ -103,8 +106,6 @@ export default function UnstyledSelectSimple({status, selectedStatus}: DropdownP
               <StyledOption key={item.name} data-testid="status-select-option" className='w-full text-grey-400 pt-1 px-6 hover:text-purple' value={item.name}>{item.name}</StyledOption>
             )
           })}
-          {/* <StyledOption className='w-full text-grey-400 pt-1 px-6 hover:text-purple' value={20}>Twenty</StyledOption>
-          <StyledOption className='w-full text-grey-400 pt-1 px-6 hover:text-purple' value={30}>Thirty</StyledOption> */}
         </div>
     </CustomSelect>
   );

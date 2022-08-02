@@ -7,11 +7,11 @@ const TaskDetailsForm = ({title, description, status, selectedStatus, subtasks}:
   return(
     <div data-testid="task-details-container" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
       <div className="flex flex-row items-center">
-        <h3 data-testid="task-details-title" className="flex-1 p-0">{title}</h3>
+        <h3 data-testid="task-details-title" className="flex-1 p-0 text-grey dark:text-white">{title}</h3>
         <OptionsMenu menuItems={['Edit Task', 'Delete Task']}/>
       </div>
       <div data-testid="task-details-description" className="body-lg text-grey-400 my-3">{description}</div>
-      <div data-testid="task-details-subtasks-completed" className="my-3">
+      <div data-testid="task-details-subtasks-completed" className="my-3 text-grey-400 font-bold dark:text-white">
         Sub tasks ({subtasks?.filter(subtask=>subtask.isCompleted).length} of {subtasks?.length})
       </div>
       <div data-testid="task-details-subtasks-container" className="mb-8">
