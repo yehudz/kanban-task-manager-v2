@@ -61,8 +61,8 @@ recharge the batteries a little."
               <Input 
                 testId="subtask-input"
                 placeholder="Subtask Title"
-                inputDefaultValue={subtask.title}
-                inputName="subtask-input"
+                defaultValue={subtask.title}
+                name="subtask-input"
               />
               <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
                 <img src="/images/icon-cross.svg" alt="" />
@@ -74,10 +74,10 @@ recharge the batteries a little."
           return(
             <div data-testid="task-form-subtask-input" className="flex flex-row items-center">
                <Input 
-                inputDefaultValue=""
+                defaultValue=""
                 testId="subtask-input"
                 placeholder={subtask.placeholder}
-                inputName="subtask-input"
+                name="subtask-input"
               />
               <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
                 <img src="/images/icon-cross.svg" alt="" />
