@@ -11,7 +11,7 @@ import ResuableModal from '../components/reusables/ReusableModal'
 import TaskDetailsForm from '../components/reusables/TaskDetailsForm'
 import TaskForm from '../components/reusables/TaskForm'
 import BoardForm from '../components/reusables/BoardForm'
-
+import useTheme from '../components/hooks/useTheme'
 // Dummy data singleton
 import dummyData from '../data.json'
 import WarningMessage from '../components/reusables/WarningMessage'
@@ -25,7 +25,7 @@ const Home: NextPage = (props) => {
   const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
   const [modalContentType, setModalContentType] = useState<string>('')
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
-
+  const [theme, setTheme] = useState<string>('dark')
   // Should check for what is requested to show in the modal
   const ModalContent = ()=> {
     switch(modalContentType) {
@@ -120,7 +120,9 @@ const Home: NextPage = (props) => {
             setTaskDetails, 
             setModalContentType, 
             sidebarOpen, 
-            setSidebarOpen
+            setSidebarOpen,
+            theme,
+            setTheme
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-200 dark:bg-midnight">
