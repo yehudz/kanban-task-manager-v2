@@ -68,7 +68,7 @@ a {
 
 .rightContainer {
   display: grid;
-  grid-template-rows: 64px 100%;
+  grid-template-rows: 96px 100%;
 }
 
 .overlay {
@@ -95,6 +95,11 @@ a {
 
   .leftContainer.sidebarOpen {
     width: 0;
+  }
+
+  .rightContainer {
+    display: grid;
+    grid-template-rows: 64px 100%;
   }
 
 }
