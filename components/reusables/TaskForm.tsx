@@ -31,7 +31,7 @@ const TaskForm = ({formTitle, title, description, status, subtasks, buttonText}:
 
   return(
     <div data-testid="task-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-md`}>
-      <h2 data-testid="task-form-title">{formTitle}</h2>
+      <h3 data-testid="task-form-title">{formTitle}</h3>
       <form>
         <span data-testid="task-form-title-input" className="flex flex-col mt-6">
           <Input 

@@ -2,6 +2,11 @@
   max-width: 480px;
   min-width: 480px;
 
+  @media screen and (max-width: 640px) {
+    max-width: 90%;
+    min-width: 90%;
+  }
+
   button::last-child {
     margin-bottom: 0 !important;
   }
