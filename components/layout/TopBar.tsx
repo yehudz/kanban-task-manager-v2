@@ -23,7 +23,9 @@ const TopBar = ({boardName}: TopBarProps)=> {
       <BoardTitle title={boardName} isMobile={isMobile} handleClick={mobileMenuVisibility}/>
       <div className='absolute right-0 flex flex-row items-center'>
         <AddNewTaskButton />
-        <OptionsMenu menuItems={['Edit Board', 'Delete Board']}/>
+        <div className='mr-4'>
+          <OptionsMenu menuItems={['Edit Board', 'Delete Board']}/>
+        </div>
       </div>
     </div>
   )
