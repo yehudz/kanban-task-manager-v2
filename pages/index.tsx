@@ -25,22 +25,6 @@ const Home: NextPage = (props) => {
   const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
   const [modalContentType, setModalContentType] = useState<string>('')
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
-  const [theme, setTheme] = useState<string>('dark')
-
-  // Get saved theme scheme
-  useEffect(()=> {
-    let theme = localStorage.getItem('kanbanTheme')
-    if (!theme) setTheme('dark')
-  }, [])
-
-  // Should toggle theme and save it to localstorage
-  useEffect(()=> {
-    if ((theme && theme === 'dark') ? 'dark' : 'light'){
-      localStorage.setItem('kanbanTheme', theme)
-      const root = window.document.documentElement
-      root.classList.toggle(theme)
-    }
-  }, [theme])
 
   // Should check for what is requested to show in the modal
   const ModalContent = ()=> {
