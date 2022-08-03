@@ -6,7 +6,10 @@ export default function useTheme() {
   useEffect(()=> {
     const root = window.document.documentElement
     root.classList.remove(colorScheme)
-    root.classList.add(theme)
+    if (theme) {
+      localStorage.setItem('kanbanTheme', theme)
+      root.classList.add(theme)
+    }
   }, [theme, colorScheme])
 
   return [colorScheme, setTheme]

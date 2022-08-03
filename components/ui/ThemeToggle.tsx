@@ -3,6 +3,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import useTheme from '../../components/hooks/useTheme'
+import appContext from '../../context/appContext';
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -45,17 +46,26 @@ const IOSSwitch = styled((props: SwitchProps) => (
 }));
 
 const ThemeToggle = ()=> {
+  const {theme} = React.useContext(appContext)
   const [colorScheme, setTheme] = useTheme()
-  // let checked = colorScheme !== 'dark' ? false : true 
+  const [checked, setChecked] = React.useState<boolean>()
+  React.useEffect(()=> {
+    if (theme === 'dark' || localStorage.kanbanTheme === 'dark') setChecked(true)
+    if (theme === 'light') setChecked(false)
+  }, [theme])
+
   function handleToggleTheme() {
     setTheme(colorScheme)
   }
+
   return(
-    <div data-testid="theme-toggle-container" className={`${styles.container} flex flex-row items-center justify-center bg-grey-100 dark:bg-midnight rounded-lg`}>
-      <img src="images/icon-light-theme.svg" className='mr-6'/>
-      <IOSSwitch onChange={handleToggleTheme} defaultChecked={true} disableRipple data-testid="toggle-theme-button"/>
-      <img src="images/icon-dark-theme.svg" className='ml-8'/>
-    </div>
+    <>
+      {checked !== undefined && <div data-testid="theme-toggle-container" className={`${styles.container} flex flex-row items-center justify-center bg-grey-100 dark:bg-midnight rounded-lg`}>
+        <img src="images/icon-light-theme.svg" className='mr-6'/>
+        <IOSSwitch onChange={handleToggleTheme} defaultChecked={checked} disableRipple data-testid="toggle-theme-button"/>
+        <img src="images/icon-dark-theme.svg" className='ml-8'/>
+      </div>}
+    </>
   )
 }
 

@@ -11,7 +11,7 @@ import ResuableModal from '../components/reusables/ReusableModal'
 import TaskDetailsForm from '../components/reusables/TaskDetailsForm'
 import TaskForm from '../components/reusables/TaskForm'
 import BoardForm from '../components/reusables/BoardForm'
-import useTheme from '../components/hooks/useTheme'
+
 // Dummy data singleton
 import dummyData from '../data.json'
 import WarningMessage from '../components/reusables/WarningMessage'
@@ -23,10 +23,20 @@ const Home: NextPage = (props) => {
   const [exampleBoard, setExampleBoard] = useState<Board>({name: '', columns: []})
   const [modalVisibility, setModalVisibility] = useState<boolean>(false)
   const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
-  const [modalContentType, setModalContentType] = useState<string>('')
+  const [modalContentType, setModalContentType] = useState<string | null>('')
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
-  const [theme, setTheme] = useState<string>('dark')
+  const [theme, setTheme] = useState<string>('')
   // Should check for what is requested to show in the modal
+
+  useEffect(()=> {
+    if (!localStorage.getItem('kanbanTheme')) {
+      setTheme('dark')
+    }
+    if (localStorage.kanbanTheme) {
+      setTheme(localStorage.kanbanTheme)
+    }
+  }, [])
+
   const ModalContent = ()=> {
     switch(modalContentType) {
       case "ADD_NEW_TASK": 
