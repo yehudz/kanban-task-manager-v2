@@ -2,6 +2,7 @@ import { Board, TaskItem, BoardColumn } from "./common.types"
 
 export interface TopBarProps {
   boardName: string
+  boardColumnsCount: number
 }
 
 export interface BoardColumnsProps {
@@ -87,6 +88,7 @@ export interface EmptyBoardScreenProps {
 }
 
 export interface AddNewButtonProps {
+  disabled?: boolean
   buttonText: string
   contentType: string
 }

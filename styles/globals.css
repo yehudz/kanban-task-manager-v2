@@ -83,6 +83,11 @@ a {
   background-image: url('/images/icon-check.svg');
 }
 
+:disabled {
+  opacity: .3;
+  cursor: default;
+}
+
 @media screen and (max-width: 1024px) {
   .leftContainer {
     transform: translateX(-261px);
