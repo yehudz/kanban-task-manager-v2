@@ -33,6 +33,7 @@ const Home: NextPage = (props) => {
   const [modalContentType, setModalContentType] = useState<string | null>('')
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [theme, setTheme] = useState<string>('')
+  const [boardsCount, setBoardsCount] = useState<number>(0)
   // Should check for what is requested to show in the modal
 
   useEffect(()=> {
@@ -137,7 +138,8 @@ const Home: NextPage = (props) => {
             sidebarOpen, 
             setSidebarOpen,
             theme,
-            setTheme
+            setTheme,
+            boardsCount
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">

@@ -5,11 +5,7 @@ import { useContext } from "react"
 import { BoardListItem } from "../../typings/common.types"
 
 const ColumnsListMenu = ()=> {
-  const {setModalVisibility, setModalContentType} = useContext(appContext)
-  // let boardsDummyData: BoardListItem[] = [
-  //   {title: 'Example One', active: true},
-  //   {title: 'Example Two', active: false}
-  // ]
+  const {setModalVisibility, setModalContentType, boardsCount} = useContext(appContext)
 
   let boardColumns: BoardListItem[] = []
   function showAddBoardForm() {
@@ -18,7 +14,7 @@ const ColumnsListMenu = ()=> {
   }
   return(
     <div data-testid="columns-list-menu" className={`${styles.container} w-full`}>
-      <div data-testid="columns-list-menu-title" className={`${styles.title} text-grey-400 font-bold`}>All Boards (8)</div>
+      <div data-testid="columns-list-menu-title" className={`${styles.title} text-grey-400 font-bold`}>All Boards ({boardsCount})</div>
       <div data-testid="board-list-items" className="mt-7">
         {boardColumns?.map((item: BoardListItem)=> {
           return(
