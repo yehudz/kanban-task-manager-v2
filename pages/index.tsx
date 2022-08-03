@@ -1,21 +1,31 @@
 import type { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-import TopBar from '../components/layout/TopBar'
-import BoardColumnsContainer from '../components/layout/BoardColumnsContainer'
 import Head from 'next/head'
+
+// Performance imports
+import dynamic from 'next/dynamic'
+import { Suspense } from 'react'
+
+// Component imports
+import TopBar from '../components/layout/TopBar'
+const BoardColumnsContainer = dynamic(() => import('../components/layout/BoardColumnsContainer'), {
+  suspense: true,
+})
 import appContext from '../context/appContext'
-import LeftSidebar from '../components/layout/LeftSidebar'
+const LeftSidebar = dynamic(() => import('../components/layout/LeftSidebar'))
 import MobileMenu from '../components/ui/MobileMenu'
-import { Board, TaskItem } from '../typings/common.types'
 import ResuableModal from '../components/reusables/ReusableModal'
 import TaskDetailsForm from '../components/reusables/TaskDetailsForm'
 import TaskForm from '../components/reusables/TaskForm'
 import BoardForm from '../components/reusables/BoardForm'
+import WarningMessage from '../components/reusables/WarningMessage'
+import ColumnForm from '../components/reusables/ColumnForm'
+
+// Types imports
+import { Board, TaskItem } from '../typings/common.types'
 
 // Dummy data singleton
 import dummyData from '../data.json'
-import WarningMessage from '../components/reusables/WarningMessage'
-import ColumnForm from '../components/reusables/ColumnForm'
 
 const Home: NextPage = (props) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
@@ -99,6 +109,7 @@ const Home: NextPage = (props) => {
   }
 
   useEffect(()=> {
+    setExampleBoard(dummyData.boards[0])
     if (window.innerWidth < 768) setIsMobile(true)
     else setIsMobile(false)
     window.addEventListener('resize', ()=> {
@@ -108,9 +119,6 @@ const Home: NextPage = (props) => {
     return ()=> {}
   }, [])
 
-  setTimeout(()=> {
-    setExampleBoard(dummyData.boards[0])
-  }, 1000)
 
   return (
     <>
@@ -142,7 +150,9 @@ const Home: NextPage = (props) => {
           {isMobile && <MobileMenu show={openMobileMenu}/>}
             <div data-testid="right-container" className='rightContainer w-full'>
             <TopBar boardName={exampleBoard.name}/>
-            <BoardColumnsContainer board={exampleBoard}/>
+            <Suspense fallback={<h1 className='text-grey dark:text-white'>Loading...</h1>}>
+              <BoardColumnsContainer board={exampleBoard}/>
+            </Suspense>
           </div>
         </div>
         <ResuableModal>
