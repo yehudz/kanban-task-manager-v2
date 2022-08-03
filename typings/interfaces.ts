@@ -83,5 +83,10 @@ export interface DropdownProps {
 }
 
 export interface EmptyBoardScreenProps {
-  type: string
+  type?: string
+}
+
+export interface AddNewButtonProps {
+  buttonText: string
+  contentType: string
 }
