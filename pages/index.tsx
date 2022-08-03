@@ -15,12 +15,7 @@ import appContext from '../context/appContext'
 const LeftSidebar = dynamic(() => import('../components/layout/LeftSidebar'))
 import MobileMenu from '../components/ui/MobileMenu'
 import ResuableModal from '../components/reusables/ReusableModal'
-import TaskDetailsForm from '../components/reusables/TaskDetailsForm'
-import TaskForm from '../components/reusables/TaskForm'
-import BoardForm from '../components/reusables/BoardForm'
-import WarningMessage from '../components/reusables/WarningMessage'
-import ColumnForm from '../components/reusables/ColumnForm'
-
+import ModalContent from '../components/ui/ModalContent'
 // Types imports
 import { Board, TaskItem } from '../typings/common.types'
 
@@ -29,11 +24,11 @@ const Home: NextPage = (props) => {
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
   const [board, setBoard] = useState<Board>({name: '', columns: []})
   const [modalVisibility, setModalVisibility] = useState<boolean>(false)
-  const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
-  const [modalContentType, setModalContentType] = useState<string | null>('')
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [theme, setTheme] = useState<string>('')
   const [boardsCount, setBoardsCount] = useState<number>(0)
+  const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
+  const [modalContentType, setModalContentType] = useState<string | null>('')
   // Should check for what is requested to show in the modal
 
   useEffect(()=> {
@@ -44,67 +39,6 @@ const Home: NextPage = (props) => {
       setTheme(localStorage.kanbanTheme)
     }
   }, [])
-
-  const ModalContent = ()=> {
-    switch(modalContentType) {
-      case "ADD_NEW_TASK": 
-        return <TaskForm 
-                  formTitle="Create New Task"
-                  title=""
-                  description=""
-                  selectedStatus={''}
-                  status={board?.columns}
-                  buttonText='Create Task'
-                />
-      case "TASK_DETAILS":
-        return <TaskDetailsForm 
-                  title={taskDetails?.title} 
-                  description={taskDetails?.description}
-                  selectedStatus={taskDetails?.status}
-                  status={board?.columns}
-                  subtasks={taskDetails?.subtasks}
-                />
-      case "CREATE_NEW_BOARD":
-        setOpenMobileMenu(false)
-        return <BoardForm 
-                  formTitle='Add New Board'
-                  boardName=''
-                  boardColumns={[]}
-                />
-      case "EDIT_TASK": 
-        return <TaskForm 
-                  formTitle="Edit Task"
-                  title={taskDetails?.title} 
-                  description={taskDetails?.description}
-                  selectedStatus={taskDetails?.status}
-                  status={board?.columns}
-                  subtasks={taskDetails?.subtasks}
-                  buttonText='Save Changes'
-                />
-      case "EDIT_BOARD":
-        return <BoardForm 
-                  formTitle='Edit Board'
-                  boardName={board?.name}
-                  boardColumns={board?.columns}
-                />
-      case "DELETE_TASK": 
-        return <WarningMessage 
-                  title="Delete this task?"
-                  itemName={taskDetails?.title}
-                  type="task"
-                />
-      case "DELETE_BOARD": 
-        return <WarningMessage 
-                title="Delete this board?"
-                itemName={board?.name}
-                type="board"
-              />
-      case "ADD_COLUMN":
-        return <ColumnForm />
-      default:
-        return null
-    }
-  }
 
   useEffect(()=> {
     // setExampleBoard(dummyData.boards[0])
@@ -133,13 +67,16 @@ const Home: NextPage = (props) => {
             setOpenMobileMenu, 
             modalVisibility, 
             setModalVisibility, 
+            taskDetails,
             setTaskDetails, 
+            modalContentType,
             setModalContentType, 
             sidebarOpen, 
             setSidebarOpen,
             theme,
             setTheme,
-            boardsCount
+            boardsCount,
+            board
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">
