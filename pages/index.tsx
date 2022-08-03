@@ -24,13 +24,10 @@ import ColumnForm from '../components/reusables/ColumnForm'
 // Types imports
 import { Board, TaskItem } from '../typings/common.types'
 
-// Dummy data singleton
-import dummyData from '../data.json'
-
 const Home: NextPage = (props) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
-  const [exampleBoard, setExampleBoard] = useState<Board>({name: '', columns: []})
+  const [board, setBoard] = useState<Board>({name: '', columns: []})
   const [modalVisibility, setModalVisibility] = useState<boolean>(false)
   const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
   const [modalContentType, setModalContentType] = useState<string | null>('')
@@ -55,7 +52,7 @@ const Home: NextPage = (props) => {
                   title=""
                   description=""
                   selectedStatus={''}
-                  status={exampleBoard.columns}
+                  status={board?.columns}
                   buttonText='Create Task'
                 />
       case "TASK_DETAILS":
@@ -63,7 +60,7 @@ const Home: NextPage = (props) => {
                   title={taskDetails?.title} 
                   description={taskDetails?.description}
                   selectedStatus={taskDetails?.status}
-                  status={exampleBoard.columns}
+                  status={board?.columns}
                   subtasks={taskDetails?.subtasks}
                 />
       case "CREATE_NEW_BOARD":
@@ -79,15 +76,15 @@ const Home: NextPage = (props) => {
                   title={taskDetails?.title} 
                   description={taskDetails?.description}
                   selectedStatus={taskDetails?.status}
-                  status={exampleBoard.columns}
+                  status={board?.columns}
                   subtasks={taskDetails?.subtasks}
                   buttonText='Save Changes'
                 />
       case "EDIT_BOARD":
         return <BoardForm 
                   formTitle='Edit Board'
-                  boardName={exampleBoard.name}
-                  boardColumns={exampleBoard.columns}
+                  boardName={board?.name}
+                  boardColumns={board?.columns}
                 />
       case "DELETE_TASK": 
         return <WarningMessage 
@@ -98,7 +95,7 @@ const Home: NextPage = (props) => {
       case "DELETE_BOARD": 
         return <WarningMessage 
                 title="Delete this board?"
-                itemName={exampleBoard.name}
+                itemName={board?.name}
                 type="board"
               />
       case "ADD_COLUMN":
@@ -109,7 +106,7 @@ const Home: NextPage = (props) => {
   }
 
   useEffect(()=> {
-    setExampleBoard(dummyData.boards[0])
+    // setExampleBoard(dummyData.boards[0])
     if (window.innerWidth < 768) setIsMobile(true)
     else setIsMobile(false)
     window.addEventListener('resize', ()=> {
@@ -149,9 +146,9 @@ const Home: NextPage = (props) => {
           </div>
           {isMobile && <MobileMenu show={openMobileMenu}/>}
             <div data-testid="right-container" className='rightContainer w-full'>
-            <TopBar boardName={exampleBoard.name}/>
+            <TopBar boardName={board.name}/>
             <Suspense fallback={<h1 className='text-grey dark:text-white'>Loading...</h1>}>
-              <BoardColumnsContainer board={exampleBoard}/>
+              <BoardColumnsContainer board={board}/>
             </Suspense>
           </div>
         </div>

@@ -81,3 +81,7 @@ export interface DropdownProps {
   status: BoardColumn[]
   selectedStatus?: BoardColumn[] | string
 }
+
+export interface EmptyBoardScreenProps {
+  type: string
+}
