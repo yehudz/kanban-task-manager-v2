@@ -24,7 +24,7 @@ const TopBar = ({boardName, boardColumnsCount}: TopBarProps)=> {
       <div className='absolute right-0 flex flex-row items-center'>
         <AddNewButton buttonText='Add New Task' contentType='add-new-task' disabled={!boardName || boardColumnsCount === 0 ? true : false}/>
         <div className='mr-4'>
-          <OptionsMenu menuItems={['Edit Board', 'Delete Board']}/>
+          <OptionsMenu menuItems={['Edit Board', 'Delete Board']} disabled={boardColumnsCount === 0 ? true : false}/>
         </div>
       </div>
     </div>

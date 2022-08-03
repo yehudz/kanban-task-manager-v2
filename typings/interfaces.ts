@@ -35,9 +35,11 @@ export interface OptionsMenuButtonProps {
   handleClick:
   | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
   | undefined;
+  disabled?: boolean
 }
 export interface OptionMenuProps {
   menuItems: string[]
+  disabled?: boolean
 }
 
 export interface TaskFormProps extends TaskItem {
