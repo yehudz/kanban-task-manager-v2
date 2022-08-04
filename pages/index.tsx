@@ -1,4 +1,5 @@
-import type { NextPage } from 'next'
+import type { NextPage, InferGetServerSidePropsType } from 'next'
+import { GetServerSideProps } from 'next'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
@@ -19,10 +20,14 @@ import ModalContent from '../components/ui/ModalContent'
 // Types imports
 import { Board, TaskItem } from '../typings/common.types'
 
-const Home: NextPage = (props) => {
+// DB import
+import prisma from '../db'
+
+const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
   const [board, setBoard] = useState<Board>({name: '', columns: []})
+  const [boardsList, setBoardsList] = useState([])
   const [modalVisibility, setModalVisibility] = useState<boolean>(false)
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [theme, setTheme] = useState<string>('')
@@ -32,6 +37,9 @@ const Home: NextPage = (props) => {
   // Should check for what is requested to show in the modal
 
   useEffect(()=> {
+    setBoard(props.boards[0])
+    setBoardsCount(props.boards.length)
+    setBoardsList(props.boards)
     if (!localStorage.getItem('kanbanTheme')) {
       setTheme('dark')
     }
@@ -76,7 +84,8 @@ const Home: NextPage = (props) => {
             theme,
             setTheme,
             boardsCount,
-            board
+            board,
+            boardsList
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">
@@ -98,6 +107,20 @@ const Home: NextPage = (props) => {
       {openMobileMenu && <div className='overlay' onClick={()=> setOpenMobileMenu(false)}></div>}
     </>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async ()=> {
+  
+  const boards = await prisma.board.findMany({
+    include: {
+      columns: true
+    }
+  })
+  return {
+    props: {
+      boards
+    }
+  }
 }
 
 export default Home

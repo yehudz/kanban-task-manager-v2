@@ -61,7 +61,7 @@ export interface WarningMessageProps {
 }
 
 export interface SidebarMenuListItemProps {
-  title: string
+  name: string
   active: boolean
 }
 

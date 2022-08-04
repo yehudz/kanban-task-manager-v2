@@ -34,6 +34,7 @@ export type Subtask = {
 }
 
 export type BoardListItem = {
-  title: string
+  id: string
+  name: string
   active: boolean
 }
