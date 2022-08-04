@@ -71,6 +71,11 @@ export interface InputProps {
   name: string
   defaultValue?: string
   testId?: string
+  // setValue: (event: React.ChangeEvent<HTMLInputElement>)=> string
+  setValue: (
+    selectType: string,
+    event:React.ChangeEvent<HTMLInputElement>
+) => void;
 }
 
 export interface TextareaProps extends InputProps {}

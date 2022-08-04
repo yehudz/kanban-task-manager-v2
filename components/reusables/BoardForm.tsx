@@ -11,6 +11,9 @@ import { IconButton } from "@mui/material";
 
 const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
+
+  const [boardNameValue, setBoardNameValue] = useState<string>('')
+
   const [emptyBoardColumns, emptySetBoardColumns] = useState<BoardColumn[]>([{name: '', color: '', placeholder: 'e.g. To do', tasks: []}])
   useEffect(()=> {
     if (boardColumns.length) emptySetBoardColumns(boardColumns)
@@ -20,13 +23,16 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
     emptySetBoardColumns(prevColumns=> [...prevColumns, {name: '', color: '', placeholder: 'e.g. Enter column title', tasks: []}])
   }
 
-  function submitForm(event: React.MouseEvent<HTMLButtonElement>) {
+  function submitForm(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    let params = {
+      name: boardNameValue
+    }
     // todo save changes to database
-    setModalVisibility(false)
+    // setModalVisibility(false)
   }
   return(
-    <form data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
+    <form onSubmit={submitForm} data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
       <h2 data-testid="add-new-board-form-title" className="text-grey dark:text-white">{formTitle}</h2>
       <span data-testid="add-new-board-form-title-input" className="flex flex-col mb-8 mt-8">
         <Input 
@@ -35,6 +41,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
           labelText="Board Name"
           name="boardTitle"
           defaultValue={boardName}
+          setValue={setBoardNameValue}
         />
       </span>
       <div data-testid="add-new-board-form-columns-creator" className="flex flex-col">

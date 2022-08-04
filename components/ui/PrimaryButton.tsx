@@ -5,6 +5,7 @@ const PrimaryButton = ({buttonText, color, handleClick}: PrimaryButtonProps)=> {
     <button 
       data-testid="primaryButton" 
       onClick={handleClick}
+      type="submit"
       className={`${styles.container} w-full font-bold mb-4 mt-4 ${color === 'white' ? 'bg-grey-200 dark:bg-white text-purple dark:hover:bg-grey-200 hover:bg-white' : 'bg-purple hover:bg-purple-light'}`}
     >
       {buttonText}

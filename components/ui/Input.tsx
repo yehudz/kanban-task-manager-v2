@@ -1,6 +1,12 @@
 import { InputProps } from '../../typings/interfaces'
 
-const Input = ({placeholder, labelText, name, defaultValue, testId}: InputProps)=> {
+const Input = ({placeholder, labelText, name, defaultValue, testId, setValue}: InputProps)=> {
+  
+  function handleSetValue(e: React.ChangeEvent<HTMLInputElement>) {
+    let target = e.currentTarget as HTMLInputElement
+    setValue(target.value, e)
+  }
+  
   return(
     <div className="form-control w-full">
       <div className="mb-3 text-grey-400 dark:text-white">{labelText}</div>
@@ -26,6 +32,8 @@ const Input = ({placeholder, labelText, name, defaultValue, testId}: InputProps)
           rounded-md
           "
         defaultValue={defaultValue}
+        onChange={handleSetValue}
+
       />
     </div>
   )
