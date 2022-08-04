@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useState } from "react"
 import PrimaryButton from "../ui/PrimaryButton";
 import appContext from '../../context/appContext'
 import {BoardFormProps} from '../../typings/interfaces'
-import {BoardColumn} from '../../typings/common.types'
+import {Board, BoardColumn} from '../../typings/common.types'
 import styles from '../../styles/reusables/FormContainer.module.scss'
-
+import randomColor from "../utils/randomColor";
 // Reusable Component imports
 import Input from "../ui/Input";
 import { IconButton } from "@mui/material";
@@ -13,26 +13,52 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
 
   const [boardNameValue, setBoardNameValue] = useState<string>('')
-
-  const [emptyBoardColumns, emptySetBoardColumns] = useState<BoardColumn[]>([{name: '', color: '', placeholder: 'e.g. To do', tasks: []}])
+  const [emptyBoardColumns, setEmptyBoardColumns] = useState<BoardColumn[]>([{name: '', color: '', placeholder: 'e.g. To do', tasks: []}])
+  const [boardColumnName, setBoardColumnName] = useState<string>('')
+  const [columns, setColumns] = useState<BoardColumn[]>([])
+  const [createBoard, setCreateBoard] = useState<boolean>(false)
+  // Shows the empty screen if there are no columns in the board
   useEffect(()=> {
-    if (boardColumns.length) emptySetBoardColumns(boardColumns)
+    if (boardColumns.length) setEmptyBoardColumns(boardColumns)
+    return ()=> {setCreateBoard(false)}
   }, [])
-  function addNewColumnField(event: React.MouseEvent<HTMLButtonElement>){
+
+  useEffect(()=> {
+    if (createBoard) {
+      let params = {
+        name: boardNameValue,
+        columns: columns
+      }
+
+      saveToDatabase(params)
+    }
+  }, [createBoard])
+
+  function addNewColumnField(event: React.MouseEvent<HTMLButtonElement>) {
+    let color = randomColor()
     event.preventDefault()
-    emptySetBoardColumns(prevColumns=> [...prevColumns, {name: '', color: '', placeholder: 'e.g. Enter column title', tasks: []}])
+    setColumns(prevColumns=> [...prevColumns, {name: boardColumnName, color: color}])
+    setEmptyBoardColumns(prevColumns=> [...prevColumns, {name: '', color: '', placeholder: 'e.g. Enter column title', tasks: []}])
   }
 
-  function submitForm(event: React.FormEvent<HTMLFormElement>) {
+  function submitForm(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
-    let params = {
-      name: boardNameValue
-    }
-    // todo save changes to database
-    // setModalVisibility(false)
+    let color = randomColor()
+    setColumns(prevColumns => [...prevColumns, {name: boardColumnName, color: color}])
+    setCreateBoard(true)
+  }
+
+  async function saveToDatabase(params: Board) {
+    let res = await fetch(`/api/createBoard`, {
+      body: JSON.stringify(params),
+      method: 'POST'
+    })
+    if (res.status === 200) setModalVisibility(false)
+    else alert('Something went wrong')
   }
   return(
-    <form onSubmit={submitForm} data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
+    
+    <form data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
       <h2 data-testid="add-new-board-form-title" className="text-grey dark:text-white">{formTitle}</h2>
       <span data-testid="add-new-board-form-title-input" className="flex flex-col mb-8 mt-8">
         <Input 
@@ -46,15 +72,16 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
       </span>
       <div data-testid="add-new-board-form-columns-creator" className="flex flex-col">
         <h4 className="text-grey-400 dark:text-white">Board Columns</h4>
-        {emptyBoardColumns.map((column: BoardColumn)=> {
+        {emptyBoardColumns.map((column: BoardColumn, index)=> {
           return(
-            <div key={column.name} data-tesid="add-new-board-form-column" className="flex flex-row items-center">
+            <div key={index} data-tesid="add-new-board-form-column" className="flex flex-row items-center">
               <Input 
                 testId="column-name-input"
                 placeholder={column.placeholder}
                 defaultValue={column.name}
                 name="boardTitle"
-              />
+                setValue={setBoardColumnName}
+              />  
               <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
                 <img src="/images/icon-cross.svg" alt="" />
               </IconButton>

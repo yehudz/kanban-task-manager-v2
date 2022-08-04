@@ -26,7 +26,7 @@ export interface BoardTitleProps {
 export interface PrimaryButtonProps {
   buttonText: string
   color: string
-  handleClick:
+  handleClick?:
   | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)
   | undefined;
 }
@@ -72,7 +72,7 @@ export interface InputProps {
   defaultValue?: string
   testId?: string
   // setValue: (event: React.ChangeEvent<HTMLInputElement>)=> string
-  setValue: (
+  setValue?: (
     selectType: string,
     event:React.ChangeEvent<HTMLInputElement>
 ) => void;
