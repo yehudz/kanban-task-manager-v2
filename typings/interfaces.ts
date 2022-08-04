@@ -71,8 +71,8 @@ export interface InputProps {
   name: string
   defaultValue?: string
   testId?: string
-  // setValue: (event: React.ChangeEvent<HTMLInputElement>)=> string
-  setValue?: (
+  createBoard: boolean
+  setValue: (
     selectType: string,
     event:React.ChangeEvent<HTMLInputElement>
 ) => void;

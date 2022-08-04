@@ -23,31 +23,37 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
     return ()=> {setCreateBoard(false)}
   }, [])
 
+  // Generates the params for API call
   useEffect(()=> {
+    if (!boardNameValue || !boardColumnName) return // Returns if no values are set
     if (createBoard) {
       let params = {
         name: boardNameValue,
         columns: columns
       }
-
       saveToDatabase(params)
     }
-  }, [createBoard])
+  }, [createBoard, columns])
 
+  // Add new input field for new column
   function addNewColumnField(event: React.MouseEvent<HTMLButtonElement>) {
     let color = randomColor()
     event.preventDefault()
     setColumns(prevColumns=> [...prevColumns, {name: boardColumnName, color: color}])
     setEmptyBoardColumns(prevColumns=> [...prevColumns, {name: '', color: '', placeholder: 'e.g. Enter column title', tasks: []}])
+    setBoardColumnName('')
   }
 
+  // Summits the form and sets to be ready for saving to DB
   function submitForm(event: React.MouseEvent<HTMLButtonElement>) {
     event.preventDefault()
+    setCreateBoard(true)
+    if (!boardNameValue || !boardColumnName) return // Returns if no values are set
     let color = randomColor()
     setColumns(prevColumns => [...prevColumns, {name: boardColumnName, color: color}])
-    setCreateBoard(true)
   }
 
+  // Makes API call to save the form to DB
   async function saveToDatabase(params: Board) {
     let res = await fetch(`/api/createBoard`, {
       body: JSON.stringify(params),
@@ -57,7 +63,6 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
     else alert('Something went wrong')
   }
   return(
-    
     <form data-testid="add-new-board-form" className={`${styles.container} flex flex-col bg-white dark:bg-grey pt-12 pb-8 px-12 rounded-lg`}>
       <h2 data-testid="add-new-board-form-title" className="text-grey dark:text-white">{formTitle}</h2>
       <span data-testid="add-new-board-form-title-input" className="flex flex-col mb-8 mt-8">
@@ -68,6 +73,8 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
           name="boardTitle"
           defaultValue={boardName}
           setValue={setBoardNameValue}
+          createBoard={createBoard}
+
         />
       </span>
       <div data-testid="add-new-board-form-columns-creator" className="flex flex-col">
@@ -81,6 +88,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
                 defaultValue={column.name}
                 name="boardTitle"
                 setValue={setBoardColumnName}
+                createBoard={createBoard}
               />  
               <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
                 <img src="/images/icon-cross.svg" alt="" />
