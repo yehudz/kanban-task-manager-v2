@@ -1,6 +1,6 @@
 import PrimaryButton from "../ui/PrimaryButton"
 import { IconButton } from "@mui/material";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState, useRef } from "react";
 import { TaskFormProps } from "../../typings/interfaces";
 import { Subtask, TaskParams } from "../../typings/common.types";
 import appContext from "../../context/appContext";
@@ -8,6 +8,7 @@ import Input from "../ui/Input";
 import styles from '../../styles/reusables/FormContainer.module.scss';
 import Textarea from "../ui/Textarea";
 import Dropdown from '../ui/Dropdown';
+import { toArray } from "cypress/types/lodash";
 
 const TaskForm = ({formTitle, title, description, selectedStatus, status, subtasks, buttonText}: TaskFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
@@ -21,18 +22,29 @@ const TaskForm = ({formTitle, title, description, selectedStatus, status, subtas
         {placeholder: "e.g. Drike coffee & smile"}
     ])
   const [subtaskValues, setSubtaskValues] = useState<Subtask[]>([]) 
-
+  const subtasksContainer = useRef()
+  
+  // Creates empty inputs for subtasks
   function createNewSubtaskInput() {
     setSubtaskInputs((prevInputs)=> [...prevInputs, {placeholder: "e.g. Do more stuff"}])
   }
 
-  function createNewTask() {
-    setCreateResource(true)
+  // Gets all values from all subtasks inputs
+  function getSubtasksInputValues() {
+    if (subtasksContainer.current) {
+      let target = subtasksContainer.current as HTMLElement
+      let inputs = Array.from(target.querySelectorAll('input'))
+      setSubtaskValues(inputs.map((input: any)=> {return {title: input.value, isCompleted: false}}))
+    }
+  }
 
+  function createNewTask() {
+    getSubtasksInputValues()
+    setCreateResource(true)
   }
 
   function saveTaskToDB(params: TaskParams) {
-
+    console.log(params)
   }
 
   useEffect(()=> {
@@ -80,41 +92,43 @@ recharge the batteries a little."
       </form>
      
       <div data-testid="task-form-subtasks-container" className="mt-8">
-        <div className="text-grey-400 dark:text-grey">Subtasks</div>
-        {subtasks?.map(subtask=> {
-          return(
-            <div data-testid="task-form-subtask-input" className="flex flex-row items-center">
-              <Input 
-                testId="subtask-input"
-                placeholder="Subtask Title"
-                defaultValue={subtask.title}
-                name="subtask-input"
-                setValue={setSubtaskValue}
-                createResource={createResource}
-              />
-              <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
-                <img src="/images/icon-cross.svg" alt="" />
-              </IconButton>
-            </div>
-          )
-        })}
-        {subtaskInputs.map(subtask=> {
-          return(
-            <div key={subtask.placeholder} data-testid="task-form-subtask-input" className="flex flex-row items-center">
-               <Input 
-                defaultValue=""
-                testId="subtask-input"
-                placeholder={subtask.placeholder}
-                name="subtask-input"
-                setValue={setSubtaskValue}
-                createResource={createResource}
-              />
-              <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
-                <img src="/images/icon-cross.svg" alt="" />
-              </IconButton>
-            </div>
-          )
-        })}
+        <div  className="text-grey-400 dark:text-white">Subtasks</div>
+        <div ref={subtasksContainer}>
+          {subtasks?.map(subtask=> {
+            return(
+              <div data-testid="task-form-subtask-input" className="flex flex-row items-center">
+                <Input 
+                  testId="subtask-input"
+                  placeholder="Subtask Title"
+                  defaultValue={subtask.title}
+                  name="subtask-input"
+                  setValue={setSubtaskValue}
+                  createResource={createResource}
+                />
+                <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
+                  <img src="/images/icon-cross.svg" alt="" />
+                </IconButton>
+              </div>
+            )
+          })}
+          {subtaskInputs.map(subtask=> {
+            return(
+              <div key={subtask.placeholder} data-testid="task-form-subtask-input" className="flex flex-row items-center">
+                <Input 
+                  defaultValue=""
+                  testId="subtask-input"
+                  placeholder={subtask.placeholder}
+                  name="subtask-input"
+                  setValue={setSubtaskValue}
+                  createResource={createResource}
+                />
+                <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
+                  <img src="/images/icon-cross.svg" alt="" />
+                </IconButton>
+              </div>
+            )
+          })}
+        </div>
       </div>
       <PrimaryButton buttonText="+ Add new subtask" color="white" handleClick={createNewSubtaskInput}/>
       <span data-testid="task-form-status-select" className="flex flex-col">
