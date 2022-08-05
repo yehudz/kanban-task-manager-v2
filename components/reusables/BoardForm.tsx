@@ -16,7 +16,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   const [emptyBoardColumns, setEmptyBoardColumns] = useState<BoardColumn[]>([{name: '', color: '', placeholder: 'e.g. To do', tasks: []}])
   const [boardColumnName, setBoardColumnName] = useState<string>('')
   const [columns, setColumns] = useState<BoardColumn[]>([])
-  const [createBoard, setCreateBoard] = useState<boolean>(false)
+  const [createResource, setCreateBoard] = useState<boolean>(false)
   // Shows the empty screen if there are no columns in the board
   useEffect(()=> {
     if (boardColumns.length) setEmptyBoardColumns(boardColumns)
@@ -26,14 +26,14 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   // Generates the params for API call
   useEffect(()=> {
     if (!boardNameValue || !boardColumnName) return // Returns if no values are set
-    if (createBoard) {
+    if (createResource) {
       let params = {
         name: boardNameValue,
         columns: columns
       }
       saveToDatabase(params)
     }
-  }, [createBoard, columns])
+  }, [createResource, columns])
 
   // Add new input field for new column
   function addNewColumnField(event: React.MouseEvent<HTMLButtonElement>) {
@@ -55,7 +55,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
 
   // Makes API call to save the form to DB
   async function saveToDatabase(params: Board) {
-    let res = await fetch(`/api/createBoard`, {
+    let res = await fetch(`/api/createResource`, {
       body: JSON.stringify(params),
       method: 'POST'
     })
@@ -73,7 +73,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
           name="boardTitle"
           defaultValue={boardName}
           setValue={setBoardNameValue}
-          createBoard={createBoard}
+          createResource={createResource}
 
         />
       </span>
@@ -88,7 +88,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
                 defaultValue={column.name}
                 name="boardTitle"
                 setValue={setBoardColumnName}
-                createBoard={createBoard}
+                createResource={createResource}
               />  
               <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
                 <img src="/images/icon-cross.svg" alt="" />
