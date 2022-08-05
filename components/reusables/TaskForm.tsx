@@ -121,7 +121,7 @@ recharge the batteries a little."
         <div className="font-bold mb-4">Status</div>
         <Dropdown 
           status={status} 
-          selectedStatus={selectedStatus} 
+          selectedStatus={selectedStatus}
           setTaskStatus={setTaskStatus}
         />
       </span>

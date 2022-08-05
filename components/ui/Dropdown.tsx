@@ -5,9 +5,8 @@ import { DropdownProps } from '../../typings/interfaces'
 const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
   const [open, setOpen] = useState<boolean>(false)
   const [selection, setSelection] = useState<string>()
-// 
+
   useEffect(()=> {
-    console.log(selectedStatus)
     setSelection(selectedStatus ? selectedStatus : status[0].name)
   }, [])
 
@@ -16,23 +15,63 @@ const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
   }
 
   function handleStatusSelection(e: React.MouseEvent<HTMLButtonElement>) {
+    setSelection(e.currentTarget.innerText)
     setTaskStatus(e.currentTarget.innerText, e)
   }
 
   return(
     <div 
       data-testid="status-select" 
-      className={`${styles.container} w-full text-grey dark:text-white`}
+      className={`
+        ${styles.container}
+        flex
+        items-center
+        relative
+        pl-4
+        w-full 
+        text-grey 
+        dark:text-white
+        border
+        border-solid
+        border-grey-700
+        rounded-lg
+        cursor-pointer
+        hover:border-purple
+        focus:border-purple
+        bg-transparent
+      `}
       onClick={handleOpenSelect}
     >
       {selection}
-      <div data-testid="select-options" className={`${open ? '' : 'hidden'}`}>
+      <div 
+        data-testid="select-options" 
+        className={`
+          ${open ? '' : 'hidden'}
+          flex
+          flex-col
+          gap-4
+          items-start
+          absolute
+          top-16
+          left-0
+          p-4
+          w-full
+          bg-white
+          dark:bg-grey
+          border
+          border-solid
+          border-grey
+          dark:border-grey-700
+          rounded-lg
+        `}
+      >
         {status.map((item, i)=> {
           return(
             <button 
               key={item.name} 
               data-testid="status-select-option"
               onClick={handleStatusSelection}
+              className="text-grey dark:text-white hover:text-purple dark:hover:text-purp"
             >
               {item.name}
             </button>

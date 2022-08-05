@@ -7,8 +7,6 @@ import { BoardListItem } from "../../typings/common.types"
 const ColumnsListMenu = ()=> {
   const {setModalVisibility, setModalContentType, boardsCount, boardsList} = useContext(appContext)
 
-  console.log(boardsList)
-
   let boards: BoardListItem[] = boardsList.map((board: BoardListItem, i: number)=> {
     return {
       id: board.id,
