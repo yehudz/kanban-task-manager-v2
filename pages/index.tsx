@@ -32,7 +32,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [theme, setTheme] = useState<string>('')
   const [boardsCount, setBoardsCount] = useState<number>(0)
-  const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
+  const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: []})
   const [modalContentType, setModalContentType] = useState<string | null>('')
   // Should check for what is requested to show in the modal
 
@@ -85,7 +85,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
             setTheme,
             boardsCount,
             board,
-            boardsList
+            boardsList,
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">

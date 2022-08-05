@@ -45,7 +45,7 @@ export interface OptionMenuProps {
 export interface TaskFormProps extends TaskItem {
   formTitle: string
   buttonText: string
-  selectedStatus?: BoardColumn[] | string
+  selectedStatus?: string
 }
 
 export interface BoardFormProps {
@@ -87,7 +87,8 @@ export interface BoardItem {
 
 export interface DropdownProps {
   status: BoardColumn[]
-  selectedStatus?: BoardColumn[] | string
+  selectedStatus?: string
+  setTaskStatus:(selectType: string, event: React.MouseEvent<HTMLButtonElement>) => void
 }
 
 export interface EmptyBoardScreenProps {

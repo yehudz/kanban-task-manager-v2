@@ -1,112 +1,46 @@
-import * as React from 'react';
-import SelectUnstyled, {
-  SelectUnstyledProps,
-  selectUnstyledClasses,
-} from '@mui/base/SelectUnstyled';
-import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { styled } from '@mui/system';
-import { DropdownProps, BoardItem } from '../../typings/interfaces';
+import React, { useEffect, useState } from 'react'
+import styles from '../../styles/ui/Dropdown.module.scss'
+import { DropdownProps } from '../../typings/interfaces'
 
-const StyledButton = styled('button')(
-  ({ theme }) => `
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  min-width: 320px;
-  border-radius: 0.75em;
-  padding: 10px;
-  text-align: left;
-  line-height: 1.5;
-  color: '#828FA3';
+const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
+  const [open, setOpen] = useState<boolean>(false)
+  const [selection, setSelection] = useState<string>()
+// 
+  useEffect(()=> {
+    console.log(selectedStatus)
+    setSelection(selectedStatus ? selectedStatus : status[0].name)
+  }, [])
 
-  &:hover {
-    border-color: '#635FC7';
+  function handleOpenSelect() {
+    setOpen((lastOpen)=> lastOpen = !lastOpen)
   }
 
-  &.${selectUnstyledClasses.focusVisible} {
-    outline: '#635FC7';
+  function handleStatusSelection(e: React.MouseEvent<HTMLButtonElement>) {
+    setTaskStatus(e.currentTarget.innerText, e)
   }
 
-  &.${selectUnstyledClasses.expanded} {
-    &::after {
-      content: '▴';
-    }
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
-  }
-  `,
-);
-
-const StyledOption = styled(OptionUnstyled)(
-  ({ theme }) => `
-  list-style: none;
-  font-size: 15px;
-  padding: 8px;
-  border-radius: 0.45em;
-  min-width: 408px;
-  cursor: pointer;
-
-  &:last-of-type {
-    border-bottom: none;
-  }
-
-  &:hover {
-    color: '#635FC7';
-  }
-
-  &.${optionUnstyledClasses.selected} {
-    color: '#635FC7';
-  }
-  `,
-);
-
-const StyledPopper = styled(PopperUnstyled)`
-  z-index: 1;
-`;
-
-const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
-  props: SelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<HTMLButtonElement>,
-) {
-  const components: SelectUnstyledProps<TValue>['components'] = {
-    Root: StyledButton,
-    Popper: StyledPopper,
-    ...props.components,
-  };
-
-  return <SelectUnstyled {...props} ref={ref} components={components}/>;
-}) as <TValue>(
-  props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLButtonElement>,
-) => JSX.Element;
-
-export default function UnstyledSelectSimple({status, selectedStatus}: DropdownProps) {
-  return (
-    <CustomSelect 
-      data-testid="status-select"
-      defaultValue={selectedStatus ? selectedStatus : status[0]?.name} // To do: Default should be the one selected
-      className="
-        dark:bg-transparent 
-        border 
-        border-solid 
-        border-grey-200
-        dark:border-grey-700
-        hover:border-purple
-        text-grey
-        dark:text-white
-        "
-      >
-        <div className='bg-white dark:bg-midnight w-full py-6 mt-3 rounded-lg'>
-          {status.map((item: BoardItem)=> {
-            return(
-              <StyledOption key={item.name} data-testid="status-select-option" className='w-full text-grey-400 pt-1 px-6 hover:text-purple' value={item.name}>{item.name}</StyledOption>
-            )
-          })}
-        </div>
-    </CustomSelect>
-  );
+  return(
+    <div 
+      data-testid="status-select" 
+      className={`${styles.container} w-full text-grey dark:text-white`}
+      onClick={handleOpenSelect}
+    >
+      {selection}
+      <div data-testid="select-options" className={`${open ? '' : 'hidden'}`}>
+        {status.map((item, i)=> {
+          return(
+            <button 
+              key={item.name} 
+              data-testid="status-select-option"
+              onClick={handleStatusSelection}
+            >
+              {item.name}
+            </button>
+          )
+        })}
+      </div>
+    </div>
+  )
 }
+
+export default Dropdown

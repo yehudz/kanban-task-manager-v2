@@ -2,6 +2,7 @@ import PrimaryButton from "../ui/PrimaryButton"
 import { IconButton } from "@mui/material";
 import { useContext, useEffect, useState } from "react";
 import { TaskFormProps } from "../../typings/interfaces";
+import { Subtask, TaskParams } from "../../typings/common.types";
 import appContext from "../../context/appContext";
 import Input from "../ui/Input";
 import styles from '../../styles/reusables/FormContainer.module.scss';
@@ -10,20 +11,41 @@ import Dropdown from '../ui/Dropdown';
 
 const TaskForm = ({formTitle, title, description, selectedStatus, status, subtasks, buttonText}: TaskFormProps)=> {
   const {setModalVisibility} = useContext(appContext)
+  const [createResource, setCreateResource] = useState<boolean>(false)
+  const [taskTitle, setTaskTitle] = useState<string>('')
+  const [taskDescription, setTaskDescription] = useState<string>('')
+  const [subtaskValue, setSubtaskValue] = useState<string>('')
+  const [taskStatus, setTaskStatus] = useState<string>(selectedStatus ? selectedStatus : '')
   const [subtaskInputs, setSubtaskInputs] = useState([
         {placeholder: "e.g. Make Coffee"},
         {placeholder: "e.g. Drike coffee & smile"}
     ])
+  const [subtaskValues, setSubtaskValues] = useState<Subtask[]>([]) 
 
   function createNewSubtaskInput() {
     setSubtaskInputs((prevInputs)=> [...prevInputs, {placeholder: "e.g. Do more stuff"}])
   }
 
   function createNewTask() {
-    setModalVisibility(false)
-    // Todo add database functionality
-    // alert('Task created')
+    setCreateResource(true)
+
   }
+
+  function saveTaskToDB(params: TaskParams) {
+
+  }
+
+  useEffect(()=> {
+    if (createResource) {
+      let params = {
+        title: taskTitle,
+        description: taskDescription,
+        subtasks: subtaskValues,
+        status: taskStatus
+      }
+      saveTaskToDB(params)
+    }
+  }, [createResource])
 
   useEffect(()=> {
     if (subtasks) setSubtaskInputs([])
@@ -40,6 +62,8 @@ const TaskForm = ({formTitle, title, description, selectedStatus, status, subtas
             name="titleInput"
             placeholder="e.g. Take a coffee break"
             defaultValue={title}
+            setValue={setTaskTitle}
+            createResource={createResource}
           />
         </span>
         <span data-testid="task-form-description-textarea" className="flex flex-col mt-8">
@@ -49,6 +73,8 @@ const TaskForm = ({formTitle, title, description, selectedStatus, status, subtas
 recharge the batteries a little."
             name="descriptionTextarea"
             defaultValue={description?.toString()}
+            setValue={setTaskDescription}
+            createResource={true}
           />
         </span>
       </form>
@@ -63,6 +89,8 @@ recharge the batteries a little."
                 placeholder="Subtask Title"
                 defaultValue={subtask.title}
                 name="subtask-input"
+                setValue={setSubtaskValue}
+                createResource={createResource}
               />
               <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
                 <img src="/images/icon-cross.svg" alt="" />
@@ -78,6 +106,8 @@ recharge the batteries a little."
                 testId="subtask-input"
                 placeholder={subtask.placeholder}
                 name="subtask-input"
+                setValue={setSubtaskValue}
+                createResource={createResource}
               />
               <IconButton sx={{color: '#fff', paddingRight: 0, paddingLeft: 2, paddingTop: 2}}>
                 <img src="/images/icon-cross.svg" alt="" />
@@ -89,7 +119,11 @@ recharge the batteries a little."
       <PrimaryButton buttonText="+ Add new subtask" color="white" handleClick={createNewSubtaskInput}/>
       <span data-testid="task-form-status-select" className="flex flex-col">
         <div className="font-bold mb-4">Status</div>
-        <Dropdown status={status} selectedStatus={selectedStatus}/>
+        <Dropdown 
+          status={status} 
+          selectedStatus={selectedStatus} 
+          setTaskStatus={setTaskStatus}
+        />
       </span>
       <PrimaryButton buttonText={buttonText} color="primary" handleClick={createNewTask}/>
     </div>
