@@ -5,7 +5,10 @@ describe('Board Columns Container', ()=> {
   })
 
   it('shows the empty screen if not columns are added', ()=> {
-    cy.get('[data-testid="columns-empty-screen"]')
+    if (cy.get('[data-testid=columns-container]').should('have.length.at.least', 1)) {
+      cy.get('[data-testid="columns-empty-screen"]').should('not.exist')
+    } else
+      cy.get('[data-testid="columns-empty-screen"]').should('exist')
   })
 
   it('should at least have one column in the board', ()=> {
