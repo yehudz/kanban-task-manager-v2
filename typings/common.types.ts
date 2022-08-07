@@ -42,7 +42,7 @@ export type BoardListItem = {
 
 export type TaskParams = {
   title: string
-  description: string
+  description?: string
   subtasks: Subtask[]
   status: string
 }

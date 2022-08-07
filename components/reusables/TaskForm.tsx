@@ -8,10 +8,10 @@ import Input from "../ui/Input";
 import styles from '../../styles/reusables/FormContainer.module.scss';
 import Textarea from "../ui/Textarea";
 import Dropdown from '../ui/Dropdown';
-import { useRouter } from "next/router";
 
 const TaskForm = (
   {
+    id,
     formTitle, 
     title, 
     description, 
@@ -23,8 +23,8 @@ const TaskForm = (
   }: TaskFormProps)=> {
   const {setModalVisibility, boardId, setNewTaskCreated} = useContext(appContext)
   const [createResource, setCreateResource] = useState<boolean>(false)
-  const [taskTitle, setTaskTitle] = useState<string>('')
-  const [taskDescription, setTaskDescription] = useState<string>('')
+  const [taskTitle, setTaskTitle] = useState<string>(title ? title : '')
+  const [taskDescription, setTaskDescription] = useState<string>(description ? description : '')
   const [subtaskValue, setSubtaskValue] = useState<string>('')
   const [taskStatus, setTaskStatus] = useState<string>(selectedStatus ? selectedStatus : '')
   const [subtaskInputs, setSubtaskInputs] = useState([
@@ -55,7 +55,8 @@ const TaskForm = (
   }
 
   async function saveTaskToDB(params: TaskParams) {
-    let res = await fetch(`/api/createTask`, {
+    let route = (formTitle.includes('Edit')) ? 'editTask' : 'createTask'
+    let res = await fetch(`/api/${route}`, {
       body: JSON.stringify(params),
       method: 'POST'
     })
@@ -69,8 +70,9 @@ const TaskForm = (
   useEffect(()=> {
     if (createResource) {
       let params = {
+        id: id ? id : null,
         columnId: selectedColumn ? selectedColumn.id : boardColumns[0].id,
-        title: taskTitle,
+        title: taskTitle ? taskTitle : title,
         description: taskDescription,
         subtasks: subtaskValues,
         status: taskStatus ? taskStatus : status[0].name
@@ -122,7 +124,7 @@ recharge the batteries a little."
         <div ref={subtasksContainer}>
           {subtasks?.map(subtask=> {
             return(
-              <div data-testid="task-form-subtask-input" className="flex flex-row items-center">
+              <div key={subtask.id} data-testid="task-form-subtask-input" className="flex flex-row items-center">
                 <Input 
                   testId="subtask-input"
                   placeholder="Subtask Title"

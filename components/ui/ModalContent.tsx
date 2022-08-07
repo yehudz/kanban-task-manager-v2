@@ -40,6 +40,7 @@ const ModalContent = ()=> {
               />
     case "EDIT_TASK": 
       return <TaskForm 
+                id={taskDetails.id}
                 formTitle="Edit Task"
                 title={taskDetails?.title} 
                 description={taskDetails?.description}
@@ -47,6 +48,7 @@ const ModalContent = ()=> {
                 status={board?.columns}
                 subtasks={taskDetails?.subtasks}
                 buttonText='Save Changes'
+                boardColumns={board.columns}
               />
     case "EDIT_BOARD":
       return <BoardForm 

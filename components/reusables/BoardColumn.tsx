@@ -35,6 +35,7 @@ const BoardColumn = ({id, name, color}: BoardColumnProps)=> {
             return(
               <BoardColumnTaskItem
                 key={task.id}
+                id={task.id}
                 title={task.title}
                 description={task.description}
                 status={task.status}

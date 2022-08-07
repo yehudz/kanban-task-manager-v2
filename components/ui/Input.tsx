@@ -3,7 +3,7 @@ import { InputProps } from '../../typings/interfaces'
 import styles from '../../styles/ui/Input.module.scss'
 
 const Input = ({placeholder, labelText, name, defaultValue, testId, setValue, createResource}: InputProps)=> {
-  const [localValidation, setLocalValidation] = useState<string>('')
+  const [localValidation, setLocalValidation] = useState<string>(defaultValue ? defaultValue : '')
   function handleSetValue(e: React.ChangeEvent<HTMLInputElement>) {
     let target = e.currentTarget as HTMLInputElement
     setLocalValidation(target.value)
