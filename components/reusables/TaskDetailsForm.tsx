@@ -9,7 +9,7 @@ import appContext from "../../context/appContext";
 const TaskDetailsForm = ({id, title, description, status, selectedStatus, subtasks, boardColumns}: TaskFormProps)=> {
   const [taskStatus, setTaskStatus] = useState<string>(selectedStatus ? selectedStatus : '')
   const [selectedColumn, setSelectedColumn] = useState<BoardColumn>()
-  const {setNewTaskCreated, modalVisibility} = useContext(appContext)
+  const {setNewTaskCreated} = useContext(appContext)
   async function handleUpdates() {
     let params = {
       id: id,
@@ -54,7 +54,7 @@ const TaskDetailsForm = ({id, title, description, status, selectedStatus, subtas
       <div data-testid="task-details-subtasks-container" className="mb-8">
         {subtasks?.map(subtask=> {
           return(
-            <SubtaskItem key={subtask.id} title={subtask.title} isCompleted={subtask.isCompleted}/>
+            <SubtaskItem key={subtask.id} id={subtask.id} title={subtask.title} isCompleted={subtask.isCompleted}/>
           )
         })}
       </div>
