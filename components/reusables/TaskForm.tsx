@@ -53,7 +53,7 @@ const TaskForm = ({formTitle, title, description, selectedStatus, status, subtas
         title: taskTitle,
         description: taskDescription,
         subtasks: subtaskValues,
-        status: taskStatus
+        status: taskStatus ? taskStatus : status[0].name
       }
       saveTaskToDB(params)
     }

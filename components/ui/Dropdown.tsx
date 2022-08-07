@@ -67,14 +67,15 @@ const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
       >
         {status.map((item, i)=> {
           return(
-            <button 
-              key={item.name} 
-              data-testid="status-select-option"
-              onClick={handleStatusSelection}
-              className="text-grey dark:text-white hover:text-purple dark:hover:text-purp"
-            >
-              {item.name}
-            </button>
+            <div key={item.name} className="w-full">
+              <button 
+                data-testid="status-select-option"
+                onClick={handleStatusSelection}
+                className="text-grey dark:text-white hover:text-purple dark:hover:text-purple w-full text-left"
+              >
+                {item.name}
+              </button>
+            </div>
           )
         })}
       </div>
