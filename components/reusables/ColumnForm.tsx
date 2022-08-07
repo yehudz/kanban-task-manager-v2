@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import randomColor from '../utils/randomColor'
 import Input from '../ui/Input'
 const ColumnForm = ()=> {
-  const {setModalVisibility, boardId} = useContext(appContext)
+  const {setModalVisibility, boardId, setColumnAdded} = useContext(appContext)
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [value, setValue] = useState<string>('')
 
@@ -19,6 +19,7 @@ const ColumnForm = ()=> {
       body: JSON.stringify(params)
     })
     if (res.status === 200) {
+      setColumnAdded(true)
       setModalVisibility(false)
     } else {
       alert('Something when wrong')

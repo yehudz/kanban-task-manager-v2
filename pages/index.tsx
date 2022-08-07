@@ -34,6 +34,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
   const [modalContentType, setModalContentType] = useState<string | null>('')
   const [newTaskCreated, setNewTaskCreated] = useState<boolean>(false)
   const [newCreatedBoard, setNewCreatedBoard] = useState<boolean>(false)
+  const [columnAdded, setColumnAdded] = useState<boolean>()
   const [selectedBoard, setSelectedBoard] = useState<number>(0)
   async function getAllBoards() {
     const res = await fetch('/api/getBoards', {
@@ -45,6 +46,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
     setBoardsCount(result.boards.length)
     setBoardsList(result.boards)
     setNewCreatedBoard(false)
+    setColumnAdded(false)
   }
 
   useEffect(()=> {
@@ -103,7 +105,9 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
             newCreatedBoard,
             setNewCreatedBoard,
             selectedBoard,
-            setSelectedBoard
+            setSelectedBoard,
+            columnAdded,
+            setColumnAdded
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">
