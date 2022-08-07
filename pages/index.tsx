@@ -20,9 +20,6 @@ import ModalContent from '../components/ui/ModalContent'
 // Types imports
 import { Board, TaskItem } from '../typings/common.types'
 
-// DB import
-import prisma from '../db'
-
 const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)

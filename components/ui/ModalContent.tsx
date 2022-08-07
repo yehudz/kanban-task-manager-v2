@@ -25,11 +25,13 @@ const ModalContent = ()=> {
               />
     case "TASK_DETAILS":
       return <TaskDetailsForm 
+                id={taskDetails.id}
                 title={taskDetails?.title} 
                 description={taskDetails?.description}
                 selectedStatus={taskDetails?.status}
                 status={board?.columns}
                 subtasks={taskDetails?.subtasks}
+                boardColumns={board.columns}
               />
     case "CREATE_NEW_BOARD":
       setOpenMobileMenu(false)

@@ -21,7 +21,7 @@ export type TaskItem = {
   title: string
   description: string | null
   status: BoardColumn[]
-  selectedStatus?: BoardColumn[] | string
+  selectedStatus?: string
   columnId?: string
   subtaskId?: string
   subtasks?: Subtask[]
