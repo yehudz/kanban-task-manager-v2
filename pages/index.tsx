@@ -44,6 +44,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
     })
     let result = await res.json()
     setBoard(result.boards[selectedBoard])
+    setBoardId(result.boards[selectedBoard].id)
     setBoardsCount(result.boards.length)
     setBoardsList(result.boards)
     setNewCreatedBoard(false)
