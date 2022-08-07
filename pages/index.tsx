@@ -114,7 +114,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
           </div>
           {isMobile && <MobileMenu show={openMobileMenu}/>}
             <div data-testid="right-container" className='rightContainer w-full'>
-            <TopBar boardName={board.name} boardColumnsCount={board.columns.length}/>
+            <TopBar boardName={board?.name} boardColumnsCount={board?.columns.length}/>
             <Suspense fallback={<h1 className='text-grey dark:text-white'>Loading...</h1>}>
               <BoardColumnsContainer board={board}/>
             </Suspense>

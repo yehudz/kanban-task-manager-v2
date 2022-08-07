@@ -22,19 +22,19 @@ const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
   const [emptyScreenType, setEmptyScreenType] = useState<string>('')
 
   useEffect(()=> {
-    if (!board.name && !board.columns.length) setEmptyScreenType('board')
-    if (board.name && !board.columns.length) setEmptyScreenType('columns')
+    if (!board?.name && !board?.columns.length) setEmptyScreenType('board')
+    if (board?.name && !board?.columns.length) setEmptyScreenType('columns')
   }, [board])
 
   return(
     <div data-testid="columns-container" className={`${styles.container} h-full relative`}>
-      {!board.columns.length && <EmptyBoardScreen type={emptyScreenType}/>}
-      {board.columns.map((column)=> {
+      {!board?.columns.length && <EmptyBoardScreen type={emptyScreenType}/>}
+      {board?.columns.map((column)=> {
         return(
           <BoardColumn key={column.id} id={column.id} name={column.name} color={column.color}/>
         )
       })}
-      {board.columns.length !== 0 && <AddNewColumnUi />}
+      {board?.columns ? <AddNewColumnUi /> : null}
     </div>
   )
 }
