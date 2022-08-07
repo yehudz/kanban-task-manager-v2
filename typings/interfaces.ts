@@ -64,6 +64,7 @@ export interface WarningMessageProps {
 export interface SidebarMenuListItemProps {
   name: string
   active: boolean
+  index: number
 }
 
 export interface InputProps {

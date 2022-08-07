@@ -5,13 +5,13 @@ import { useContext } from "react"
 import { BoardListItem } from "../../typings/common.types"
 
 const ColumnsListMenu = ()=> {
-  const {setModalVisibility, setModalContentType, boardsCount, boardsList} = useContext(appContext)
+  const {setModalVisibility, setModalContentType, boardsCount, boardsList, selectedBoard} = useContext(appContext)
 
   let boards: BoardListItem[] = boardsList.map((board: BoardListItem, i: number)=> {
     return {
       id: board.id,
       name: board.name,
-      active: i === 0 ? true : false
+      active: i === selectedBoard ? true : false
     }
   })
   function showAddBoardForm() {
@@ -25,7 +25,7 @@ const ColumnsListMenu = ()=> {
         {boards?.map((board: BoardListItem, i: number)=> {
           return(
             <div className="flex items-center" key={board.id}>
-              <SidebarMenuListItem name={board.name} active={board.active}/>
+              <SidebarMenuListItem name={board.name} active={board.active} index={i}/>
             </div>
           )
         })}

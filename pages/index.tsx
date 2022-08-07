@@ -37,13 +37,13 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
   const [modalContentType, setModalContentType] = useState<string | null>('')
   const [newTaskCreated, setNewTaskCreated] = useState<boolean>(false)
   const [newCreatedBoard, setNewCreatedBoard] = useState<boolean>(false)
-
+  const [selectedBoard, setSelectedBoard] = useState<number>(0)
   async function getAllBoards() {
     const res = await fetch('/api/getBoards', {
       method: "GET",
     })
     let result = await res.json()
-    setBoard(result.boards[0])
+    setBoard(result.boards[selectedBoard])
     setBoardsCount(result.boards.length)
     setBoardsList(result.boards)
     setNewCreatedBoard(false)
@@ -51,7 +51,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
 
   useEffect(()=> {
     getAllBoards()
-  }, [newCreatedBoard])
+  }, [newCreatedBoard, selectedBoard])
 
   // Should check for what is requested to show in the modal
   useEffect(()=> {
@@ -103,7 +103,9 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
             newTaskCreated,
             setNewTaskCreated,
             newCreatedBoard,
-            setNewCreatedBoard
+            setNewCreatedBoard,
+            selectedBoard,
+            setSelectedBoard
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">
