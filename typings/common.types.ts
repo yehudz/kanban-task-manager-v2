@@ -5,7 +5,7 @@ export type Board = {
 }
 
 export type BoardColumn = {
-  id: string
+  id?: string
   name: string
   color: string
   tasks?: TaskItem[]

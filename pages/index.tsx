@@ -36,19 +36,32 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
   const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: []})
   const [modalContentType, setModalContentType] = useState<string | null>('')
   const [newTaskCreated, setNewTaskCreated] = useState<boolean>(false)
-  // Should check for what is requested to show in the modal
+  const [newCreatedBoard, setNewCreatedBoard] = useState<boolean>(false)
+
+  async function getAllBoards() {
+    const res = await fetch('/api/getBoards', {
+      method: "GET",
+    })
+    let result = await res.json()
+    setBoard(result.boards[0])
+    setBoardsCount(result.boards.length)
+    setBoardsList(result.boards)
+    setNewCreatedBoard(false)
+  }
 
   useEffect(()=> {
-    setBoard(props.boards[0])
-    setBoardsCount(props.boards.length)
-    setBoardsList(props.boards)
+    getAllBoards()
+  }, [newCreatedBoard])
+
+  // Should check for what is requested to show in the modal
+  useEffect(()=> {
     if (!localStorage.getItem('kanbanTheme')) {
       setTheme('dark')
     }
     if (localStorage.kanbanTheme) {
       setTheme(localStorage.kanbanTheme)
     }
-  }, [])
+  }, [newCreatedBoard])
 
   useEffect(()=> {
     // setExampleBoard(dummyData.boards[0])
@@ -88,7 +101,9 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
             boardsList,
             boardId,
             newTaskCreated,
-            setNewTaskCreated
+            setNewTaskCreated,
+            newCreatedBoard,
+            setNewCreatedBoard
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">
@@ -110,20 +125,6 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
       {openMobileMenu && <div className='overlay' onClick={()=> setOpenMobileMenu(false)}></div>}
     </>
   )
-}
-
-export const getServerSideProps: GetServerSideProps = async ()=> {
-  
-  const boards = await prisma.board.findMany({
-    include: {
-      columns: true
-    }
-  })
-  return {
-    props: {
-      boards
-    }
-  }
 }
 
 export default Home

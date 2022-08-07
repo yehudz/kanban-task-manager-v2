@@ -10,10 +10,10 @@ import Input from "../ui/Input";
 import { IconButton } from "@mui/material";
 
 const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
-  const {setModalVisibility} = useContext(appContext)
+  const {setModalVisibility, setNewCreatedBoard} = useContext(appContext)
 
   const [boardNameValue, setBoardNameValue] = useState<string>('')
-  const [emptyBoardColumns, setEmptyBoardColumns] = useState<BoardColumn[]>([{name: '', color: '', placeholder: 'e.g. To do', tasks: []}])
+  const [emptyBoardColumns, setEmptyBoardColumns] = useState<BoardColumn[]>([{id: '', name: '', color: '', placeholder: 'e.g. To do', tasks: []}])
   const [boardColumnName, setBoardColumnName] = useState<string>('')
   const [columns, setColumns] = useState<BoardColumn[]>([])
   const [createResource, setCreateBoard] = useState<boolean>(false)
@@ -59,7 +59,10 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
       body: JSON.stringify(params),
       method: 'POST'
     })
-    if (res.status === 200) setModalVisibility(false)
+    if (res.status === 200) {
+      setNewCreatedBoard(true)
+      setModalVisibility(false)
+    }
     else alert('Something went wrong')
   }
   return(
