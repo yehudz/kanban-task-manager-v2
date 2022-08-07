@@ -35,6 +35,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
   const [boardsCount, setBoardsCount] = useState<number>(0)
   const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: []})
   const [modalContentType, setModalContentType] = useState<string | null>('')
+  const [newTaskCreated, setNewTaskCreated] = useState<boolean>(false)
   // Should check for what is requested to show in the modal
 
   useEffect(()=> {
@@ -85,7 +86,9 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
             boardsCount,
             board,
             boardsList,
-            boardId
+            boardId,
+            newTaskCreated,
+            setNewTaskCreated
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">

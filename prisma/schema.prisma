@@ -39,7 +39,7 @@ model Task {
   description String?
   status String?
   column Column? @relation(fields: [columnId], references: [id])
-  columnId String? @unique
+  columnId String
   subtasks Subtask[]
   subtaskId String?
 }

@@ -10,9 +10,9 @@ export interface BoardColumnsProps {
 }
 
 export interface BoardColumnProps {
+  id: string
   name: string
   color?: string
-  tasks: TaskItem[]
 }
 
 export interface BoardTitleProps {
@@ -93,7 +93,7 @@ export interface DropdownProps {
 }
 
 export interface EmptyBoardScreenProps {
-  type?: string
+  type: string
 }
 
 export interface AddNewButtonProps {

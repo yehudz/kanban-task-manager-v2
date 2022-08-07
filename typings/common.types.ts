@@ -1,11 +1,11 @@
 export type Board = {
-  id?: string
+  id: string
   name: string
   columns: BoardColumn[]
 }
 
 export type BoardColumn = {
-  id?: string
+  id: string
   name: string
   color: string
   tasks?: TaskItem[]

@@ -8,6 +8,7 @@ import Input from "../ui/Input";
 import styles from '../../styles/reusables/FormContainer.module.scss';
 import Textarea from "../ui/Textarea";
 import Dropdown from '../ui/Dropdown';
+import { useRouter } from "next/router";
 
 const TaskForm = (
   {
@@ -20,7 +21,7 @@ const TaskForm = (
     buttonText,
     boardColumns
   }: TaskFormProps)=> {
-  const {setModalVisibility, boardId} = useContext(appContext)
+  const {setModalVisibility, boardId, setNewTaskCreated} = useContext(appContext)
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [taskTitle, setTaskTitle] = useState<string>('')
   const [taskDescription, setTaskDescription] = useState<string>('')
@@ -33,6 +34,7 @@ const TaskForm = (
   const [subtaskValues, setSubtaskValues] = useState<Subtask[]>([])
   const subtasksContainer = useRef()
   const [selectedColumn, setSelectedColumn] = useState<BoardColumn>()
+
   // Creates empty inputs for subtasks
   function createNewSubtaskInput() {
     setSubtaskInputs((prevInputs)=> [...prevInputs, {placeholder: "e.g. Do more stuff"}])
@@ -57,7 +59,10 @@ const TaskForm = (
       body: JSON.stringify(params),
       method: 'POST'
     })
-    if (res.status === 200) setModalVisibility(false)
+    if (res.status === 200) {
+      setModalVisibility(false)
+      setNewTaskCreated(true)
+    }
     else alert('Something went wrong')
   }
 

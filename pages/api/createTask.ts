@@ -19,6 +19,6 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     status: status
    }
   })
-  res.status(200).json({message: 'Board Created'})
+  res.status(200).json({message: 'Task Created'})
   
 }
