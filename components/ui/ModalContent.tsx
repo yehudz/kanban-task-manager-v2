@@ -8,6 +8,7 @@ import WarningMessage from '../reusables/WarningMessage'
 import ColumnForm from '../reusables/ColumnForm'
 
 import appContext from "../../context/appContext"
+
 const ModalContent = ()=> {
 
   const {modalContentType, board, taskDetails, setOpenMobileMenu} = useContext(appContext)
@@ -20,6 +21,7 @@ const ModalContent = ()=> {
                 selectedStatus={''}
                 status={board?.columns}
                 buttonText='Create Task'
+                boardColumns={board.columns}
               />
     case "TASK_DETAILS":
       return <TaskDetailsForm 

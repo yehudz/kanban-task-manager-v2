@@ -26,7 +26,8 @@ import prisma from '../db'
 const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
-  const [board, setBoard] = useState<Board>({name: '', columns: []})
+  const [board, setBoard] = useState<Board>({id: '', name: '', columns: []})
+  const [boardId, setBoardId] = useState<string>('')
   const [boardsList, setBoardsList] = useState([])
   const [modalVisibility, setModalVisibility] = useState<boolean>(false)
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
@@ -50,6 +51,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
 
   useEffect(()=> {
     // setExampleBoard(dummyData.boards[0])
+    setBoardId(board.id)
     if (window.innerWidth < 768) setIsMobile(true)
     else setIsMobile(false)
     window.addEventListener('resize', ()=> {
@@ -83,6 +85,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
             boardsCount,
             board,
             boardsList,
+            boardId
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">

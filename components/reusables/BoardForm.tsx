@@ -55,7 +55,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
 
   // Makes API call to save the form to DB
   async function saveToDatabase(params: Board) {
-    let res = await fetch(`/api/createResource`, {
+    let res = await fetch(`/api/createBoard`, {
       body: JSON.stringify(params),
       method: 'POST'
     })

@@ -2,16 +2,25 @@ import PrimaryButton from "../ui/PrimaryButton"
 import { IconButton } from "@mui/material";
 import { useContext, useEffect, useState, useRef } from "react";
 import { TaskFormProps } from "../../typings/interfaces";
-import { Subtask, TaskParams } from "../../typings/common.types";
+import { BoardColumn, Subtask, TaskParams } from "../../typings/common.types";
 import appContext from "../../context/appContext";
 import Input from "../ui/Input";
 import styles from '../../styles/reusables/FormContainer.module.scss';
 import Textarea from "../ui/Textarea";
 import Dropdown from '../ui/Dropdown';
-import { toArray } from "cypress/types/lodash";
 
-const TaskForm = ({formTitle, title, description, selectedStatus, status, subtasks, buttonText}: TaskFormProps)=> {
-  const {setModalVisibility} = useContext(appContext)
+const TaskForm = (
+  {
+    formTitle, 
+    title, 
+    description, 
+    selectedStatus, 
+    status, 
+    subtasks, 
+    buttonText,
+    boardColumns
+  }: TaskFormProps)=> {
+  const {setModalVisibility, boardId} = useContext(appContext)
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [taskTitle, setTaskTitle] = useState<string>('')
   const [taskDescription, setTaskDescription] = useState<string>('')
@@ -21,9 +30,9 @@ const TaskForm = ({formTitle, title, description, selectedStatus, status, subtas
         {placeholder: "e.g. Make Coffee"},
         {placeholder: "e.g. Drike coffee & smile"}
     ])
-  const [subtaskValues, setSubtaskValues] = useState<Subtask[]>([]) 
+  const [subtaskValues, setSubtaskValues] = useState<Subtask[]>([])
   const subtasksContainer = useRef()
-  
+  const [selectedColumn, setSelectedColumn] = useState<BoardColumn>()
   // Creates empty inputs for subtasks
   function createNewSubtaskInput() {
     setSubtaskInputs((prevInputs)=> [...prevInputs, {placeholder: "e.g. Do more stuff"}])
@@ -43,13 +52,19 @@ const TaskForm = ({formTitle, title, description, selectedStatus, status, subtas
     setCreateResource(true)
   }
 
-  function saveTaskToDB(params: TaskParams) {
-    console.log(params)
+  async function saveTaskToDB(params: TaskParams) {
+    let res = await fetch(`/api/createTask`, {
+      body: JSON.stringify(params),
+      method: 'POST'
+    })
+    if (res.status === 200) setModalVisibility(false)
+    else alert('Something went wrong')
   }
 
   useEffect(()=> {
     if (createResource) {
       let params = {
+        columnId: selectedColumn ? selectedColumn.id : boardColumns[0].id,
         title: taskTitle,
         description: taskDescription,
         subtasks: subtaskValues,
@@ -58,6 +73,12 @@ const TaskForm = ({formTitle, title, description, selectedStatus, status, subtas
       saveTaskToDB(params)
     }
   }, [createResource])
+
+  // Sets the column to add tasks to
+  useEffect(()=> {
+    let selectedColum = boardColumns.filter(column=> taskStatus === column.name)
+    setSelectedColumn(selectedColum[0])
+  }, [taskStatus])
 
   useEffect(()=> {
     if (subtasks) setSubtaskInputs([])

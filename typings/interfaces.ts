@@ -46,6 +46,7 @@ export interface TaskFormProps extends TaskItem {
   formTitle: string
   buttonText: string
   selectedStatus?: string
+  boardColumns: BoardColumn[]
 }
 
 export interface BoardFormProps {
