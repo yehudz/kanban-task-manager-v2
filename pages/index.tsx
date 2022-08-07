@@ -64,9 +64,6 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
     <>
       <Head>
         <title>Kanban Task Managment</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet" />
       </Head>
       <appContext.Provider 
         value={
