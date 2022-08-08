@@ -2,20 +2,15 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../db'
 
 export default async function (req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== 'POST') {
+  if (req.method !== 'DELETE') {
     return res.status(405).json({message: "Method not allowed"})
   }
-
-  const {id, columnId, status} = JSON.parse(req.body)
-  await prisma.task.update({
+  const {taskId} = JSON.parse(req.body)
+  await prisma.task.delete({
     where: {
-      id: id
-    },
-    data: {
-      columnId: columnId,
-      status: status
+      id: taskId
     }
   })
-  res.status(200).json({message: 'Board Created'})
+  res.status(200).json({message: 'Task Deleted'})
   
 }

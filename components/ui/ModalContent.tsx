@@ -60,12 +60,14 @@ const ModalContent = ()=> {
               />
     case "DELETE_TASK": 
       return <WarningMessage 
+                id={taskDetails.id}
                 title="Delete this task?"
                 itemName={taskDetails?.title}
                 type="task"
               />
     case "DELETE_BOARD": 
       return <WarningMessage 
+              id={board.id}
               title="Delete this board?"
               itemName={board?.name}
               type="board"

@@ -3,17 +3,36 @@ import styles from '../../styles/reusables/WarningMessage.module.scss'
 import React, { useContext } from "react"
 import appContext from "../../context/appContext"
 
-const WarningMessage = ({title, itemName, type}: WarningMessageProps)=> {
-  const {setModalVisibility} = useContext(appContext)
+const WarningMessage = ({id, title, itemName, type}: WarningMessageProps)=> {
+  const {setModalVisibility, setNewTaskCreated} = useContext(appContext)
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     switch(e.currentTarget.innerText) {
-      case 'Confirm': {
-        setModalVisibility(false)
+      case 'Delete': {
+        deleteResource()
         break
+      }
+      case 'Cancel': {
+        setModalVisibility(false)
       }
     }
   }
+
+  async function deleteResource() {
+    let route = type === 'task' ? 'deleteTask' : 'deleteBoard' 
+    let params = {
+      taskId: id
+    }
+    const res = await fetch(`/api/${route}`, {
+      method: "DELETE",
+      body: JSON.stringify(params)
+    })
+    if (res.status === 200) {
+      setNewTaskCreated(true)
+      setModalVisibility(false)
+    } else alert('something went wrong')
+  }
+
   const Message = ()=> {
     if (type === 'task') {
       return(

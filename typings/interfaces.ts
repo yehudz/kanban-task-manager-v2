@@ -57,6 +57,7 @@ export interface BoardFormProps {
 }
 
 export interface WarningMessageProps {
+  id: string
   title: string
   itemName: string
   type: string
