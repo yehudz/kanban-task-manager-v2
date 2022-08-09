@@ -6,6 +6,10 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     return res.status(405).json({message: "Method not allowed"})
   }
 
-  const columns = await prisma.column.findMany()
+  const columns = await prisma.column.findMany({
+    orderBy: {
+      order: 'asc'
+    }
+  })
   res.status(200).json({columns: columns})
 }
