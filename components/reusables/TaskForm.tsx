@@ -17,6 +17,7 @@ const TaskForm = (
     description, 
     selectedStatus, 
     status, 
+    order,
     subtasks, 
     buttonText,
     boardColumns
@@ -74,6 +75,7 @@ const TaskForm = (
         columnId: selectedColumn ? selectedColumn.id : boardColumns[0].id,
         title: taskTitle ? taskTitle : title,
         description: taskDescription,
+        order: order,
         subtasks: subtaskValues,
         status: taskStatus ? taskStatus : status[0].name
       }

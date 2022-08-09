@@ -8,7 +8,11 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
   const boards = await prisma.board.findMany({
     include: {
-      columns: true
+      columns: {
+        include: {
+          tasks: true
+        }
+      }
     }
   })
   res.status(200).json({boards: boards})

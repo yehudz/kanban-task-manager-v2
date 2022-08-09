@@ -19,9 +19,10 @@ const ModalContent = ()=> {
                 title=""
                 description=""
                 selectedStatus={''}
+                order={board?.columns?.tasks ? board?.columns.tasks.length + 1 : 1}
                 status={board?.columns}
                 buttonText='Create Task'
-                boardColumns={board.columns}
+                boardColumns={board?.columns}
               />
     case "TASK_DETAILS":
       return <TaskDetailsForm 
