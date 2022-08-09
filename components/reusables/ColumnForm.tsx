@@ -4,7 +4,7 @@ import { useContext, useEffect, useState } from 'react'
 import randomColor from '../utils/randomColor'
 import Input from '../ui/Input'
 const ColumnForm = ()=> {
-  const {setModalVisibility, boardId, setColumnAdded} = useContext(appContext)
+  const {setModalVisibility, boardId, setColumnAdded, board} = useContext(appContext)
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [value, setValue] = useState<string>('')
 
@@ -12,7 +12,8 @@ const ColumnForm = ()=> {
     let params = {
       boardId: boardId,
       columnName: value,
-      columnColor: randomColor()
+      columnColor: randomColor(),
+      order: board.columns.length + 1
     }
     const res = await fetch(`/api/createBoardColumn`, {
       method: "POST",

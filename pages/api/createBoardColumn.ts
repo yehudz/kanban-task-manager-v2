@@ -6,12 +6,13 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     return res.status(405).json({message: "Method not allowed"})
   }
 
-  const {boardId, columnName, columnColor} = JSON.parse(req.body)
+  const {boardId, columnName, columnColor, order} = JSON.parse(req.body)
   const boards = await prisma.column.create({
     data: {
       boardId: boardId,
       name: columnName,
       color: columnColor,
+      order: order,
       tasks: {
         createMany: {
           data: []
