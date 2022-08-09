@@ -3,7 +3,7 @@ import AddNewButton from "./AddNewButton"
 
 const EmptyBoardScreen = ({type}: EmptyBoardScreenProps)=> {
 
-  const ButtonType = ()=> {
+  const ButtonType = (): JSX.Element=> {
     if (!type) return <></>
     if (type === 'board') {
       return <AddNewButton buttonText="Create New Board" contentType="create-new-board"/>
@@ -12,19 +12,22 @@ const EmptyBoardScreen = ({type}: EmptyBoardScreenProps)=> {
       return <AddNewButton buttonText="Add New Column" contentType="add-new-column"/>
     } else return <></>
   }
-
-  return(
-    type && <div className="flex flex-col justify-center items-center w-full h-full bg-transparent">
-      <h3 
-        data-testid="columns-empty-screen" 
-        className="bg-transparent text-grey dark:text-grey-400 mb-8"
-      >
-        {type === 'board' ? 'Create a board to get started' : 'This board is empty. Create a new column to get started.'}
-      </h3>
-      
-      <ButtonType />
-    </div>
-  )
+  if (type) {
+    return(
+      <div className="flex flex-col justify-center items-center w-full h-full bg-transparent">
+        <h3 
+          data-testid="columns-empty-screen" 
+          className="bg-transparent text-grey dark:text-grey-400 mb-8"
+        >
+          {type === 'board' ? 'Create a board to get started' : 'This board is empty. Create a new column to get started.'}
+        </h3>
+        
+        <ButtonType />
+      </div>
+    )
+  } else {
+    return <></>
+  }
 }
 
 export default EmptyBoardScreen

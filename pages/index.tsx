@@ -20,7 +20,7 @@ import ModalContent from '../components/ui/ModalContent'
 // Types imports
 import { Board, TaskItem } from '../typings/common.types'
 
-const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideProps>) => {
+const Home: NextPage = (props) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
   const [board, setBoard] = useState<Board>({id: '', name: '', columns: []})
@@ -42,7 +42,7 @@ const Home: NextPage = (props: InferGetServerSidePropsType<typeof getServerSideP
     })
     let result = await res.json()
     setBoard(result.boards[selectedBoard])
-    setBoardId(result.boards[selectedBoard].id)
+    setBoardId(result.boards[selectedBoard]?.id)
     setBoardsCount(result.boards.length)
     setBoardsList(result.boards)
     setNewCreatedBoard(false)

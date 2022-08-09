@@ -11,9 +11,7 @@ import AddNewColumnUi from '../ui/AddNewColumnUi'
 const BoardColumn = dynamic(()=> import('../reusables/BoardColumn'), {
   suspense: true
 })
-const EmptyBoardScreen = dynamic(() => import('../ui/EmptyBoardScreen'), {
-  suspense: true,
-})
+import EmptyBoardScreen from '../ui/EmptyBoardScreen'
 
 //TS Props interface
 import { useContext, useEffect, useState } from 'react'
@@ -22,7 +20,7 @@ import appContext from '../../context/appContext'
 const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
   const {columnAdded, setColumnAdded} = useContext(appContext)
   const [emptyScreenType, setEmptyScreenType] = useState<string>('')
-  const [columns, setColumns] = useState<BoardColumn[]>()
+  const [columns, setColumns] = useState<BoardColumn[]>([])
   async function getAllColumns() {
     let params = {
       boardId: board.id
@@ -37,7 +35,7 @@ const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
   }
 
   useEffect(()=> {
-    if (board.id) getAllColumns()
+    if (board?.id) getAllColumns()
   }, [board, columnAdded])
 
 
