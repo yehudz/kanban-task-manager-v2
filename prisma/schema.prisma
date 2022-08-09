@@ -29,6 +29,7 @@ model Column {
   name String
   color String
   tasks Task[]
+  order Int
   board Board? @relation(fields: [boardId],references: [id])
   boardId String
 }
@@ -38,6 +39,7 @@ model Task {
   title String?
   description String?
   status String?
+  order Int
   column Column? @relation(fields: [columnId], references: [id])
   columnId String
   subtasks Subtask[]
