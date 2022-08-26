@@ -2,10 +2,11 @@ import { useContext } from "react"
 import { TaskItem } from "../../typings/common.types"
 import appContext from "../../context/appContext"
 import styles from '../../styles/reusables/BoardColumnTaskItem.module.scss'
-const BoardColumnTaskItem = ({title, description, status, subtasks}: TaskItem)=> {
+const BoardColumnTaskItem = ({id, title, description, status, subtasks}: TaskItem)=> {
   const {setModalVisibility, setTaskDetails, setModalContentType} = useContext(appContext)
 
   let params = {
+    id,
     title,
     description,
     status,

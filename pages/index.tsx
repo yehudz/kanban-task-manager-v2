@@ -1,4 +1,5 @@
-import type { NextPage } from 'next'
+import type { NextPage, InferGetServerSidePropsType } from 'next'
+import { GetServerSideProps } from 'next'
 import { useEffect, useState } from 'react'
 import Head from 'next/head'
 
@@ -15,29 +16,44 @@ import appContext from '../context/appContext'
 const LeftSidebar = dynamic(() => import('../components/layout/LeftSidebar'))
 import MobileMenu from '../components/ui/MobileMenu'
 import ResuableModal from '../components/reusables/ReusableModal'
-import TaskDetailsForm from '../components/reusables/TaskDetailsForm'
-import TaskForm from '../components/reusables/TaskForm'
-import BoardForm from '../components/reusables/BoardForm'
-import WarningMessage from '../components/reusables/WarningMessage'
-import ColumnForm from '../components/reusables/ColumnForm'
-
+import ModalContent from '../components/ui/ModalContent'
 // Types imports
 import { Board, TaskItem } from '../typings/common.types'
-
-// Dummy data singleton
-import dummyData from '../data.json'
 
 const Home: NextPage = (props) => {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
-  const [exampleBoard, setExampleBoard] = useState<Board>({name: '', columns: []})
+  const [board, setBoard] = useState<Board>({id: '', name: '', columns: []})
+  const [boardId, setBoardId] = useState<string>('')
+  const [boardsList, setBoardsList] = useState([])
   const [modalVisibility, setModalVisibility] = useState<boolean>(false)
-  const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: ''})
-  const [modalContentType, setModalContentType] = useState<string | null>('')
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [theme, setTheme] = useState<string>('')
-  // Should check for what is requested to show in the modal
+  const [boardsCount, setBoardsCount] = useState<number>(0)
+  const [taskDetails, setTaskDetails] = useState<TaskItem>({title: '', description: '', status: []})
+  const [modalContentType, setModalContentType] = useState<string | null>('')
+  const [newTaskCreated, setNewTaskCreated] = useState<boolean>(false)
+  const [newCreatedBoard, setNewCreatedBoard] = useState<boolean>(false)
+  const [columnAdded, setColumnAdded] = useState<boolean>()
+  const [selectedBoard, setSelectedBoard] = useState<number>(0)
+  async function getAllBoards() {
+    const res = await fetch('/api/getBoards', {
+      method: "GET",
+    })
+    let result = await res.json()
+    setBoard(result.boards[selectedBoard])
+    setBoardId(result.boards[selectedBoard]?.id)
+    setBoardsCount(result.boards.length)
+    setBoardsList(result.boards)
+    setNewCreatedBoard(false)
+    setColumnAdded(false)
+  }
 
+  useEffect(()=> {
+    getAllBoards()
+  }, [newCreatedBoard, selectedBoard])
+
+  // Should check for what is requested to show in the modal
   useEffect(()=> {
     if (!localStorage.getItem('kanbanTheme')) {
       setTheme('dark')
@@ -45,71 +61,11 @@ const Home: NextPage = (props) => {
     if (localStorage.kanbanTheme) {
       setTheme(localStorage.kanbanTheme)
     }
-  }, [])
-
-  const ModalContent = ()=> {
-    switch(modalContentType) {
-      case "ADD_NEW_TASK": 
-        return <TaskForm 
-                  formTitle="Create New Task"
-                  title=""
-                  description=""
-                  selectedStatus={''}
-                  status={exampleBoard.columns}
-                  buttonText='Create Task'
-                />
-      case "TASK_DETAILS":
-        return <TaskDetailsForm 
-                  title={taskDetails?.title} 
-                  description={taskDetails?.description}
-                  selectedStatus={taskDetails?.status}
-                  status={exampleBoard.columns}
-                  subtasks={taskDetails?.subtasks}
-                />
-      case "CREATE_NEW_BOARD":
-        setOpenMobileMenu(false)
-        return <BoardForm 
-                  formTitle='Add New Board'
-                  boardName=''
-                  boardColumns={[]}
-                />
-      case "EDIT_TASK": 
-        return <TaskForm 
-                  formTitle="Edit Task"
-                  title={taskDetails?.title} 
-                  description={taskDetails?.description}
-                  selectedStatus={taskDetails?.status}
-                  status={exampleBoard.columns}
-                  subtasks={taskDetails?.subtasks}
-                  buttonText='Save Changes'
-                />
-      case "EDIT_BOARD":
-        return <BoardForm 
-                  formTitle='Edit Board'
-                  boardName={exampleBoard.name}
-                  boardColumns={exampleBoard.columns}
-                />
-      case "DELETE_TASK": 
-        return <WarningMessage 
-                  title="Delete this task?"
-                  itemName={taskDetails?.title}
-                  type="task"
-                />
-      case "DELETE_BOARD": 
-        return <WarningMessage 
-                title="Delete this board?"
-                itemName={exampleBoard.name}
-                type="board"
-              />
-      case "ADD_COLUMN":
-        return <ColumnForm />
-      default:
-        return null
-    }
-  }
+  }, [newCreatedBoard])
 
   useEffect(()=> {
-    setExampleBoard(dummyData.boards[0])
+    // setExampleBoard(dummyData.boards[0])
+    setBoardId(board.id)
     if (window.innerWidth < 768) setIsMobile(true)
     else setIsMobile(false)
     window.addEventListener('resize', ()=> {
@@ -124,9 +80,6 @@ const Home: NextPage = (props) => {
     <>
       <Head>
         <title>Kanban Task Managment</title>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700&display=swap" rel="stylesheet" />
       </Head>
       <appContext.Provider 
         value={
@@ -135,12 +88,26 @@ const Home: NextPage = (props) => {
             setOpenMobileMenu, 
             modalVisibility, 
             setModalVisibility, 
+            taskDetails,
             setTaskDetails, 
+            modalContentType,
             setModalContentType, 
             sidebarOpen, 
             setSidebarOpen,
             theme,
-            setTheme
+            setTheme,
+            boardsCount,
+            board,
+            boardsList,
+            boardId,
+            newTaskCreated,
+            setNewTaskCreated,
+            newCreatedBoard,
+            setNewCreatedBoard,
+            selectedBoard,
+            setSelectedBoard,
+            columnAdded,
+            setColumnAdded
           }
         }>
         <div className="flex flex-row w-full h-screen bg-grey-100 dark:bg-midnight">
@@ -149,9 +116,9 @@ const Home: NextPage = (props) => {
           </div>
           {isMobile && <MobileMenu show={openMobileMenu}/>}
             <div data-testid="right-container" className='rightContainer w-full'>
-            <TopBar boardName={exampleBoard.name}/>
+            <TopBar boardName={board?.name} boardColumnsCount={board?.columns.length}/>
             <Suspense fallback={<h1 className='text-grey dark:text-white'>Loading...</h1>}>
-              <BoardColumnsContainer board={exampleBoard}/>
+              <BoardColumnsContainer board={board}/>
             </Suspense>
           </div>
         </div>

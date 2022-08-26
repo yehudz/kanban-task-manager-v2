@@ -5,23 +5,27 @@ import { useContext } from "react"
 import { BoardListItem } from "../../typings/common.types"
 
 const ColumnsListMenu = ()=> {
-  const {setModalVisibility, setModalContentType} = useContext(appContext)
-  let boardsDummyData: BoardListItem[] = [
-    {title: 'Example One', active: true},
-    {title: 'Example Two', active: false}
-  ]
+  const {setModalVisibility, setModalContentType, boardsCount, boardsList, selectedBoard} = useContext(appContext)
+
+  let boards: BoardListItem[] = boardsList.map((board: BoardListItem, i: number)=> {
+    return {
+      id: board.id,
+      name: board.name,
+      active: i === selectedBoard ? true : false
+    }
+  })
   function showAddBoardForm() {
     setModalVisibility(true)
     setModalContentType("CREATE_NEW_BOARD")
   }
   return(
     <div data-testid="columns-list-menu" className={`${styles.container} w-full`}>
-      <div data-testid="columns-list-menu-title" className={`${styles.title} text-grey-400 font-bold`}>All Boards (8)</div>
+      <div data-testid="columns-list-menu-title" className={`${styles.title} text-grey-400 font-bold`}>All Boards ({boardsCount})</div>
       <div data-testid="board-list-items" className="mt-7">
-        {boardsDummyData.map((item: BoardListItem)=> {
+        {boards?.map((board: BoardListItem, i: number)=> {
           return(
-            <div className="flex items-center" key={item.title}>
-              <SidebarMenuListItem title={item.title} active={item.active}/>
+            <div className="flex items-center" key={board.id}>
+              <SidebarMenuListItem name={board.name} active={board.active} index={i}/>
             </div>
           )
         })}

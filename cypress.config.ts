@@ -6,7 +6,8 @@ export default defineConfig({
       // implement node event listeners here
     },
     baseUrl: "http://localhost:3000",
-    "video": false
+    "video": false,
+    "screenshotsFolder": false
   },
 
   component: {

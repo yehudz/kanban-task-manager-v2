@@ -7,7 +7,7 @@ import appContext from '../../context/appContext';
 // Typings imports
 import { OptionMenuProps } from "../../typings/interfaces";
 
-const  OptionsMenu = ({menuItems}: OptionMenuProps)=> {
+const  OptionsMenu = ({menuItems, disabled}: OptionMenuProps)=> {
   const {setModalContentType, setModalVisibility} = useContext(appContext)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -39,8 +39,8 @@ const  OptionsMenu = ({menuItems}: OptionMenuProps)=> {
     setAnchorEl(null);
   };
   return(
-    <div data-testid="options-menu-container">
-      <OptionsMenuButton data-testid="options-menu-button" handleClick={handleClick}/>
+    <div data-testid="options-menu-container" >
+      <OptionsMenuButton disabled={disabled} data-testid="options-menu-button" handleClick={handleClick}/>
       <Menu
         id="basic-menu"
         data-testid="options-menu"

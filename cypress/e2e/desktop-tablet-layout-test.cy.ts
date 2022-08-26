@@ -17,8 +17,8 @@ describe('Layout Testing', () => {
     cy.get('[data-testid=columns-container]').should('exist')
   })
 
-  it('checks if there is a column title', ()=> {
-    cy.get('[data-testid=board-title]').should('exist')
+  it('checks if there is a board title', ()=> {
+    cy.get('[data-testid=board-title]').invoke('text').should('have.length.gt', 0)
   })
 
   it('checks if there is a logo container', ()=> {

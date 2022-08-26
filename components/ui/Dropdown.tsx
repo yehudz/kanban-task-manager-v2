@@ -1,112 +1,86 @@
-import * as React from 'react';
-import SelectUnstyled, {
-  SelectUnstyledProps,
-  selectUnstyledClasses,
-} from '@mui/base/SelectUnstyled';
-import OptionUnstyled, { optionUnstyledClasses } from '@mui/base/OptionUnstyled';
-import PopperUnstyled from '@mui/base/PopperUnstyled';
-import { styled } from '@mui/system';
-import { DropdownProps, BoardItem } from '../../typings/interfaces';
+import React, { useEffect, useState } from 'react'
+import styles from '../../styles/ui/Dropdown.module.scss'
+import { DropdownProps } from '../../typings/interfaces'
 
-const StyledButton = styled('button')(
-  ({ theme }) => `
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 13px;
-  box-sizing: border-box;
-  min-height: calc(1.5em + 22px);
-  min-width: 320px;
-  border-radius: 0.75em;
-  padding: 10px;
-  text-align: left;
-  line-height: 1.5;
-  color: '#828FA3';
+const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
+  const [open, setOpen] = useState<boolean>(false)
+  const [selection, setSelection] = useState<string>()
 
-  &:hover {
-    border-color: '#635FC7';
+  useEffect(()=> {
+    setSelection(selectedStatus ? selectedStatus : status[0].name)
+  }, [])
+
+  function handleOpenSelect() {
+    setOpen((lastOpen)=> lastOpen = !lastOpen)
   }
 
-  &.${selectUnstyledClasses.focusVisible} {
-    outline: '#635FC7';
+  function handleStatusSelection(e: React.MouseEvent<HTMLButtonElement>) {
+    setSelection(e.currentTarget.innerText)
+    setTaskStatus(e.currentTarget.innerText, e)
   }
 
-  &.${selectUnstyledClasses.expanded} {
-    &::after {
-      content: '▴';
-    }
-  }
-
-  &::after {
-    content: '▾';
-    float: right;
-  }
-  `,
-);
-
-const StyledOption = styled(OptionUnstyled)(
-  ({ theme }) => `
-  list-style: none;
-  font-size: 15px;
-  padding: 8px;
-  border-radius: 0.45em;
-  min-width: 408px;
-  cursor: pointer;
-
-  &:last-of-type {
-    border-bottom: none;
-  }
-
-  &:hover {
-    color: '#635FC7';
-  }
-
-  &.${optionUnstyledClasses.selected} {
-    color: '#635FC7';
-  }
-  `,
-);
-
-const StyledPopper = styled(PopperUnstyled)`
-  z-index: 1;
-`;
-
-const CustomSelect = React.forwardRef(function CustomSelect<TValue>(
-  props: SelectUnstyledProps<TValue>,
-  ref: React.ForwardedRef<HTMLButtonElement>,
-) {
-  const components: SelectUnstyledProps<TValue>['components'] = {
-    Root: StyledButton,
-    Popper: StyledPopper,
-    ...props.components,
-  };
-
-  return <SelectUnstyled {...props} ref={ref} components={components}/>;
-}) as <TValue>(
-  props: SelectUnstyledProps<TValue> & React.RefAttributes<HTMLButtonElement>,
-) => JSX.Element;
-
-export default function UnstyledSelectSimple({status, selectedStatus}: DropdownProps) {
-  return (
-    <CustomSelect 
-      data-testid="status-select"
-      defaultValue={selectedStatus ? selectedStatus : status[0]?.name} // To do: Default should be the one selected
-      className="
-        dark:bg-transparent 
-        border 
-        border-solid 
-        border-grey-200
-        dark:border-grey-700
-        hover:border-purple
-        text-grey
+  return(
+    <div 
+      data-testid="status-select" 
+      className={`
+        ${styles.container}
+        flex
+        items-center
+        relative
+        pl-4
+        w-full 
+        text-grey 
         dark:text-white
-        "
+        border
+        border-solid
+        border-grey-700
+        rounded-lg
+        cursor-pointer
+        hover:border-purple
+        focus:border-purple
+        bg-transparent
+      `}
+      onClick={handleOpenSelect}
+    >
+      {selection}
+      <div 
+        data-testid="select-options" 
+        className={`
+          ${open ? '' : 'hidden'}
+          flex
+          flex-col
+          gap-4
+          items-start
+          absolute
+          top-16
+          left-0
+          p-4
+          w-full
+          bg-white
+          dark:bg-grey
+          border
+          border-solid
+          border-grey
+          dark:border-grey-700
+          rounded-lg
+        `}
       >
-        <div className='bg-white dark:bg-midnight w-full py-6 mt-3 rounded-lg'>
-          {status.map((item: BoardItem)=> {
-            return(
-              <StyledOption key={item.name} data-testid="status-select-option" className='w-full text-grey-400 pt-1 px-6 hover:text-purple' value={item.name}>{item.name}</StyledOption>
-            )
-          })}
-        </div>
-    </CustomSelect>
-  );
+        {status.map((item, i)=> {
+          return(
+            <div key={item.name} className="w-full">
+              <button 
+                data-testid="status-select-option"
+                onClick={handleStatusSelection}
+                className="text-grey dark:text-white hover:text-purple dark:hover:text-purple w-full text-left"
+              >
+                {item.name}
+              </button>
+            </div>
+          )
+        })}
+      </div>
+    </div>
+  )
 }
+
+export default Dropdown

@@ -1,10 +1,11 @@
 import { TextareaProps } from "../../typings/interfaces"
 
-const Textarea = ({placeholder, defaultValue}: TextareaProps)=> {
+const Textarea = ({placeholder, defaultValue, setValue}: TextareaProps)=> {
   return(
     <textarea 
       placeholder={placeholder}
       defaultValue={defaultValue}
+      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>)=> setValue(e.target.value, e)}
       className="
         bg-transparent 
         border 

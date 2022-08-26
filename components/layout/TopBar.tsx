@@ -1,7 +1,7 @@
 import styles from '../../styles/layout/Topbar.module.scss'
 import BoardTitle from '../ui/BoardTitle'
 import MobileLogo from '../ui/MobileLogo'
-import AddNewTaskButton from '../ui/AddNewTaskButton'
+import AddNewButton from '../ui/AddNewButton'
 import OptionsMenu from '../reusables/OptionsMenu'
 import appContext from '../../context/appContext'
 import { useContext } from 'react'
@@ -9,7 +9,7 @@ import { useContext } from 'react'
 // TS interface
 import {TopBarProps} from '../../typings/interfaces'
 
-const TopBar = ({boardName}: TopBarProps)=> {
+const TopBar = ({boardName, boardColumnsCount}: TopBarProps)=> {
   const {isMobile, setOpenMobileMenu} = useContext(appContext)
 
   function mobileMenuVisibility() {
@@ -22,9 +22,9 @@ const TopBar = ({boardName}: TopBarProps)=> {
       {isMobile && <MobileLogo />}
       <BoardTitle title={boardName} isMobile={isMobile} handleClick={mobileMenuVisibility}/>
       <div className='absolute right-0 flex flex-row items-center'>
-        <AddNewTaskButton />
+        <AddNewButton buttonText='Add New Task' contentType='add-new-task' disabled={!boardName || boardColumnsCount === 0 ? true : false}/>
         <div className='mr-4'>
-          <OptionsMenu menuItems={['Edit Board', 'Delete Board']}/>
+          <OptionsMenu menuItems={['Edit Board', 'Delete Board']} disabled={boardColumnsCount === 0 ? true : false}/>
         </div>
       </div>
     </div>
