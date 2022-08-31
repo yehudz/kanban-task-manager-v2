@@ -31,7 +31,7 @@ const Home: NextPage = (props) => {
   const [theme, setTheme] = useState<string>('')
   const [boardsCount, setBoardsCount] = useState<number>(0)
   const [taskDetails, setTaskDetails] = useState<TaskItem>(
-    {title: '', description: '', status: [], order: 0}
+    {id: '', title: '', description: '', order: 0}
   )
   const [modalContentType, setModalContentType] = useState<string | null>('')
   const [newTaskCreated, setNewTaskCreated] = useState<boolean>(false)
