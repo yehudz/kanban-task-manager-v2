@@ -2,22 +2,29 @@ import React, { useEffect, useState } from 'react'
 import styles from '../../styles/ui/Dropdown.module.scss'
 import { DropdownProps } from '../../typings/interfaces'
 
-const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
-  const [open, setOpen] = useState<boolean>(false)
-  const [selection, setSelection] = useState<string>()
+const Dropdown = (
+  {
 
-  useEffect(()=> {
-    setSelection(selectedStatus ? selectedStatus : status[0].name)
-  }, [])
+  }: DropdownProps)=> {
+  const [open, setOpen] = useState<boolean>(false)
+  const [selection, setSelection] = useState<string>('To do')
 
   function handleOpenSelect() {
     setOpen((lastOpen)=> lastOpen = !lastOpen)
   }
 
-  function handleStatusSelection(e: React.MouseEvent<HTMLButtonElement>) {
-    setSelection(e.currentTarget.innerText)
-    setTaskStatus(e.currentTarget.innerText, e)
+  function handleStatusSelection(
+    e: React.MouseEvent<HTMLButtonElement>
+  ) {
+    let target = e.target as HTMLButtonElement
+    setSelection(target.innerText)
   }
+
+  const status = [
+    {name: 'To do'}, 
+    {name: 'In-progress'},
+    {name: 'Done'}
+  ]
 
   return(
     <div 
@@ -65,13 +72,20 @@ const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
           rounded-lg
         `}
       >
-        {status.map((item, i)=> {
+        {status?.map((item, i)=> {
           return(
             <div key={item.name} className="w-full">
               <button 
                 data-testid="status-select-option"
                 onClick={handleStatusSelection}
-                className="text-grey dark:text-white hover:text-purple dark:hover:text-purple w-full text-left"
+                className="
+                  text-grey 
+                  dark:text-white 
+                  hover:text-purple 
+                  dark:hover:text-purple 
+                  w-full 
+                  text-left
+                "
               >
                 {item.name}
               </button>
