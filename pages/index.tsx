@@ -37,14 +37,14 @@ const Home: NextPage = (props) => {
   const [columnAdded, setColumnAdded] = useState<boolean>()
   const [selectedBoard, setSelectedBoard] = useState<number>(0)
   async function getAllBoards() {
-    const res = await fetch('/api/getBoards', {
-      method: "GET",
+    const res = await fetch('https://kanbantaskmanagerbackendapi.herokuapp.com/api/v2/boards', {
+      method: "GET"
     })
     let result = await res.json()
-    setBoard(result.boards[selectedBoard])
-    setBoardId(result.boards[selectedBoard]?.id)
-    setBoardsCount(result.boards.length)
-    setBoardsList(result.boards)
+    setBoard(result[selectedBoard])
+    setBoardId(result[selectedBoard].id)
+    setBoardsCount(result.length)
+    setBoardsList(result)
     setNewCreatedBoard(false)
     setColumnAdded(false)
   }
@@ -64,7 +64,6 @@ const Home: NextPage = (props) => {
   }, [newCreatedBoard])
 
   useEffect(()=> {
-    // setExampleBoard(dummyData.boards[0])
     setBoardId(board.id)
     if (window.innerWidth < 768) setIsMobile(true)
     else setIsMobile(false)
@@ -116,7 +115,7 @@ const Home: NextPage = (props) => {
           </div>
           {isMobile && <MobileMenu show={openMobileMenu}/>}
             <div data-testid="right-container" className='rightContainer w-full'>
-            <TopBar boardName={board?.name} boardColumnsCount={board?.columns.length}/>
+            <TopBar boardName={board?.name} boardColumnsCount={0}/>
             <Suspense fallback={<h1 className='text-grey dark:text-white'>Loading...</h1>}>
               <BoardColumnsContainer board={board}/>
             </Suspense>
