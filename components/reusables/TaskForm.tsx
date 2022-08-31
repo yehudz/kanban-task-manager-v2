@@ -16,11 +16,9 @@ const TaskForm = (
     title, 
     description, 
     selectedStatus, 
-    status, 
     order,
     subtasks, 
     buttonText,
-    boardColumns
   }: TaskFormProps)=> {
   const {setModalVisibility, boardId, setNewTaskCreated} = useContext(appContext)
   const [createResource, setCreateResource] = useState<boolean>(false)
