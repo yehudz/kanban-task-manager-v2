@@ -2,10 +2,13 @@ import React, { useContext, useEffect, useState } from 'react'
 import appContext from '../../context/appContext'
 import styles from '../../styles/ui/Dropdown.module.scss'
 import getBoardColumnsData from '../hooks/getBoardColumnsData'
-import { DropdownOptions } from '../../typings/common.types'
-const Dropdown = ()=> {
+import type { DropdownOptions } from '../../typings/common.types'
+import type { DropdownProps } from '../../typings/interfaces'
+const Dropdown = ({
+  boardColumnId
+}: DropdownProps)=> {
   const [open, setOpen] = useState<boolean>(false)
-  const [status, setStatus] = useState<string>('To do')
+  const [status, setStatus] = useState<string>('')
   const [options, setOptions] = useState<DropdownOptions[]>([])
   const {boardId} = useContext(appContext)
 
@@ -20,11 +23,21 @@ const Dropdown = ()=> {
     setStatus(target.innerText)
   }
 
+  // Gets all the simple board column data
   useEffect(()=> {
     (async()=> {
       setOptions(await getBoardColumnsData(boardId))
     })()
   }, [])
+
+  // Sets the current task status e.g "To do"
+  useEffect(()=> {
+    let currentStatus = options.filter(
+      option=>option.id === boardColumnId
+    )
+    setStatus(currentStatus[0]?.name)
+  }, [options])
+
   return(
     <div 
       data-testid="status-select" 

@@ -47,6 +47,7 @@ export interface TaskFormProps extends TaskItem {
   formTitle: string
   buttonText: string
   subtasks: Subtask[]
+  board_column_id: string
 }
 
 export interface BoardFormProps {
@@ -96,4 +97,8 @@ export interface AddNewButtonProps {
   disabled?: boolean
   buttonText: string
   contentType: string
+}
+
+export interface DropdownProps {
+  boardColumnId: string
 }

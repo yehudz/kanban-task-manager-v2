@@ -23,6 +23,7 @@ const ModalContent = ()=> {
                 order={board?.columns?.tasks ? board?.columns.tasks.length + 1 : 1}
                 buttonText='Create Task'
                 subtasks={[]}
+                board_column_id={taskDetails.board_column_id }
               />
     case "TASK_DETAILS":
       return <TaskDetailsForm 
@@ -33,6 +34,7 @@ const ModalContent = ()=> {
                 subtasks={taskDetails?.subtasks}
                 buttonText=""
                 order={0}
+                board_column_id={taskDetails.board_column_id }
               />
     case "CREATE_NEW_BOARD":
       setOpenMobileMenu(false)

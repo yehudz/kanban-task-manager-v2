@@ -66,6 +66,7 @@ const BoardColumn = (
                 title={task.title}
                 description={task.description}
                 order={task.order}
+                board_column_id={task.board_column_id}
               />
             )
           })}

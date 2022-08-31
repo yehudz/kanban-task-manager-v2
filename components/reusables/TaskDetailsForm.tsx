@@ -9,7 +9,8 @@ const TaskDetailsForm = (
     id, 
     title, 
     description, 
-    subtasks, 
+    subtasks,
+    board_column_id  
   }: TaskFormProps)=> {
   async function handleUpdates() {
     
@@ -99,7 +100,9 @@ const TaskDetailsForm = (
           )
         })}
       </div>
-      <Dropdown />
+      <Dropdown 
+        boardColumnId={board_column_id }
+      />
     </div>
   )
 }

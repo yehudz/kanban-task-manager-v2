@@ -7,7 +7,8 @@ const BoardColumnTaskItem = (
   {
     id, 
     title, 
-    description, 
+    description,
+    board_column_id 
   }: TaskItem)=> {
   const [subtasks, setSubtasks] = useState<Subtask[]>([])
   const {
@@ -27,7 +28,8 @@ const BoardColumnTaskItem = (
     id,
     title,
     description,
-    subtasks
+    subtasks,
+    board_column_id 
   }
 
   function showModal() {

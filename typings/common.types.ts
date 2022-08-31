@@ -26,6 +26,7 @@ export type TaskItem = {
   columnId?: string
   subtaskId?: string
   subtasks?: Subtask[]
+  board_column_id: string
 }
 
 export type Subtask = {
