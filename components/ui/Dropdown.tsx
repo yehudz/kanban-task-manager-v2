@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import appContext from '../../context/appContext'
 import styles from '../../styles/ui/Dropdown.module.scss'
-import { DropdownProps } from '../../typings/interfaces'
-
-const Dropdown = (
-  {
-
-  }: DropdownProps)=> {
+import getBoardColumnsData from '../hooks/getBoardColumnsData'
+import { DropdownOptions } from '../../typings/common.types'
+const Dropdown = ()=> {
   const [open, setOpen] = useState<boolean>(false)
-  const [selection, setSelection] = useState<string>('To do')
+  const [status, setStatus] = useState<string>('To do')
+  const [options, setOptions] = useState<DropdownOptions[]>([])
+  const {boardId} = useContext(appContext)
 
   function handleOpenSelect() {
     setOpen((lastOpen)=> lastOpen = !lastOpen)
@@ -17,15 +17,14 @@ const Dropdown = (
     e: React.MouseEvent<HTMLButtonElement>
   ) {
     let target = e.target as HTMLButtonElement
-    setSelection(target.innerText)
+    setStatus(target.innerText)
   }
 
-  const status = [
-    {name: 'To do'}, 
-    {name: 'In-progress'},
-    {name: 'Done'}
-  ]
-
+  useEffect(()=> {
+    (async()=> {
+      setOptions(await getBoardColumnsData(boardId))
+    })()
+  }, [])
   return(
     <div 
       data-testid="status-select" 
@@ -49,7 +48,7 @@ const Dropdown = (
       `}
       onClick={handleOpenSelect}
     >
-      {selection}
+      {status}
       <div 
         data-testid="select-options" 
         className={`
@@ -72,7 +71,7 @@ const Dropdown = (
           rounded-lg
         `}
       >
-        {status?.map((item, i)=> {
+        {options?.map((item, i)=> {
           return(
             <div key={item.name} className="w-full">
               <button 

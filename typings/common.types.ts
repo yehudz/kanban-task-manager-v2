@@ -47,3 +47,8 @@ export type TaskParams = {
   subtasks: Subtask[]
   status: string
 }
+
+export type DropdownOptions = {
+  id: string
+  name: string
+}
