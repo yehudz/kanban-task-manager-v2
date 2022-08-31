@@ -15,24 +15,24 @@ const ModalContent = ()=> {
   switch(modalContentType) {
     case "ADD_NEW_TASK": 
       return <TaskForm 
+                id=""
                 formTitle="Create New Task"
                 title=""
                 description=""
                 selectedStatus={''}
                 order={board?.columns?.tasks ? board?.columns.tasks.length + 1 : 1}
-                status={board?.columns}
                 buttonText='Create Task'
-                boardColumns={board?.columns}
+                subtasks={[]}
               />
     case "TASK_DETAILS":
       return <TaskDetailsForm 
                 id={taskDetails.id}
+                formTitle="Create New Task"
                 title={taskDetails?.title} 
                 description={taskDetails?.description}
-                selectedStatus={taskDetails?.status}
-                status={board?.columns}
                 subtasks={taskDetails?.subtasks}
-                boardColumns={board.columns}
+                buttonText=""
+                order={0}
               />
     case "CREATE_NEW_BOARD":
       setOpenMobileMenu(false)
@@ -48,10 +48,9 @@ const ModalContent = ()=> {
                 title={taskDetails?.title} 
                 description={taskDetails?.description}
                 selectedStatus={taskDetails?.status}
-                status={board?.columns}
                 subtasks={taskDetails?.subtasks}
                 buttonText='Save Changes'
-                boardColumns={board.columns}
+                order={0}
               />
     case "EDIT_BOARD":
       return <BoardForm 
