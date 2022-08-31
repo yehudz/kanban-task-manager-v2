@@ -40,8 +40,8 @@ const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
 
 
   useEffect(()=> {
-    if (!board?.name && !board?.columns.length) setEmptyScreenType('board')
-    if (board?.name && !board?.columns.length) setEmptyScreenType('columns')
+    // if (!board?.name && !board?.columns.length) setEmptyScreenType('board')
+    // if (board?.name && !board?.columns.length) setEmptyScreenType('columns')
   }, [board])
   return(
     <div data-testid="columns-container" className={`${styles.container} h-full relative`}>
