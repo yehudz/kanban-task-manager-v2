@@ -1,14 +1,16 @@
-
 // Performance imports
 import dynamic from 'next/dynamic'
 
 // Component imports
-import styles from '../../styles/layout/BoardColumnsContainer.module.scss'
-import { BoardColumnsProps } from '../../typings/interfaces'
+import styles 
+from 
+'../../styles/layout/BoardColumnsContainer.module.scss'
 import AddNewColumnUi from '../ui/AddNewColumnUi'
 
-// import BoardColumn from '../reusables/BoardColumn'
-const BoardColumn = dynamic(()=> import('../reusables/BoardColumn'), {
+import type { BoardColumnsProps } from '../../typings/interfaces'
+
+const BoardColumn = dynamic(
+  ()=> import('../reusables/BoardColumn'), {
   suspense: true
 })
 import EmptyBoardScreen from '../ui/EmptyBoardScreen'
@@ -17,20 +19,28 @@ import EmptyBoardScreen from '../ui/EmptyBoardScreen'
 import { useContext, useEffect, useState } from 'react'
 import { BoardColumn } from '../../typings/common.types'
 import appContext from '../../context/appContext'
-const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
-  const {columnAdded, setColumnAdded} = useContext(appContext)
-  const [emptyScreenType, setEmptyScreenType] = useState<string>('')
-  const [columns, setColumns] = useState<BoardColumn[]>([])
+const BoardColumnsContainer = (
+  {board}: BoardColumnsProps
+  )=> {
+  const {
+    columnAdded, 
+    setColumnAdded
+  } = useContext(appContext)
+  const [
+    emptyScreenType, 
+    setEmptyScreenType
+  ] = useState<string>('')
+  const [
+    columns, 
+    setColumns
+  ] = useState<BoardColumn[]>([])
   async function getAllColumns() {
-    let params = {
-      boardId: board.id
-    }
-    const res = await fetch(`/api/getColumns`, {
-      method: "POST",
-      body: JSON.stringify(params)
-    })
+    const res = await fetch(
+      `http://localhost:3001/api/v2/boardColumns/${board.id}`, {
+        method: "GET"
+      })
     let result = await res.json()
-    setColumns(result.columns)
+    setColumns(result)
     setColumnAdded(false)
   }
 
@@ -40,18 +50,39 @@ const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
 
 
   useEffect(()=> {
-    // if (!board?.name && !board?.columns.length) setEmptyScreenType('board')
-    // if (board?.name && !board?.columns.length) setEmptyScreenType('columns')
+    if (!columns.length) 
+    setEmptyScreenType('column')
+
+    if (!board.name && !columns.length) 
+    setEmptyScreenType('board') 
   }, [board])
   return(
-    <div data-testid="columns-container" className={`${styles.container} h-full relative`}>
-      {columns?.length === 0 && <EmptyBoardScreen type={emptyScreenType}/>}
+    <div 
+      data-testid="columns-container" 
+      className={`
+        ${styles.container} 
+        h-full 
+        relative
+      `
+    }>
+      {columns?.length === 0 && 
+        <EmptyBoardScreen 
+          type={emptyScreenType}
+        />}
       {columns?.map((column)=> {
         return(
-          <BoardColumn key={column.id} id={column.id} name={column.name} color={column.color}/>
+          <BoardColumn 
+            key={column.id} 
+            id={column.id || ''} 
+            name={column.name} 
+            color={column.color}
+          />
         )
       })}
-      {(columns?.length !== 0) ? <AddNewColumnUi /> : null}
+      {(columns?.length !== 0) ? 
+        <AddNewColumnUi /> : 
+        null
+      }
     </div>
   )
 }
