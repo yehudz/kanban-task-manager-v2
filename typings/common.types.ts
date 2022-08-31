@@ -16,12 +16,11 @@ export type BoardColumn = {
 }
 
 export type TaskItem = {
-  id?: string
+  id: string
   createdAt?: Date
   updatedAt?: Date
   title: string
   description: string | null
-  status: BoardColumn[]
   order: number
   selectedStatus?: string
   columnId?: string
@@ -32,7 +31,7 @@ export type TaskItem = {
 export type Subtask = {
   id?: string
   title: string
-  isCompleted: boolean
+  completed: boolean
   taskId?: string
 }
 
