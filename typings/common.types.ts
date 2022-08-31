@@ -16,23 +16,23 @@ export type BoardColumn = {
 }
 
 export type TaskItem = {
-  id?: string
+  id: string
   createdAt?: Date
   updatedAt?: Date
   title: string
   description: string | null
-  status: BoardColumn[]
   order: number
   selectedStatus?: string
   columnId?: string
   subtaskId?: string
   subtasks?: Subtask[]
+  board_column_id: string
 }
 
 export type Subtask = {
   id?: string
   title: string
-  isCompleted: boolean
+  completed: boolean
   taskId?: string
 }
 
@@ -47,4 +47,9 @@ export type TaskParams = {
   description?: string
   subtasks: Subtask[]
   status: string
+}
+
+export type DropdownOptions = {
+  id: string
+  name: string
 }

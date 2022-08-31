@@ -31,12 +31,13 @@ const Home: NextPage = (props) => {
   const [theme, setTheme] = useState<string>('')
   const [boardsCount, setBoardsCount] = useState<number>(0)
   const [taskDetails, setTaskDetails] = useState<TaskItem>(
-    {title: '', description: '', status: [], order: 0}
+    {id: '', title: '', description: '', order: 0}
   )
   const [modalContentType, setModalContentType] = useState<string | null>('')
   const [newTaskCreated, setNewTaskCreated] = useState<boolean>(false)
   const [newCreatedBoard, setNewCreatedBoard] = useState<boolean>(false)
   const [columnAdded, setColumnAdded] = useState<boolean>()
+  const [columnsCount, setColumnsCount] = useState<number>(0)
   const [selectedBoard, setSelectedBoard] = useState<number>(0)
 
   // Function to get all boards array
@@ -112,7 +113,8 @@ const Home: NextPage = (props) => {
             selectedBoard,
             setSelectedBoard,
             columnAdded,
-            setColumnAdded
+            setColumnAdded,
+            setColumnsCount
           }
         }>
         <div 
@@ -147,8 +149,8 @@ const Home: NextPage = (props) => {
               '
             >
             <TopBar 
-              boardName={board?.name} 
-              boardColumnsCount={0}
+              boardName={board.name} 
+              boardColumnsCount={columnsCount}
             />
             <Suspense 
               fallback={

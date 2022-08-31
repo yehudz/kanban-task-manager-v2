@@ -24,7 +24,8 @@ const BoardColumnsContainer = (
   )=> {
   const {
     columnAdded, 
-    setColumnAdded
+    setColumnAdded,
+    setColumnsCount
   } = useContext(appContext)
   const [
     emptyScreenType, 
@@ -42,6 +43,7 @@ const BoardColumnsContainer = (
     let result = await res.json()
     setColumns(result)
     setColumnAdded(false)
+    setColumnsCount(columns.length)
   }
 
   useEffect(()=> {

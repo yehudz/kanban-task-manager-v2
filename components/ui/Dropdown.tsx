@@ -1,23 +1,42 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import appContext from '../../context/appContext'
 import styles from '../../styles/ui/Dropdown.module.scss'
-import { DropdownProps } from '../../typings/interfaces'
-
-const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
+import getBoardColumnsData from '../hooks/getBoardColumnsData'
+import type { DropdownOptions } from '../../typings/common.types'
+import type { DropdownProps } from '../../typings/interfaces'
+const Dropdown = ({
+  boardColumnId
+}: DropdownProps)=> {
   const [open, setOpen] = useState<boolean>(false)
-  const [selection, setSelection] = useState<string>()
-
-  useEffect(()=> {
-    setSelection(selectedStatus ? selectedStatus : status[0].name)
-  }, [])
+  const [status, setStatus] = useState<string>('')
+  const [options, setOptions] = useState<DropdownOptions[]>([])
+  const {boardId} = useContext(appContext)
 
   function handleOpenSelect() {
     setOpen((lastOpen)=> lastOpen = !lastOpen)
   }
 
-  function handleStatusSelection(e: React.MouseEvent<HTMLButtonElement>) {
-    setSelection(e.currentTarget.innerText)
-    setTaskStatus(e.currentTarget.innerText, e)
+  function handleStatusSelection(
+    e: React.MouseEvent<HTMLButtonElement>
+  ) {
+    let target = e.target as HTMLButtonElement
+    setStatus(target.innerText)
   }
+
+  // Gets all the simple board column data
+  useEffect(()=> {
+    (async()=> {
+      setOptions(await getBoardColumnsData(boardId))
+    })()
+  }, [])
+
+  // Sets the current task status e.g "To do"
+  useEffect(()=> {
+    let currentStatus = options.filter(
+      option=>option.id === boardColumnId
+    )
+    setStatus(currentStatus[0]?.name)
+  }, [options])
 
   return(
     <div 
@@ -42,7 +61,7 @@ const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
       `}
       onClick={handleOpenSelect}
     >
-      {selection}
+      {status}
       <div 
         data-testid="select-options" 
         className={`
@@ -65,13 +84,20 @@ const Dropdown = ({status, selectedStatus, setTaskStatus}: DropdownProps)=> {
           rounded-lg
         `}
       >
-        {status.map((item, i)=> {
+        {options?.map((item, i)=> {
           return(
             <div key={item.name} className="w-full">
               <button 
                 data-testid="status-select-option"
                 onClick={handleStatusSelection}
-                className="text-grey dark:text-white hover:text-purple dark:hover:text-purple w-full text-left"
+                className="
+                  text-grey 
+                  dark:text-white 
+                  hover:text-purple 
+                  dark:hover:text-purple 
+                  w-full 
+                  text-left
+                "
               >
                 {item.name}
               </button>

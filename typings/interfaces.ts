@@ -1,4 +1,4 @@
-import { Board, TaskItem, BoardColumn } from "./common.types"
+import { Board, TaskItem, BoardColumn, Subtask } from "./common.types"
 
 export interface TopBarProps {
   boardName: string
@@ -43,11 +43,11 @@ export interface OptionMenuProps {
 }
 
 export interface TaskFormProps extends TaskItem {
-  id?: string
+  id: string
   formTitle: string
   buttonText: string
-  selectedStatus?: string
-  boardColumns: BoardColumn[]
+  subtasks: Subtask[]
+  board_column_id: string
 }
 
 export interface BoardFormProps {
@@ -89,12 +89,6 @@ export interface BoardItem {
   color?: string
 }
 
-export interface DropdownProps {
-  status: BoardColumn[]
-  selectedStatus?: string
-  setTaskStatus:(selectType: string, event: React.MouseEvent<HTMLButtonElement>) => void
-}
-
 export interface EmptyBoardScreenProps {
   type: string
 }
@@ -103,4 +97,8 @@ export interface AddNewButtonProps {
   disabled?: boolean
   buttonText: string
   contentType: string
+}
+
+export interface DropdownProps {
+  boardColumnId: string
 }
