@@ -53,6 +53,7 @@ const BoardColumnsContainer = (
     // REFACTOR THIS!!
     // if (!board?.name && !board?.columns.length) setEmptyScreenType('board')
     // if (board?.name && !board?.columns.length) setEmptyScreenType('columns')
+    if (!columns.length) setEmptyScreenType('column')
   }, [board])
   return(
     <div 

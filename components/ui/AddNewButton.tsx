@@ -2,7 +2,12 @@ import { useContext } from "react"
 import appContext from "../../context/appContext"
 import styles from '../../styles/ui/AddNewButton.module.scss'
 import { AddNewButtonProps } from "../../typings/interfaces"
-const AddNewButton = ({buttonText, contentType, disabled}: AddNewButtonProps)=> {
+const AddNewButton = (
+  {
+    buttonText, 
+    contentType, 
+    disabled
+  }: AddNewButtonProps)=> {
   const {setModalContentType} = useContext(appContext)
 
   function handleClick() {
@@ -26,10 +31,27 @@ const AddNewButton = ({buttonText, contentType, disabled}: AddNewButtonProps)=> 
       type="button" 
       data-testid="add-new-task-button" 
       disabled={disabled}
-      className={`${styles.container} flex flex-row items-center justify-center bg-purple font-bold`}
+      className={
+          `${styles.container} 
+          flex 
+          flex-row 
+          items-center 
+          justify-center 
+          bg-purple font-bold
+          text-white
+        `
+      }
       onClick={handleClick}>
-        <img src="images/icon-add-task-mobile.svg" alt="" className="mr-3"/>
-        <span className={styles.buttonText}>{buttonText}</span>
+        <img 
+          src="images/icon-add-task-mobile.svg" 
+          alt="" 
+          className="mr-3"
+        />
+        <span 
+          className={styles.buttonText}
+        >
+          {buttonText}
+        </span>
       </button>
   )
 }
