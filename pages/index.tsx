@@ -37,7 +37,7 @@ const Home: NextPage = (props) => {
   const [columnAdded, setColumnAdded] = useState<boolean>()
   const [selectedBoard, setSelectedBoard] = useState<number>(0)
   async function getAllBoards() {
-    const res = await fetch('https://kanbantaskmanagerbackendapi.herokuapp.com/api/v2/boards', {
+    const res = await fetch('http://localhost:3001/api/v2/boards', {
       method: "GET"
     })
     let result = await res.json()

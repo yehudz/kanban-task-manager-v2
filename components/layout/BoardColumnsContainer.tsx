@@ -22,15 +22,14 @@ const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
   const [emptyScreenType, setEmptyScreenType] = useState<string>('')
   const [columns, setColumns] = useState<BoardColumn[]>([])
   async function getAllColumns() {
-    let params = {
-      boardId: board.id
-    }
-    const res = await fetch(`/api/getColumns`, {
-      method: "POST",
-      body: JSON.stringify(params)
-    })
+    console.log(board.id)
+    const res = await fetch(
+      `http://localhost:3001/api/v2/boardColumns/${board.id}`, {
+        method: "GET"
+      })
     let result = await res.json()
-    setColumns(result.columns)
+    console.log(result)
+    setColumns(result)
     setColumnAdded(false)
   }
 
@@ -40,6 +39,7 @@ const BoardColumnsContainer = ({board}: BoardColumnsProps)=> {
 
 
   useEffect(()=> {
+    // REFACTOR THIS!!
     // if (!board?.name && !board?.columns.length) setEmptyScreenType('board')
     // if (board?.name && !board?.columns.length) setEmptyScreenType('columns')
   }, [board])
