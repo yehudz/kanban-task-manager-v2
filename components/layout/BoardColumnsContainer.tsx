@@ -1,4 +1,3 @@
-
 // Performance imports
 import dynamic from 'next/dynamic'
 
@@ -6,8 +5,9 @@ import dynamic from 'next/dynamic'
 import styles 
 from 
 '../../styles/layout/BoardColumnsContainer.module.scss'
-import { BoardColumnsProps } from '../../typings/interfaces'
 import AddNewColumnUi from '../ui/AddNewColumnUi'
+
+import type { BoardColumnsProps } from '../../typings/interfaces'
 
 const BoardColumn = dynamic(
   ()=> import('../reusables/BoardColumn'), {
@@ -50,10 +50,11 @@ const BoardColumnsContainer = (
 
 
   useEffect(()=> {
-    // REFACTOR THIS!!
-    // if (!board?.name && !board?.columns.length) setEmptyScreenType('board')
-    // if (board?.name && !board?.columns.length) setEmptyScreenType('columns')
-    if (!columns.length) setEmptyScreenType('column')
+    if (!columns.length) 
+    setEmptyScreenType('column')
+
+    if (!board.name && !columns.length) 
+    setEmptyScreenType('board') 
   }, [board])
   return(
     <div 
