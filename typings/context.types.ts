@@ -35,4 +35,9 @@ export type AppContextType = {
   setSelectedBoard: (selectedBoard: number)=> void
   updatedTask: boolean
   setUpdatedTask: (updatedTask: boolean)=> void
-};
+}
+
+export type BoardContextValues = {
+  boardsList: Board[]
+  setBoardsList: (boardList: Board[])=> void
+}
