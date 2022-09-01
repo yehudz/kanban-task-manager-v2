@@ -8,16 +8,17 @@ import { useContext } from 'react'
 
 // TS interface
 import {TopBarProps} from '../../typings/interfaces'
+import { AppContextType } from '../../typings/context.types'
+import BoardsContextProvider from '../../context/BoardsContext'
 
 const TopBar = (
   {
-    boardName, 
     boardColumnsCount
   }: TopBarProps)=> {
   const {
     isMobile, 
     setOpenMobileMenu
-  } = useContext(AppContext)
+  } = useContext(AppContext) as AppContextType
 
   function mobileMenuVisibility() {
     if (!isMobile) return // Cancels opening the mobile menu on desktop
@@ -42,11 +43,12 @@ const TopBar = (
       `}
     >
       {isMobile && <MobileLogo />}
-      <BoardTitle 
-        title={boardName} 
-        isMobile={isMobile} 
-        handleClick={mobileMenuVisibility}
-      />
+      <BoardsContextProvider>
+        <BoardTitle 
+          isMobile={isMobile} 
+          handleClick={mobileMenuVisibility}
+        />
+      </BoardsContextProvider>
       <div 
         className='
           absolute 
@@ -59,7 +61,7 @@ const TopBar = (
         <AddNewButton 
           buttonText='Add New Task' 
           contentType='add-new-task' 
-          disabled={!boardName || boardColumnsCount === 0 ? 
+          disabled={boardColumnsCount === 0 ? 
             true : 
             false
           }

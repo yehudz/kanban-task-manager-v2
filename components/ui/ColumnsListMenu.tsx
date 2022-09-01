@@ -3,16 +3,19 @@ import styles from '../../styles/ui/ColumnsListMenu.module.scss'
 import {AppContext} from '../../context/AppContext'
 import { useContext } from "react"
 import { BoardListItem } from "../../typings/common.types"
-import { AppContextType } from "../../typings/context.types"
+import { AppContextType, BoardContextValues } from "../../typings/context.types"
+import { BoardsContext } from "../../context/BoardsContext"
 
 const ColumnsListMenu = ()=> {
   const {
       setModalVisibility, 
       setModalContentType, 
-      boardsCount, 
+  } = useContext(AppContext) as AppContextType
+
+  const {
       boardsList, 
       selectedBoard
-  } = useContext(AppContext) as AppContextType
+  } = useContext(BoardsContext) as BoardContextValues
 
   let boards: 
   BoardListItem[] = boardsList.map(
@@ -43,7 +46,7 @@ const ColumnsListMenu = ()=> {
           font-bold
         `}
       >
-        All Boards ({boardsCount})
+        All Boards ({boardsList.length})
       </div>
       <div 
         data-testid="board-list-items" 
