@@ -7,8 +7,6 @@ from
 '../../styles/layout/BoardColumnsContainer.module.scss'
 import AddNewColumnUi from '../ui/AddNewColumnUi'
 
-import type { BoardColumnsProps } from '../../typings/interfaces'
-
 const BoardColumn = dynamic(
   ()=> import('../reusables/BoardColumn'), {
   suspense: true
@@ -18,46 +16,39 @@ import EmptyBoardScreen from '../ui/EmptyBoardScreen'
 //TS Props interface
 import { useContext, useEffect, useState } from 'react'
 import { BoardColumn } from '../../typings/common.types'
-import {AppContext} from '../../context/AppContext'
-const BoardColumnsContainer = (
-  {board}: BoardColumnsProps
-  )=> {
-  const {
-    columnAdded, 
-    setColumnAdded,
-    setColumnsCount
-  } = useContext(AppContext)
+import getBoardColumnsData from '../hooks/getBoardColumnsData'
+import { BoardsContext } from '../../context/BoardsContext'
+import { BoardContextValues } from '../../typings/context.types'
+
+const BoardColumnsContainer = ()=> {
   const [
     emptyScreenType, 
     setEmptyScreenType
   ] = useState<string>('')
+
+  const {board} = useContext(BoardsContext) as BoardContextValues
+
   const [
     columns, 
     setColumns
   ] = useState<BoardColumn[]>([])
   async function getAllColumns() {
-    const res = await fetch(
-      `http://localhost:3001/api/v2/boardColumns/${board.id}`, {
-        method: "GET"
-      })
-    let result = await res.json()
-    setColumns(result)
-    setColumnAdded(false)
-    setColumnsCount(columns.length)
+    let results = await getBoardColumnsData(board.id)
+    setColumns(results)
   }
 
   useEffect(()=> {
     if (board?.id) getAllColumns()
-  }, [board, columnAdded])
+  }, [board])
 
 
   useEffect(()=> {
     if (!columns.length) 
     setEmptyScreenType('column')
 
-    if (!board.name && !columns.length) 
+    if (!board) 
     setEmptyScreenType('board') 
-  }, [board])
+  }, [board, columns])
   return(
     <div 
       data-testid="columns-container" 

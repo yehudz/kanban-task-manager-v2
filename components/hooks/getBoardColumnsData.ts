@@ -6,13 +6,15 @@ export default async function getBoardColumnsData(boardId: string) {
 
   type DataNeeded = {
     id: string,
-    name: string
+    name: string,
+    color: string
   }
 
   const dataNeeded = results.map((result: DataNeeded)=> {
     return {
         id: result.id,
-        name: result.name
+        name: result.name,
+        color: result.color
     }
   })
 
