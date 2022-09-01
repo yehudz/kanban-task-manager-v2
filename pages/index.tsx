@@ -16,7 +16,7 @@ const LeftSidebar = dynamic(() => import('../components/layout/LeftSidebar'))
 import MobileMenu from '../components/ui/MobileMenu'
 import ResuableModal from '../components/reusables/ReusableModal'
 import ModalContent from '../components/ui/ModalContent'
-
+import getBoardData from '../components/hooks/getBoardData'
 // Types imports
 import { AppContextType } from '../typings/context.types'
 
@@ -43,10 +43,7 @@ const Home: NextPage = (props) => {
 
   // Function to get all boards array
   async function getAllBoards() {
-    const res = await fetch('http://localhost:3001/api/v2/boards', {
-      method: "GET"
-    })
-    let result = await res.json()
+    const result = await getBoardData()
     setBoard(result[selectedBoard])
     setBoardId(result[selectedBoard].id)
     setBoardsCount(result.length)
