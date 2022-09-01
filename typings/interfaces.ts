@@ -1,4 +1,4 @@
-import { Board, TaskItem, BoardColumn, Subtask } from "./common.types"
+import { Board, TaskItem, BoardColumn, Subtask, TaskDetails } from "./common.types"
 
 export interface TopBarProps {
   boardName: string
@@ -100,5 +100,5 @@ export interface AddNewButtonProps {
 }
 
 export interface DropdownProps {
-  boardColumnId: string
+  taskDetails: TaskDetails
 }

@@ -13,7 +13,9 @@ const BoardColumn = (
   }: BoardColumnProps)=> {
   const {
       newTaskCreated, 
-      setNewTaskCreated
+      setNewTaskCreated,
+      updatedTask,
+      setUpdatedTask
     } = useContext(appContext)
   const [tasks, setTasks] = useState<TaskItem[]>([])
   async function getAllTasks() {
@@ -24,10 +26,11 @@ const BoardColumn = (
     let result = await res.json()
     setTasks(result)
     setNewTaskCreated(false)
+    setUpdatedTask(false)
   }
   useEffect(()=> {
     getAllTasks()
-  }, [newTaskCreated])
+  }, [newTaskCreated, updatedTask])
   return(
     <div 
       data-testid="board-column-container" 

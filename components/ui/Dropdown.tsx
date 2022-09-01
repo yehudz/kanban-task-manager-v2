@@ -2,17 +2,17 @@ import React, { useContext, useEffect, useState } from 'react'
 import appContext from '../../context/appContext'
 import styles from '../../styles/ui/Dropdown.module.scss'
 import getBoardColumnsData from '../hooks/getBoardColumnsData'
-import type { DropdownOptions } from '../../typings/common.types'
+import type { DropdownOptions, TaskDetails } from '../../typings/common.types'
 import type { DropdownProps } from '../../typings/interfaces'
+import updateStatus from '../hooks/updateStatus'
 const Dropdown = ({
-  boardColumnId
+  taskDetails
 }: DropdownProps)=> {
   const [open, setOpen] = useState<boolean>(false)
   const [status, setStatus] = useState<string>('')
   const [options, setOptions] = useState<DropdownOptions[]>([])
-  const {boardId} = useContext(appContext)
-
-  function handleOpenSelect() {
+  const {boardId, setUpdatedTask} = useContext(appContext)
+  async function handleOpenSelect() {
     setOpen((lastOpen)=> lastOpen = !lastOpen)
   }
 
@@ -23,6 +23,25 @@ const Dropdown = ({
     setStatus(target.innerText)
   }
 
+  async function updateTaskStatus() {
+    let selection = options.filter(option=> {
+      if (status === option.name) return option
+    })
+    if (selection[0]?.id)
+    taskDetails.board_column_id = selection[0]?.id
+
+    let updatedTask = await updateStatus(taskDetails)
+      if (updatedTask) {
+        setUpdatedTask(true)
+      }
+  }
+
+  useEffect(()=> {
+    if (status) {
+      updateTaskStatus()
+    }
+  }, [status])
+  
   // Gets all the simple board column data
   useEffect(()=> {
     (async()=> {
@@ -33,7 +52,7 @@ const Dropdown = ({
   // Sets the current task status e.g "To do"
   useEffect(()=> {
     let currentStatus = options.filter(
-      option=>option.id === boardColumnId
+      option=>option.id === taskDetails.board_column_id
     )
     setStatus(currentStatus[0]?.name)
   }, [options])
