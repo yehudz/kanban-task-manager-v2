@@ -3,7 +3,7 @@ import * as React from 'react';
 import { styled } from '@mui/material/styles';
 import Switch, { SwitchProps } from '@mui/material/Switch';
 import useTheme from '../../components/hooks/useTheme'
-import appContext from '../../context/appContext';
+import {AppContext} from '../../context/AppContext';
 
 const IOSSwitch = styled((props: SwitchProps) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -46,7 +46,7 @@ const IOSSwitch = styled((props: SwitchProps) => (
 }));
 
 const ThemeToggle = ()=> {
-  const {theme} = React.useContext(appContext)
+  const {theme} = React.useContext(AppContext)
   const [colorScheme, setTheme] = useTheme()
   const [checked, setChecked] = React.useState<boolean>()
   React.useEffect(()=> {

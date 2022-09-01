@@ -1,7 +1,6 @@
 export type Board = {
   id: string
   name: string
-  columns?: BoardColumn[]
 }
 
 export type BoardColumn = {

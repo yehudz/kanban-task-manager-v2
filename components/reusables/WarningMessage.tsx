@@ -1,10 +1,10 @@
 import { WarningMessageProps } from "../../typings/interfaces"
 import styles from '../../styles/reusables/WarningMessage.module.scss'
 import React, { useContext } from "react"
-import appContext from "../../context/appContext"
+import {AppContext} from "../../context/AppContext"
 
 const WarningMessage = ({id, title, itemName, type}: WarningMessageProps)=> {
-  const {setModalVisibility, setNewTaskCreated} = useContext(appContext)
+  const {setModalVisibility, setNewTaskCreated} = useContext(AppContext)
 
   function handleClick(e: React.MouseEvent<HTMLButtonElement>) {
     switch(e.currentTarget.innerText) {

@@ -1,10 +1,10 @@
 import styles from '../../styles/reusables/FormContainer.module.scss'
-import appContext from '../../context/appContext'
+import {AppContext} from '../../context/AppContext'
 import { useContext, useEffect, useState } from 'react'
 import randomColor from '../utils/randomColor'
 import Input from '../ui/Input'
 const ColumnForm = ()=> {
-  const {setModalVisibility, boardId, setColumnAdded, board} = useContext(appContext)
+  const {setModalVisibility, boardId, setColumnAdded, board} = useContext(AppContext)
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [value, setValue] = useState<string>('')
 

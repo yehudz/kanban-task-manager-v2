@@ -7,11 +7,11 @@ import BoardForm from '../reusables/BoardForm'
 import WarningMessage from '../reusables/WarningMessage'
 import ColumnForm from '../reusables/ColumnForm'
 
-import appContext from "../../context/appContext"
+import {AppContext} from "../../context/AppContext"
 
 const ModalContent = ()=> {
 
-  const {modalContentType, board, taskDetails, setOpenMobileMenu} = useContext(appContext)
+  const {modalContentType, board, taskDetails, setOpenMobileMenu} = useContext(AppContext)
   switch(modalContentType) {
     case "ADD_NEW_TASK": 
       return <TaskForm 

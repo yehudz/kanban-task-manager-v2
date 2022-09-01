@@ -1,9 +1,9 @@
 import { Subtask } from "../../typings/common.types"
 import styles from '../../styles/reusables/SubtaskItem.module.scss'
-import appContext from "../../context/appContext"
+import {AppContext} from "../../context/AppContext"
 import { useContext, useState } from "react"
 const SubtaskItem = ({id, title, completed}: Subtask)=> {
-  const {setNewTaskCreated} = useContext(appContext)
+  const {setNewTaskCreated} = useContext(AppContext)
   const [isChecked, setIsChecked] = useState<boolean>(completed)
 
   async function handleCompleted(

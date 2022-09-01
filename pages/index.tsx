@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Head from 'next/head'
 
 // Performance imports
@@ -11,35 +11,35 @@ import TopBar from '../components/layout/TopBar'
 const BoardColumnsContainer = dynamic(() => import('../components/layout/BoardColumnsContainer'), {
   suspense: true,
 })
-import appContext from '../context/appContext'
+import {AppContext} from '../context/AppContext'
 const LeftSidebar = dynamic(() => import('../components/layout/LeftSidebar'))
 import MobileMenu from '../components/ui/MobileMenu'
 import ResuableModal from '../components/reusables/ReusableModal'
 import ModalContent from '../components/ui/ModalContent'
 
 // Types imports
-import type { Board, TaskItem } from '../typings/common.types'
+import { AppContextType } from '../typings/context.types'
 
 const Home: NextPage = (props) => {
-  const [isMobile, setIsMobile] = useState<boolean>(false)
-  const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
-  const [board, setBoard] = useState<Board>({id: '', name: '', columns: []})
-  const [boardId, setBoardId] = useState<string>('')
-  const [boardsList, setBoardsList] = useState([])
-  const [modalVisibility, setModalVisibility] = useState<boolean>(false)
-  const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
-  const [theme, setTheme] = useState<string>('')
-  const [boardsCount, setBoardsCount] = useState<number>(0)
-  const [taskDetails, setTaskDetails] = useState<TaskItem>(
-    {id: '', title: '', description: '', order: 0, board_column_id: ''}
-  )
-  const [modalContentType, setModalContentType] = useState<string | null>('')
-  const [newTaskCreated, setNewTaskCreated] = useState<boolean>(false)
-  const [newCreatedBoard, setNewCreatedBoard] = useState<boolean>(false)
-  const [columnAdded, setColumnAdded] = useState<boolean>()
-  const [columnsCount, setColumnsCount] = useState<number>(0)
-  const [selectedBoard, setSelectedBoard] = useState<number>(0)
-  const [updatedTask, setUpdatedTask] = useState<boolean>(false)
+
+  const {
+    board,
+    setBoard,
+    setBoardId,
+    isMobile,
+    setIsMobile,
+    openMobileMenu,
+    setOpenMobileMenu,
+    setBoardsList,
+    sidebarOpen,
+    setTheme,
+    setBoardsCount,
+    newCreatedBoard,
+    setNewCreatedBoard,
+    setColumnAdded,
+    columnsCount,
+    selectedBoard
+  } = useContext(AppContext) as AppContextType
 
   // Function to get all boards array
   async function getAllBoards() {
@@ -88,38 +88,6 @@ const Home: NextPage = (props) => {
       <Head>
         <title>Kanban Task Managment</title>
       </Head>
-      <appContext.Provider 
-        value={
-          {
-            isMobile, 
-            setOpenMobileMenu, 
-            modalVisibility, 
-            setModalVisibility, 
-            taskDetails,
-            setTaskDetails, 
-            modalContentType,
-            setModalContentType, 
-            sidebarOpen, 
-            setSidebarOpen,
-            theme,
-            setTheme,
-            boardsCount,
-            board,
-            boardsList,
-            boardId,
-            newTaskCreated,
-            setNewTaskCreated,
-            newCreatedBoard,
-            setNewCreatedBoard,
-            selectedBoard,
-            setSelectedBoard,
-            columnAdded,
-            setColumnAdded,
-            setColumnsCount,
-            updatedTask,
-            setUpdatedTask
-          }
-        }>
         <div 
           className="
             flex 
@@ -174,7 +142,6 @@ const Home: NextPage = (props) => {
         <ResuableModal>
           <ModalContent />
         </ResuableModal>
-      </appContext.Provider>
       {openMobileMenu && 
         <div 
           className='overlay' 

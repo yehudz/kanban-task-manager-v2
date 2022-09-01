@@ -1,5 +1,5 @@
 import React, {useContext} from 'react';
-import appContext from '../../context/appContext';
+import {AppContext} from '../../context/AppContext';
 import Modal from '@mui/material/Modal';
 
 type Props = {
@@ -7,7 +7,7 @@ type Props = {
 }
 
 const ResuableModal = ({children}: Props)=> {
-  const {modalVisibility, setModalVisibility} = useContext(appContext)
+  const {modalVisibility, setModalVisibility} = useContext(AppContext)
   function closeModal() {
     setModalVisibility(false)
   }

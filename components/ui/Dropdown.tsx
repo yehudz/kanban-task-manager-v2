@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react'
-import appContext from '../../context/appContext'
+import {AppContext} from '../../context/AppContext'
 import styles from '../../styles/ui/Dropdown.module.scss'
 import getBoardColumnsData from '../hooks/getBoardColumnsData'
 import type { DropdownOptions, TaskDetails } from '../../typings/common.types'
@@ -11,7 +11,7 @@ const Dropdown = ({
   const [open, setOpen] = useState<boolean>(false)
   const [status, setStatus] = useState<string>('')
   const [options, setOptions] = useState<DropdownOptions[]>([])
-  const {boardId, setUpdatedTask} = useContext(appContext)
+  const {boardId, setUpdatedTask} = useContext(AppContext)
   async function handleOpenSelect() {
     setOpen((lastOpen)=> lastOpen = !lastOpen)
   }

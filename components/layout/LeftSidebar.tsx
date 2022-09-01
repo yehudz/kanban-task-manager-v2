@@ -2,13 +2,14 @@ import { useContext } from "react"
 import ColumnsListMenu from "../ui/ColumnsListMenu"
 import ThemeToggle from "../ui/ThemeToggle"
 import styles from '../../styles/layout/LeftSidebar.module.scss'
-import appContext from "../../context/appContext"
+import {AppContext} from "../../context/AppContext"
+import { AppContextType } from "../../typings/context.types"
 const LeftSidebar = ()=> {
   const {
     sidebarOpen, 
     setSidebarOpen, 
     theme
-  } = useContext(appContext)
+  } = useContext(AppContext) as AppContextType
   function toggleSidebarVisibility() {
     setSidebarOpen((prevState: boolean)=> prevState = !prevState)
   }

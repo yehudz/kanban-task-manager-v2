@@ -4,7 +4,7 @@ import BoardColumnTaskItem from "./BoardColumnTaskItem"
 import styles from '../../styles/reusables/BoardColumn.module.scss'
 import { useContext, useEffect, useState } from "react"
 import { TaskItem } from '../../typings/common.types'
-import appContext from '../../context/appContext'
+import {AppContext} from '../../context/AppContext'
 const BoardColumn = (
   {
     id, 
@@ -16,7 +16,7 @@ const BoardColumn = (
       setNewTaskCreated,
       updatedTask,
       setUpdatedTask
-    } = useContext(appContext)
+    } = useContext(AppContext)
   const [tasks, setTasks] = useState<TaskItem[]>([])
   async function getAllTasks() {
     let res = await fetch(`http://localhost:3001/api/v2/tasks/${id}`, {
