@@ -3,6 +3,7 @@ import OptionsMenu from "./OptionsMenu"
 import styles from '../../styles/reusables/FormContainer.module.scss'
 import SubtaskItem from "./SubtaskItem"
 import Dropdown from '../ui/Dropdown';
+import { TaskDetails } from "../../typings/common.types";
 
 const TaskDetailsForm = (
   {
@@ -16,6 +17,12 @@ const TaskDetailsForm = (
     
   }
 
+  let taskDetailsToUpdate: TaskDetails = {
+    id,
+    title,
+    description,
+    board_column_id: board_column_id
+  }
   return(
     <div 
       data-testid="task-details-container" 
@@ -101,7 +108,7 @@ const TaskDetailsForm = (
         })}
       </div>
       <Dropdown 
-        boardColumnId={board_column_id }
+        taskDetails={taskDetailsToUpdate}
       />
     </div>
   )

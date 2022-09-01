@@ -53,3 +53,10 @@ export type DropdownOptions = {
   id: string
   name: string
 }
+
+export type TaskDetails = {
+  id: string
+  title: string
+  description?: string | null
+  board_column_id: string
+}
