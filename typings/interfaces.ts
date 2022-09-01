@@ -102,3 +102,7 @@ export interface AddNewButtonProps {
 export interface DropdownProps {
   taskDetails: TaskDetails
 }
+
+export interface AppContextProps {
+  children: JSX.Element
+}

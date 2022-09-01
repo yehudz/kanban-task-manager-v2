@@ -1,8 +1,8 @@
 import styles from '../../styles/ui/AddNewColumnUi.module.scss'
-import appContext from '../../context/appContext'
+import {AppContext} from '../../context/AppContext'
 import { useContext } from 'react'
 const AddNewColumnUi = ()=> {
-  const {setModalVisibility, setModalContentType} = useContext(appContext)
+  const {setModalVisibility, setModalContentType} = useContext(AppContext)
   function handleClick() {
     setModalContentType("ADD_COLUMN")
     setModalVisibility(true)

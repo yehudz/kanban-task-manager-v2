@@ -3,12 +3,12 @@ import React, {useState, useContext} from 'react';
 import OptionsMenuButton from "../ui/OptionsMenuButton"
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import appContext from '../../context/appContext';
+import {AppContext} from '../../context/AppContext';
 // Typings imports
 import { OptionMenuProps } from "../../typings/interfaces";
 
 const  OptionsMenu = ({menuItems, disabled}: OptionMenuProps)=> {
-  const {setModalContentType, setModalVisibility} = useContext(appContext)
+  const {setModalContentType, setModalVisibility} = useContext(AppContext)
 
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);

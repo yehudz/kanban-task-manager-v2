@@ -3,7 +3,7 @@ import { IconButton } from "@mui/material";
 import { useContext, useEffect, useState, useRef } from "react";
 import { TaskFormProps } from "../../typings/interfaces";
 import { BoardColumn, Subtask, TaskParams } from "../../typings/common.types";
-import appContext from "../../context/appContext";
+import {AppContext} from "../../context/AppContext";
 import Input from "../ui/Input";
 import styles from '../../styles/reusables/FormContainer.module.scss';
 import Textarea from "../ui/Textarea";
@@ -20,7 +20,7 @@ const TaskForm = (
     subtasks, 
     buttonText,
   }: TaskFormProps)=> {
-  const {setModalVisibility, boardId, setNewTaskCreated} = useContext(appContext)
+  const {setModalVisibility, boardId, setNewTaskCreated} = useContext(AppContext)
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [taskTitle, setTaskTitle] = useState<string>(title ? title : '')
   const [taskDescription, setTaskDescription] = useState<string>(description ? description : '')

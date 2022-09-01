@@ -18,7 +18,7 @@ import EmptyBoardScreen from '../ui/EmptyBoardScreen'
 //TS Props interface
 import { useContext, useEffect, useState } from 'react'
 import { BoardColumn } from '../../typings/common.types'
-import appContext from '../../context/appContext'
+import {AppContext} from '../../context/AppContext'
 const BoardColumnsContainer = (
   {board}: BoardColumnsProps
   )=> {
@@ -26,7 +26,7 @@ const BoardColumnsContainer = (
     columnAdded, 
     setColumnAdded,
     setColumnsCount
-  } = useContext(appContext)
+  } = useContext(AppContext)
   const [
     emptyScreenType, 
     setEmptyScreenType

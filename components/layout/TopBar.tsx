@@ -3,7 +3,7 @@ import BoardTitle from '../ui/BoardTitle'
 import MobileLogo from '../ui/MobileLogo'
 import AddNewButton from '../ui/AddNewButton'
 import OptionsMenu from '../reusables/OptionsMenu'
-import appContext from '../../context/appContext'
+import {AppContext} from '../../context/AppContext'
 import { useContext } from 'react'
 
 // TS interface
@@ -17,7 +17,7 @@ const TopBar = (
   const {
     isMobile, 
     setOpenMobileMenu
-  } = useContext(appContext)
+  } = useContext(AppContext)
 
   function mobileMenuVisibility() {
     if (!isMobile) return // Cancels opening the mobile menu on desktop

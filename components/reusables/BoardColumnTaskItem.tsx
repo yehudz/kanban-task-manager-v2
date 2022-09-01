@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import type { Subtask, TaskItem } from "../../typings/common.types"
-import appContext from "../../context/appContext"
+import {AppContext} from "../../context/AppContext"
 import styles from '../../styles/reusables/BoardColumnTaskItem.module.scss'
 import getSubtasks from "../hooks/getSubtasks"
 const BoardColumnTaskItem = (
@@ -15,7 +15,7 @@ const BoardColumnTaskItem = (
     setModalVisibility, 
     setTaskDetails, 
     setModalContentType
-  } = useContext(appContext)
+  } = useContext(AppContext)
 
   useEffect(()=> {
     const fetchData = async () => {

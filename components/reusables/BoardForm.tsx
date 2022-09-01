@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useRef, useState } from "react"
 import PrimaryButton from "../ui/PrimaryButton";
-import appContext from '../../context/appContext'
+import {AppContext} from '../../context/AppContext'
 import {BoardFormProps} from '../../typings/interfaces'
 import {Board, BoardColumn} from '../../typings/common.types'
 import styles from '../../styles/reusables/FormContainer.module.scss'
@@ -10,7 +10,7 @@ import Input from "../ui/Input";
 import { IconButton } from "@mui/material";
 
 const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
-  const {setModalVisibility, setNewCreatedBoard, boardId} = useContext(appContext)
+  const {setModalVisibility, setNewCreatedBoard, boardId} = useContext(AppContext)
 
   const [boardNameValue, setBoardNameValue] = useState<string>(boardName? boardName : '')
   const [emptyBoardColumns, setEmptyBoardColumns] = useState<BoardColumn[]>([{id: '', name: '', color: '', placeholder: 'e.g. To do', order: 1, tasks: []}])

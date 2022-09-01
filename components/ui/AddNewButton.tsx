@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import appContext from "../../context/appContext"
+import {AppContext} from "../../context/AppContext"
 import styles from '../../styles/ui/AddNewButton.module.scss'
 import { AddNewButtonProps } from "../../typings/interfaces"
 const AddNewButton = (
@@ -8,7 +8,7 @@ const AddNewButton = (
     contentType, 
     disabled
   }: AddNewButtonProps)=> {
-  const {setModalContentType} = useContext(appContext)
+  const {setModalContentType} = useContext(AppContext)
 
   function handleClick() {
     setModalVisibility(true)
@@ -25,7 +25,7 @@ const AddNewButton = (
     }
   }
 
-  const {setModalVisibility} = useContext(appContext)
+  const {setModalVisibility} = useContext(AppContext)
   return(
     <button 
       type="button" 

@@ -1,11 +1,11 @@
 import SidebarMenuListItem from "../reusables/SidebarMenuListItem"
 import styles from '../../styles/ui/ColumnsListMenu.module.scss'
-import appContext from '../../context/appContext'
+import {AppContext} from '../../context/AppContext'
 import { useContext } from "react"
 import { BoardListItem } from "../../typings/common.types"
 
 const ColumnsListMenu = ()=> {
-  const {setModalVisibility, setModalContentType, boardsCount, boardsList, selectedBoard} = useContext(appContext)
+  const {setModalVisibility, setModalContentType, boardsCount, boardsList, selectedBoard} = useContext(AppContext)
 
   let boards: BoardListItem[] = boardsList.map((board: BoardListItem, i: number)=> {
     return {

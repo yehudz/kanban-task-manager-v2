@@ -1,10 +1,10 @@
 import styles from '../../styles/ui/ColumnsListMenu.module.scss'
 import { SidebarMenuListItemProps } from '../../typings/interfaces'
-import appContext from '../../context/appContext'
+import {AppContext} from '../../context/AppContext'
 import { useContext } from 'react'
 
 const SidebarMenuListItem = ({name, active, index}: SidebarMenuListItemProps)=> {
-  const {setSelectedBoard} = useContext(appContext)
+  const {setSelectedBoard} = useContext(AppContext)
   return(
     <div 
       data-testid="board-list-item" 
