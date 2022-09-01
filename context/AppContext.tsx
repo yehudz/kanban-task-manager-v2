@@ -11,9 +11,6 @@ React.FC<AppContextProps> = (
   })=> {
   const [isMobile, setIsMobile] = useState<boolean>(false)
   const [openMobileMenu, setOpenMobileMenu] = useState<boolean>(false)
-  const [board, setBoard] = useState<Board>({id: '', name: '', active: false})
-  const [boardId, setBoardId] = useState<string>('')
-  const [boardsList, setBoardsList] = useState<Board[]>([])
   const [modalVisibility, setModalVisibility] = useState<boolean>(false)
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(true)
   const [theme, setTheme] = useState<string>('')
@@ -26,7 +23,6 @@ React.FC<AppContextProps> = (
   const [newCreatedBoard, setNewCreatedBoard] = useState<boolean>(false)
   const [columnAdded, setColumnAdded] = useState<boolean>(false)
   const [columnsCount, setColumnsCount] = useState<number>(0)
-  const [selectedBoard, setSelectedBoard] = useState<number>(0)
   const [updatedTask, setUpdatedTask] = useState<boolean>(false)
 
   let values = {
@@ -34,12 +30,6 @@ React.FC<AppContextProps> = (
     setIsMobile,
     openMobileMenu,
     setOpenMobileMenu,
-    board,
-    setBoard,
-    boardId,
-    boardsList,
-    setBoardsList,
-    setBoardId,
     modalVisibility,
     setModalVisibility,
     sidebarOpen,
@@ -60,8 +50,6 @@ React.FC<AppContextProps> = (
     setColumnAdded,
     columnsCount,
     setColumnsCount,
-    selectedBoard,
-    setSelectedBoard,
     updatedTask,
     setUpdatedTask
   }
