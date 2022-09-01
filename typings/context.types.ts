@@ -14,7 +14,7 @@ export type AppContextType = {
   modalVisibility: boolean
   setModalVisibility: (modalVisibility: boolean)=> void
   sidebarOpen: boolean
-  setSidebarOpen: (sidebarOpen: boolean)=> void
+  setSidebarOpen: (sidebarOpen: (prevState: boolean) => boolean)=> void
   theme: string
   setTheme: (theme: string)=> void
   boardsCount: number
