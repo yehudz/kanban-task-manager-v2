@@ -4,7 +4,7 @@ export type AppContextType = {
   isMobile: boolean,
   setIsMobile: (isMobile: boolean)=> void
   openMobileMenu: boolean
-  setOpenMobileMenu: (openMobileMenu: boolean)=> void
+  setOpenMobileMenu: (openMobileMenu: (prevState: boolean) => boolean)=> void
   modalVisibility: boolean
   setModalVisibility: (modalVisibility: boolean)=> void
   sidebarOpen: boolean

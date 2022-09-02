@@ -61,6 +61,7 @@ const Home: NextPage = (props) => {
       <Head>
         <title>Kanban Task Managment</title>
       </Head>
+      <BoardsContextProvider>
         <div 
           className="
             flex 
@@ -106,12 +107,11 @@ const Home: NextPage = (props) => {
                 >
                   Loading...
                 </h1>}>
-              <BoardsContextProvider>
                 <BoardColumnsContainer />
-              </BoardsContextProvider>
             </Suspense>
           </div>
         </div>
+      </BoardsContextProvider>
         <ResuableModal>
           <ModalContent />
         </ResuableModal>
