@@ -14,7 +14,7 @@ const BoardColumn = dynamic(
 import EmptyBoardScreen from '../ui/EmptyBoardScreen'
 
 //TS Props interface
-import { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState, memo } from 'react'
 import { BoardColumn } from '../../typings/common.types'
 import getBoardColumnsData from '../hooks/getBoardColumnsData'
 import { BoardsContext } from '../../context/BoardsContext'
@@ -27,7 +27,6 @@ const BoardColumnsContainer = ()=> {
   ] = useState<string>('')
 
   const {board} = useContext(BoardsContext) as BoardContextValues
-
   const [
     columns, 
     setColumns
@@ -80,4 +79,4 @@ const BoardColumnsContainer = ()=> {
   )
 }
 
-export default BoardColumnsContainer
+export default memo(BoardColumnsContainer)
