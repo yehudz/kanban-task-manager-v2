@@ -1,8 +1,8 @@
 import { createContext, useState } from "react";
 import { BoardColumn } from "../typings/common.types";
 import type { ColumnContextValues } from "../typings/context.types";
-const ColumnsContext = createContext<ColumnContextValues | null>(null)
 
+export const ColumnsContext = createContext<ColumnContextValues | null>(null)
 interface ColumnsContextProps {
   children: JSX.Element[]
 }

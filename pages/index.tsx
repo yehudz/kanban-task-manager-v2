@@ -19,6 +19,7 @@ import ModalContent from '../components/ui/ModalContent'
 // Types imports
 import { AppContextType } from '../typings/context.types'
 import BoardsContextProvider from '../context/BoardsContext'
+import ColumnsContextProvider from '../context/ColumnsContext'
 
 const Home: NextPage = (props) => {
 
@@ -29,19 +30,7 @@ const Home: NextPage = (props) => {
     setOpenMobileMenu,
     sidebarOpen,
     setTheme,
-    newCreatedBoard,
-    columnsCount,
   } = useContext(AppContext) as AppContextType
-
-  // Sets theme
-  useEffect(()=> {
-    if (!localStorage.getItem('kanbanTheme')) {
-      setTheme('dark')
-    }
-    if (localStorage.kanbanTheme) {
-      setTheme(localStorage.kanbanTheme)
-    }
-  }, [newCreatedBoard])
 
   // Sets is mobile
   useEffect(()=> {
@@ -95,25 +84,27 @@ const Home: NextPage = (props) => {
               '
             >
             <TopBar 
-              boardColumnsCount={columnsCount}
+              // boardColumnsCount={}
             />
-            <Suspense 
-              fallback={
-                <h1 
-                  className='
-                    text-grey 
-                    dark:text-white
-                  '
-                >
-                  Loading...
-                </h1>}>
-                <BoardColumnsContainer />
-            </Suspense>
+            <ColumnsContextProvider>
+              <Suspense 
+                fallback={
+                  <h1 
+                    className='
+                      text-grey 
+                      dark:text-white
+                    '
+                  >
+                    Loading...
+                  </h1>}>
+                  <BoardColumnsContainer />
+              </Suspense>
+              <ResuableModal>
+                <ModalContent />
+              </ResuableModal>
+            </ColumnsContextProvider>
           </div>
         </div>
-        <ResuableModal>
-          <ModalContent />
-        </ResuableModal>
       </BoardsContextProvider>
 
       {openMobileMenu && 
