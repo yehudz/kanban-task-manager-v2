@@ -5,10 +5,11 @@
       "columns": [
         {
           "name": "Todo",
+          "color": "#49C4E5",
           "tasks": [
             {
               "title": "Build UI for onboarding flow",
-              "description": "",
+              "description": "This should be done as soon as possible since this is absolutely necesary for future projects",
               "status": "Todo",
               "subtasks": [
                 {
@@ -70,6 +71,7 @@
         },
         {
           "name": "Doing",
+          "color": "#8471F2",
           "tasks": [
             {
               "title": "Design settings and search pages",
@@ -181,6 +183,7 @@
         },
         {
           "name": "Done",
+          "color": "#67E2AE",
           "tasks": [
             {
               "title": "Conduct 5 wireframe tests",

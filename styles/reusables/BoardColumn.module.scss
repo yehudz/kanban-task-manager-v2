@@ -1,0 +1,15 @@
+.container {
+  min-width: 280px;
+  max-width: 280px;
+
+  .badge {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+  }
+
+  .title {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+}

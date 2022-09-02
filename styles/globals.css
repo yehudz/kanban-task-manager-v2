@@ -1,9 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
   padding: 0;
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  overflow: hidden;
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+h2 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.body-m {
+  font-size: 12px;
+}
+
+.body-lg {
+  font-size: 13px;
+  line-height: 23px;
+}
+
+h3 {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 18px;
+  }
 }
 
 a {
@@ -15,12 +50,65 @@ a {
   box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+.hidden {
+  display: none;
+}
+
+.leftContainer {
+  transform: translateX(-300px);
+  width: 0;
+  transition: all 200ms ease;
+  z-index: 1000;
+}
+
+.leftContainer.sidebarOpen {
+  transform: translateX(0);
+  width: 300px;
+}
+
+.rightContainer {
+  display: grid;
+  grid-template-rows: 96px 100%;
+}
+
+.overlay {
+  position: fixed;
+  top: 64px;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(0,0,0, .4);
+}
+
+.form-check-input:checked[type=checkbox] {
+  background-image: url('/images/icon-check.svg');
+}
+
+:disabled {
+  opacity: .3;
+  cursor: default;
+}
+
+@media screen and (max-width: 1024px) {
+  .leftContainer {
+    transform: translateX(-261px);
   }
-  body {
-    color: white;
-    background: black;
+  .leftContainer.sidebarOpen {
+    width: 261px;
   }
+}
+
+@media screen and (max-width: 768px) {
+  .leftContainer {
+    width: 0px;
+  }
+
+  .leftContainer.sidebarOpen {
+    width: 0;
+  }
+
+  .rightContainer {
+    display: grid;
+    grid-template-rows: 64px 100%;
+  }
+
 }

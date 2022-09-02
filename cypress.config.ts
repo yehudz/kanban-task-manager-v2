@@ -5,5 +5,15 @@ export default defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    baseUrl: "http://localhost:3000",
+    "video": false,
+    "screenshotsFolder": false
+  },
+
+  component: {
+    devServer: {
+      framework: "next",
+      bundler: "webpack",
+    },
   },
 });
