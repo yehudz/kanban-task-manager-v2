@@ -3,8 +3,18 @@ import {AppContext} from '../../context/AppContext'
 import { useContext, useEffect, useState } from 'react'
 import randomColor from '../../utils/randomColor'
 import Input from '../ui/Input'
+import { AppContextType, BoardContextValues } from '../../typings/context.types'
+import { BoardsContext } from '../../context/BoardsContext'
 const ColumnForm = ()=> {
-  const {setModalVisibility, boardId, setColumnAdded, board} = useContext(AppContext)
+  const {
+    setModalVisibility, 
+  } = useContext(AppContext) as AppContextType
+
+  const {
+    boardId, 
+    setColumnAdded, 
+    board
+  } = useContext(BoardsContext) as BoardContextValues
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [value, setValue] = useState<string>('')
 
