@@ -45,6 +45,7 @@ React.FC<BoardsContextProps> = (
 
   // Everytime the selected board changes 
   useEffect(()=> {
+    if (newCreatedBoard) setSelectedBoard(boardsList.length)
     getAllBoards()
   }, [selectedBoard, newCreatedBoard])
 
