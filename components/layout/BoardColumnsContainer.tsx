@@ -66,15 +66,16 @@ const BoardColumnsContainer = ()=> {
         <ul 
           data-testid="board-columns"
           id="board-columns"
+          className='flex'
         >
           {columns?.map((column)=> {
             return(
               <li 
+                key={column.id} 
                 data-testid="board-column-container"
                 id="board-column"
               >
                 <BoardColumn 
-                  key={column.id} 
                   id={column.id || ''} 
                   name={column.name} 
                   color={column.color}
