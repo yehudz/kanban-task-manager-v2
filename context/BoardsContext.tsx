@@ -30,7 +30,7 @@ React.FC<BoardsContextProps> = (
     selectedBoard,
     setSelectedBoard,
     newCreatedBoard,
-    setNewCreatedBoard
+    setNewCreatedBoard,
   }
 
    // Function to get all boards array

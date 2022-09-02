@@ -7,13 +7,9 @@ import {AppContext} from '../../context/AppContext'
 import { useContext } from 'react'
 
 // TS interface
-import {TopBarProps} from '../../typings/interfaces'
 import { AppContextType } from '../../typings/context.types'
 
-const TopBar = (
-  {
-    boardColumnsCount
-  }: TopBarProps)=> {
+const TopBar = ()=> {
   const {
     isMobile, 
     setOpenMobileMenu
@@ -58,19 +54,19 @@ const TopBar = (
         <AddNewButton 
           buttonText='Add New Task' 
           contentType='add-new-task' 
-          disabled={boardColumnsCount === 0 ? 
-            true : 
-            false
-          }
+          // disabled={boardColumnsCount === 0 ? 
+          //   true : 
+          //   false
+          // }
         />
         <div className='mr-4'>
           <OptionsMenu 
             menuItems={['Edit Board', 'Delete Board']} 
-            disabled={
-              boardColumnsCount === 0 ? 
-              true : 
-              false
-            }
+            // disabled={
+            //   boardColumnsCount === 0 ? 
+            //   true : 
+            //   false
+            // }
           />
         </div>
       </div>

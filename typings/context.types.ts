@@ -1,4 +1,4 @@
-import { Board, TaskDetails, TaskItem } from "./common.types";
+import { Board, BoardColumn, TaskDetails, TaskItem } from "./common.types";
 
 export type AppContextType = {
   isMobile: boolean,
@@ -19,10 +19,6 @@ export type AppContextType = {
   setModalContentType: (modalContentType: string | null)=> void
   newTaskCreated: boolean
   setNewTaskCreated: (newTaskCreated: boolean)=> void
-  columnAdded: boolean
-  setColumnAdded: (columnAdded: boolean)=> void
-  columnsCount: number
-  setColumnsCount: (columnsCount: number)=> void
   updatedTask: boolean
   setUpdatedTask: (updatedTask: boolean)=> void
 }
@@ -38,4 +34,9 @@ export type BoardContextValues = {
   setSelectedBoard: (selectedBoard: number)=> void
   newCreatedBoard: boolean
   setNewCreatedBoard: (newCreatedBoard: boolean)=> void
+}
+
+export type ColumnContextValues = {
+  columns: BoardColumn[]
+  setColumns: (columns: BoardColumn[])=> void
 }

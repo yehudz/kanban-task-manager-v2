@@ -15,10 +15,11 @@ import EmptyBoardScreen from '../ui/EmptyBoardScreen'
 
 //TS Props interface
 import React, { useContext, useEffect, useState, memo } from 'react'
-import { BoardColumn } from '../../typings/common.types'
+import type { BoardColumn } from '../../typings/common.types'
 import getBoardColumnsData from '../hooks/getBoardColumnsData'
 import { BoardsContext } from '../../context/BoardsContext'
-import { BoardContextValues } from '../../typings/context.types'
+import { BoardContextValues, ColumnContextValues } from '../../typings/context.types'
+import { ColumnsContext } from '../../context/ColumnsContext'
 
 const BoardColumnsContainer = ()=> {
   const [
@@ -27,10 +28,11 @@ const BoardColumnsContainer = ()=> {
   ] = useState<string>('')
 
   const {board} = useContext(BoardsContext) as BoardContextValues
-  const [
+  const {
     columns, 
     setColumns
-  ] = useState<BoardColumn[]>([])
+   } = useContext(ColumnsContext) as ColumnContextValues
+  
   async function getAllColumns() {
     let results = await getBoardColumnsData(board.id)
     setColumns(results)
@@ -61,16 +63,27 @@ const BoardColumnsContainer = ()=> {
         <EmptyBoardScreen 
           type={emptyScreenType}
         />}
-      {columns?.map((column)=> {
-        return(
-          <BoardColumn 
-            key={column.id} 
-            id={column.id || ''} 
-            name={column.name} 
-            color={column.color}
-          />
-        )
-      })}
+        <ul 
+          data-testid="board-columns"
+          id="board-columns"
+          className='flex'
+        >
+          {columns?.map((column)=> {
+            return(
+              <li 
+                key={column.id} 
+                data-testid="board-column-container"
+                id="board-column"
+              >
+                <BoardColumn 
+                  id={column.id || ''} 
+                  name={column.name} 
+                  color={column.color}
+                />
+              </li>
+            )
+          })}
+        </ul>
       {(columns?.length !== 0) ? 
         <AddNewColumnUi /> : 
         null

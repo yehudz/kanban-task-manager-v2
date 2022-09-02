@@ -3,27 +3,39 @@ import {AppContext} from '../../context/AppContext'
 import { useContext, useEffect, useState } from 'react'
 import randomColor from '../../utils/randomColor'
 import Input from '../ui/Input'
-const ColumnForm = ()=> {
-  const {setModalVisibility, boardId, setColumnAdded, board} = useContext(AppContext)
+import { AppContextType, BoardContextValues, ColumnContextValues } from '../../typings/context.types'
+import { BoardsContext } from '../../context/BoardsContext'
+import { ColumnsContext } from '../../context/ColumnsContext';
+import createBoardColumn from '../api/createBoardColumn'
+const CreateColumnForm = ()=> {
+  const {
+    setModalVisibility, 
+  } = useContext(AppContext) as AppContextType
+
+  const {
+    boardId, 
+  } = useContext(BoardsContext) as BoardContextValues
+
+  const {
+    columns,
+    setColumns
+  } = useContext(ColumnsContext) as ColumnContextValues
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [value, setValue] = useState<string>('')
 
   async function saveColumnToDB() {
     let params = {
+      id: '',
       boardId: boardId,
-      columnName: value,
-      columnColor: randomColor(),
-      order: board.columns.length + 1
+      name: value,
+      color: randomColor(),
+      order: columns.length + 1
     }
-    const res = await fetch(`/api/createBoardColumn`, {
-      method: "POST",
-      body: JSON.stringify(params)
-    })
-    if (res.status === 200) {
-      setColumnAdded(true)
+
+    const res = await createBoardColumn(params)
+    if (res) {
+      setColumns([...columns, params])
       setModalVisibility(false)
-    } else {
-      alert('Something when wrong')
     }
   }
 
@@ -58,4 +70,4 @@ const ColumnForm = ()=> {
   )
 }
 
-export default ColumnForm
+export default CreateColumnForm

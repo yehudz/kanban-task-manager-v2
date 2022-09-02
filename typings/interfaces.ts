@@ -1,9 +1,5 @@
 import { Board, TaskItem, BoardColumn, Subtask, TaskDetails } from "./common.types"
 
-export interface TopBarProps {
-  boardColumnsCount: number
-}
-
 export interface BoardColumnsProps {
   board: Board
 }
