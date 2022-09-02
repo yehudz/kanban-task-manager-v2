@@ -61,16 +61,26 @@ const BoardColumnsContainer = ()=> {
         <EmptyBoardScreen 
           type={emptyScreenType}
         />}
-      {columns?.map((column)=> {
-        return(
-          <BoardColumn 
-            key={column.id} 
-            id={column.id || ''} 
-            name={column.name} 
-            color={column.color}
-          />
-        )
-      })}
+        <ul 
+          data-testid="board-columns"
+          id="board-columns"
+        >
+          {columns?.map((column)=> {
+            return(
+              <li 
+                data-testid="board-column-container"
+                id="board-column"
+              >
+                <BoardColumn 
+                  key={column.id} 
+                  id={column.id || ''} 
+                  name={column.name} 
+                  color={column.color}
+                />
+              </li>
+            )
+          })}
+        </ul>
       {(columns?.length !== 0) ? 
         <AddNewColumnUi /> : 
         null
