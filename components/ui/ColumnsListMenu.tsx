@@ -1,7 +1,7 @@
 import SidebarMenuListItem from "../reusables/SidebarMenuListItem"
 import styles from '../../styles/ui/ColumnsListMenu.module.scss'
 import {AppContext} from '../../context/AppContext'
-import { useContext } from "react"
+import { useContext, memo } from "react"
 import { BoardListItem } from "../../typings/common.types"
 import { AppContextType, BoardContextValues } from "../../typings/context.types"
 import { BoardsContext } from "../../context/BoardsContext"
@@ -92,4 +92,4 @@ const ColumnsListMenu = ()=> {
   )
 }
 
-export default ColumnsListMenu
+export default memo(ColumnsListMenu)
