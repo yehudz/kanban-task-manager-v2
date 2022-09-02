@@ -25,6 +25,7 @@ const CreateColumnForm = ()=> {
 
   async function saveColumnToDB() {
     let params = {
+      id: '',
       boardId: boardId,
       name: value,
       color: randomColor(),
