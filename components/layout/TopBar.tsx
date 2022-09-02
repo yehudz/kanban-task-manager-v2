@@ -9,7 +9,6 @@ import { useContext } from 'react'
 // TS interface
 import {TopBarProps} from '../../typings/interfaces'
 import { AppContextType } from '../../typings/context.types'
-import BoardsContextProvider from '../../context/BoardsContext'
 
 const TopBar = (
   {
@@ -43,12 +42,10 @@ const TopBar = (
       `}
     >
       {isMobile && <MobileLogo />}
-      <BoardsContextProvider>
         <BoardTitle 
           isMobile={isMobile} 
           handleClick={mobileMenuVisibility}
         />
-      </BoardsContextProvider>
       <div 
         className='
           absolute 
