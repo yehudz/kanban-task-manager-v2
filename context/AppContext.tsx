@@ -20,8 +20,6 @@ React.FC<AppContextProps> = (
   })
   const [modalContentType, setModalContentType] = useState<string | null>('')
   const [newTaskCreated, setNewTaskCreated] = useState<boolean>(false)
-  const [columnAdded, setColumnAdded] = useState<boolean>(false)
-  const [columnsCount, setColumnsCount] = useState<number>(0)
   const [updatedTask, setUpdatedTask] = useState<boolean>(false)
 
   let values = {
@@ -43,10 +41,6 @@ React.FC<AppContextProps> = (
     setModalContentType,
     newTaskCreated,
     setNewTaskCreated,
-    columnAdded,
-    setColumnAdded,
-    columnsCount,
-    setColumnsCount,
     updatedTask,
     setUpdatedTask
   }
