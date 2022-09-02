@@ -5,7 +5,8 @@ import randomColor from '../../utils/randomColor'
 import Input from '../ui/Input'
 import { AppContextType, BoardContextValues } from '../../typings/context.types'
 import { BoardsContext } from '../../context/BoardsContext'
-const ColumnForm = ()=> {
+import { ColumnsContext } from '../../context/ColumnsContext';
+const CreateColumnForm = ()=> {
   const {
     setModalVisibility, 
   } = useContext(AppContext) as AppContextType
@@ -15,6 +16,11 @@ const ColumnForm = ()=> {
     setColumnAdded, 
     board
   } = useContext(BoardsContext) as BoardContextValues
+
+  const {
+    columns,
+    setColumns
+  } = useContext(ColumnsContext)
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [value, setValue] = useState<string>('')
 
@@ -68,4 +74,4 @@ const ColumnForm = ()=> {
   )
 }
 
-export default ColumnForm
+export default CreateColumnForm

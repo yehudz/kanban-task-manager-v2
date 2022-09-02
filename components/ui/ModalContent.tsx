@@ -5,7 +5,7 @@ import TaskDetailsForm from '../reusables/TaskDetailsForm'
 import TaskForm from '../reusables/TaskForm'
 import BoardForm from '../reusables/BoardForm'
 import WarningMessage from '../reusables/WarningMessage'
-import ColumnForm from '../reusables/ColumnForm'
+import CreateColumnForm from '../reusables/CreateColumnForm'
 
 import {AppContext} from "../../context/AppContext"
 
@@ -75,7 +75,7 @@ const ModalContent = ()=> {
               type="board"
             />
     case "ADD_COLUMN":
-      return <ColumnForm />
+      return <CreateColumnForm />
     default:
       return null
   }
