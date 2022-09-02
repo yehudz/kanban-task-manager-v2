@@ -111,10 +111,11 @@ const Home: NextPage = (props) => {
             </Suspense>
           </div>
         </div>
-      </BoardsContextProvider>
         <ResuableModal>
           <ModalContent />
         </ResuableModal>
+      </BoardsContextProvider>
+
       {openMobileMenu && 
         <div 
           className='overlay' 
