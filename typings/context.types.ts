@@ -4,13 +4,7 @@ export type AppContextType = {
   isMobile: boolean,
   setIsMobile: (isMobile: boolean)=> void
   openMobileMenu: boolean
-  setOpenMobileMenu: (openMobileMenu: boolean)=> void
-  board: Board
-  setBoard: (board: Board)=> void
-  boardId: string
-  setBoardId: (boardId: string)=> void
-  boardsList: Board[]
-  setBoardsList: (boardList: Board[])=> void
+  setOpenMobileMenu: (openMobileMenu: (prevState: boolean) => boolean)=> void
   modalVisibility: boolean
   setModalVisibility: (modalVisibility: boolean)=> void
   sidebarOpen: boolean
@@ -25,14 +19,23 @@ export type AppContextType = {
   setModalContentType: (modalContentType: string | null)=> void
   newTaskCreated: boolean
   setNewTaskCreated: (newTaskCreated: boolean)=> void
-  newCreatedBoard: boolean
-  setNewCreatedBoard: (newCreatedBoard: boolean)=> void
   columnAdded: boolean
   setColumnAdded: (columnAdded: boolean)=> void
   columnsCount: number
   setColumnsCount: (columnsCount: number)=> void
-  selectedBoard: number
-  setSelectedBoard: (selectedBoard: number)=> void
   updatedTask: boolean
   setUpdatedTask: (updatedTask: boolean)=> void
-};
+}
+
+export type BoardContextValues = {
+  board: Board
+  setBoard: (board: Board)=> void
+  boardId: string
+  setBoardId: (boardId: string)=> void
+  boardsList: Board[]
+  setBoardsList: (boardList: Board[])=> void
+  selectedBoard: number
+  setSelectedBoard: (selectedBoard: number)=> void
+  newCreatedBoard: boolean
+  setNewCreatedBoard: (newCreatedBoard: boolean)=> void
+}

@@ -4,6 +4,7 @@ import ThemeToggle from "../ui/ThemeToggle"
 import styles from '../../styles/layout/LeftSidebar.module.scss'
 import {AppContext} from "../../context/AppContext"
 import { AppContextType } from "../../typings/context.types"
+import BoardsContextProvider from "../../context/BoardsContext"
 const LeftSidebar = ()=> {
   const {
     sidebarOpen, 
@@ -45,7 +46,7 @@ const LeftSidebar = ()=> {
           className={`${styles.image}`}
         />
       </div>
-      <ColumnsListMenu />
+        <ColumnsListMenu />
       <div 
         className={`
           absolute bottom-4 

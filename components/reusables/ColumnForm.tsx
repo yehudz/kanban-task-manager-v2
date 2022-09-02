@@ -1,7 +1,7 @@
 import styles from '../../styles/reusables/FormContainer.module.scss'
 import {AppContext} from '../../context/AppContext'
 import { useContext, useEffect, useState } from 'react'
-import randomColor from '../utils/randomColor'
+import randomColor from '../../utils/randomColor'
 import Input from '../ui/Input'
 const ColumnForm = ()=> {
   const {setModalVisibility, boardId, setColumnAdded, board} = useContext(AppContext)

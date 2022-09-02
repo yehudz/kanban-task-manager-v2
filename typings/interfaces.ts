@@ -1,7 +1,6 @@
 import { Board, TaskItem, BoardColumn, Subtask, TaskDetails } from "./common.types"
 
 export interface TopBarProps {
-  boardName: string
   boardColumnsCount: number
 }
 
@@ -16,7 +15,6 @@ export interface BoardColumnProps {
 }
 
 export interface BoardTitleProps {
-  title: string
   isMobile: boolean
   handleClick:
   | ((event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void)

@@ -16,49 +16,22 @@ const LeftSidebar = dynamic(() => import('../components/layout/LeftSidebar'))
 import MobileMenu from '../components/ui/MobileMenu'
 import ResuableModal from '../components/reusables/ReusableModal'
 import ModalContent from '../components/ui/ModalContent'
-
 // Types imports
 import { AppContextType } from '../typings/context.types'
+import BoardsContextProvider from '../context/BoardsContext'
 
 const Home: NextPage = (props) => {
 
   const {
-    board,
-    setBoard,
-    setBoardId,
     isMobile,
     setIsMobile,
     openMobileMenu,
     setOpenMobileMenu,
-    setBoardsList,
     sidebarOpen,
     setTheme,
-    setBoardsCount,
     newCreatedBoard,
-    setNewCreatedBoard,
-    setColumnAdded,
     columnsCount,
-    selectedBoard
   } = useContext(AppContext) as AppContextType
-
-  // Function to get all boards array
-  async function getAllBoards() {
-    const res = await fetch('http://localhost:3001/api/v2/boards', {
-      method: "GET"
-    })
-    let result = await res.json()
-    setBoard(result[selectedBoard])
-    setBoardId(result[selectedBoard].id)
-    setBoardsCount(result.length)
-    setBoardsList(result)
-    setNewCreatedBoard(false)
-    setColumnAdded(false)
-  }
-
-  // Everytime the selected board changes 
-  useEffect(()=> {
-    getAllBoards()
-  }, [newCreatedBoard, selectedBoard])
 
   // Sets theme
   useEffect(()=> {
@@ -72,7 +45,7 @@ const Home: NextPage = (props) => {
 
   // Sets is mobile
   useEffect(()=> {
-    setBoardId(board.id)
+    // setBoardId(board.id)
     if (window.innerWidth < 768) setIsMobile(true)
     else setIsMobile(false)
     window.addEventListener('resize', ()=> {
@@ -88,6 +61,7 @@ const Home: NextPage = (props) => {
       <Head>
         <title>Kanban Task Managment</title>
       </Head>
+      <BoardsContextProvider>
         <div 
           className="
             flex 
@@ -110,6 +84,7 @@ const Home: NextPage = (props) => {
           >
             {!isMobile && <LeftSidebar />}
           </div>
+         
           {isMobile && 
             <MobileMenu show={openMobileMenu}/>}
             <div 
@@ -120,7 +95,6 @@ const Home: NextPage = (props) => {
               '
             >
             <TopBar 
-              boardName={board.name} 
               boardColumnsCount={columnsCount}
             />
             <Suspense 
@@ -133,15 +107,15 @@ const Home: NextPage = (props) => {
                 >
                   Loading...
                 </h1>}>
-              <BoardColumnsContainer 
-                board={board}
-              />
+                <BoardColumnsContainer />
             </Suspense>
           </div>
         </div>
         <ResuableModal>
           <ModalContent />
         </ResuableModal>
+      </BoardsContextProvider>
+
       {openMobileMenu && 
         <div 
           className='overlay' 
