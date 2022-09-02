@@ -46,9 +46,7 @@ const LeftSidebar = ()=> {
           className={`${styles.image}`}
         />
       </div>
-      <BoardsContextProvider>
         <ColumnsListMenu />
-      </BoardsContextProvider>
       <div 
         className={`
           absolute bottom-4 
