@@ -6,6 +6,7 @@ import Input from '../ui/Input'
 import { AppContextType, BoardContextValues, ColumnContextValues } from '../../typings/context.types'
 import { BoardsContext } from '../../context/BoardsContext'
 import { ColumnsContext } from '../../context/ColumnsContext';
+import createBoardColumn from '../api/createBoardColumn'
 const CreateColumnForm = ()=> {
   const {
     setModalVisibility, 
@@ -25,18 +26,15 @@ const CreateColumnForm = ()=> {
   async function saveColumnToDB() {
     let params = {
       boardId: boardId,
-      columnName: value,
-      columnColor: randomColor(),
+      name: value,
+      color: randomColor(),
       order: columns.length + 1
     }
-    const res = await fetch(`/api/createBoardColumn`, {
-      method: "POST",
-      body: JSON.stringify(params)
-    })
-    if (res.status === 200) {
+
+    const res = await createBoardColumn(params)
+    if (res) {
+      setColumns([...columns, params])
       setModalVisibility(false)
-    } else {
-      alert('Something when wrong')
     }
   }
 

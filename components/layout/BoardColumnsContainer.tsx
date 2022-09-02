@@ -15,10 +15,11 @@ import EmptyBoardScreen from '../ui/EmptyBoardScreen'
 
 //TS Props interface
 import React, { useContext, useEffect, useState, memo } from 'react'
-import { BoardColumn } from '../../typings/common.types'
+import type { BoardColumn } from '../../typings/common.types'
 import getBoardColumnsData from '../hooks/getBoardColumnsData'
 import { BoardsContext } from '../../context/BoardsContext'
-import { BoardContextValues } from '../../typings/context.types'
+import { BoardContextValues, ColumnContextValues } from '../../typings/context.types'
+import { ColumnsContext } from '../../context/ColumnsContext'
 
 const BoardColumnsContainer = ()=> {
   const [
@@ -27,10 +28,11 @@ const BoardColumnsContainer = ()=> {
   ] = useState<string>('')
 
   const {board} = useContext(BoardsContext) as BoardContextValues
-  const [
+  const {
     columns, 
     setColumns
-  ] = useState<BoardColumn[]>([])
+   } = useContext(ColumnsContext) as ColumnContextValues
+  
   async function getAllColumns() {
     let results = await getBoardColumnsData(board.id)
     setColumns(results)
