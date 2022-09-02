@@ -6,7 +6,7 @@ import type { BoardContextValues } from "../typings/context.types";
 export const BoardsContext = createContext<BoardContextValues | null>(null)
 
 interface BoardsContextProps {
-  children: JSX.Element
+  children: JSX.Element[]
 }
 
 const BoardsContextProvider: 
@@ -18,6 +18,7 @@ React.FC<BoardsContextProps> = (
   const [boardId, setBoardId] = useState<string>('')
   const [boardsList, setBoardsList] = useState<Board[]>([])
   const [selectedBoard, setSelectedBoard] = useState<number>(0)
+  const [newCreatedBoard, setNewCreatedBoard] = useState<boolean>(false)
 
   let values = {
     board,
@@ -27,7 +28,9 @@ React.FC<BoardsContextProps> = (
     boardsList,
     setBoardsList,
     selectedBoard,
-    setSelectedBoard
+    setSelectedBoard,
+    newCreatedBoard,
+    setNewCreatedBoard
   }
 
    // Function to get all boards array
@@ -36,14 +39,14 @@ React.FC<BoardsContextProps> = (
     setBoard(result[selectedBoard])
     setBoardId(result[selectedBoard].id)
     setBoardsList(result)
-    // setNewCreatedBoard(false)
+    setNewCreatedBoard(false)
     // setColumnAdded(false)
   }
 
   // Everytime the selected board changes 
   useEffect(()=> {
     getAllBoards()
-  }, [selectedBoard])
+  }, [selectedBoard, newCreatedBoard])
 
   return(
     <BoardsContext.Provider value={values}>

@@ -19,8 +19,6 @@ export type AppContextType = {
   setModalContentType: (modalContentType: string | null)=> void
   newTaskCreated: boolean
   setNewTaskCreated: (newTaskCreated: boolean)=> void
-  newCreatedBoard: boolean
-  setNewCreatedBoard: (newCreatedBoard: boolean)=> void
   columnAdded: boolean
   setColumnAdded: (columnAdded: boolean)=> void
   columnsCount: number
@@ -38,4 +36,6 @@ export type BoardContextValues = {
   setBoardsList: (boardList: Board[])=> void
   selectedBoard: number
   setSelectedBoard: (selectedBoard: number)=> void
+  newCreatedBoard: boolean
+  setNewCreatedBoard: (newCreatedBoard: boolean)=> void
 }
