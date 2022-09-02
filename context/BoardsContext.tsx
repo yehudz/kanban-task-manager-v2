@@ -19,8 +19,6 @@ React.FC<BoardsContextProps> = (
   const [boardsList, setBoardsList] = useState<Board[]>([])
   const [selectedBoard, setSelectedBoard] = useState<number>(0)
   const [newCreatedBoard, setNewCreatedBoard] = useState<boolean>(false)
-  const [columnAdded, setColumnAdded] = useState<boolean>(false)
-  const [columnsCount, setColumnsCount] = useState<number>(0)
 
   let values = {
     board,
@@ -33,10 +31,6 @@ React.FC<BoardsContextProps> = (
     setSelectedBoard,
     newCreatedBoard,
     setNewCreatedBoard,
-    columnAdded,
-    setColumnAdded,
-    columnsCount,
-    setColumnsCount
   }
 
    // Function to get all boards array

@@ -34,10 +34,6 @@ export type BoardContextValues = {
   setSelectedBoard: (selectedBoard: number)=> void
   newCreatedBoard: boolean
   setNewCreatedBoard: (newCreatedBoard: boolean)=> void
-  columnAdded: boolean
-  setColumnAdded: (columnAdded: boolean)=> void
-  columnsCount: number
-  setColumnsCount: (columnsCount: number)=> void
 }
 
 export type ColumnContextValues = {

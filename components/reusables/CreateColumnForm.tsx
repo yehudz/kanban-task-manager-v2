@@ -3,7 +3,7 @@ import {AppContext} from '../../context/AppContext'
 import { useContext, useEffect, useState } from 'react'
 import randomColor from '../../utils/randomColor'
 import Input from '../ui/Input'
-import { AppContextType, BoardContextValues } from '../../typings/context.types'
+import { AppContextType, BoardContextValues, ColumnContextValues } from '../../typings/context.types'
 import { BoardsContext } from '../../context/BoardsContext'
 import { ColumnsContext } from '../../context/ColumnsContext';
 const CreateColumnForm = ()=> {
@@ -13,14 +13,12 @@ const CreateColumnForm = ()=> {
 
   const {
     boardId, 
-    setColumnAdded, 
-    board
   } = useContext(BoardsContext) as BoardContextValues
 
   const {
     columns,
     setColumns
-  } = useContext(ColumnsContext)
+  } = useContext(ColumnsContext) as ColumnContextValues
   const [createResource, setCreateResource] = useState<boolean>(false)
   const [value, setValue] = useState<string>('')
 
@@ -29,14 +27,13 @@ const CreateColumnForm = ()=> {
       boardId: boardId,
       columnName: value,
       columnColor: randomColor(),
-      order: board.columns.length + 1
+      order: columns.length + 1
     }
     const res = await fetch(`/api/createBoardColumn`, {
       method: "POST",
       body: JSON.stringify(params)
     })
     if (res.status === 200) {
-      setColumnAdded(true)
       setModalVisibility(false)
     } else {
       alert('Something when wrong')
