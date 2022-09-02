@@ -4,17 +4,21 @@ import {AppContext} from '../../context/AppContext'
 import {BoardFormProps} from '../../typings/interfaces'
 import {Board, BoardColumn} from '../../typings/common.types'
 import styles from '../../styles/reusables/FormContainer.module.scss'
-import randomColor from "../utils/randomColor";
+import randomColor from "../../utils/randomColor";
 // Reusable Component imports
 import Input from "../ui/Input";
 import { IconButton } from "@mui/material";
-
+import { AppContextType, BoardContextValues } from "../../typings/context.types";
+import createBoard from '../api/createBoard';
+import { BoardsContext } from "../../context/BoardsContext";
 const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   const {
       setModalVisibility, 
-      setNewCreatedBoard, 
-      boardId
-    } = useContext(AppContext) 
+    } = useContext(AppContext) as AppContextType
+
+  const {
+    setNewCreatedBoard
+  } = useContext(BoardsContext) as BoardContextValues
 
   const [
     boardNameValue, 
@@ -41,7 +45,7 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
   const [createResource, setCreateBoard] = useState<boolean>(false)
   const [type, setType] = useState<string>('')
 
-  const inputsContainer = useRef()
+  const inputsContainer = useRef(null)
   // Shows the empty screen if there are no columns in the board
   useEffect(()=> {
     if (formTitle.includes('Edit')) setType('edit')
@@ -68,13 +72,23 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
         })
       }
       let params = {
-        id: boardId,
+        id: '',
         name: boardNameValue,
-        columns: columns
+        columns: columns,
+        active: true
       }
-      boardNameToDB(params)
+      createBoardCall(params)
+      
     }
   }, [createResource, columns])
+
+  async function createBoardCall(params: Board) {
+    const res = await createBoard(params)
+    if (res) {
+      setModalVisibility(false)
+      setNewCreatedBoard(true)
+    }
+  }
 
   // Add new input field for new column
   function addNewColumnField(
@@ -115,20 +129,6 @@ const BoardForm = ({formTitle, boardName, boardColumns}: BoardFormProps)=> {
         color: color
       }
     ])
-  }
-
-  // Makes API call to save the form to DB
-  async function boardNameToDB(params: Board) {
-    let route = type === 'create' ? 'createBoard' : 'editBoard'
-    let res = await fetch(`/api/${route}`, {
-      body: JSON.stringify(params),
-      method: 'POST'
-    })
-    if (res.status === 200) {
-      setNewCreatedBoard(true)
-      setModalVisibility(false)
-    }
-    else alert('Something went wrong')
   }
 
   return(
